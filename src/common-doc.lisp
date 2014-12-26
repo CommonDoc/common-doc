@@ -172,6 +172,30 @@
           :documentation "The list of `<definition>` instances."))
   (:documentation "A list of definitions."))
 
+;;; Figures
+
+(defclass <image> (<document-node>)
+  ((source :accessor source
+           :initarg :source
+           :type string
+           :documentation "The source where the image is stored.")
+   (description :accessor description
+                :initarg :description
+                :type string
+                :documentation "A plain text description of the image."))
+  (:documentation "An image."))
+
+(defclass <figure> (<document-node>)
+  ((image :accessor image
+          :initarg :image
+          :type <image>
+          :documentation "The figure's image.")
+   (description :accessor description
+                :initarg :description
+                :type (proper-list <document-node>)
+                :documentation "A description of the image."))
+  (:documentation "A figure, an image plus an annotation."))
+
 ;;; Large-scale structure
 
 (defclass <section> (<content-node>)
