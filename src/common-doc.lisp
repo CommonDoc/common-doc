@@ -287,3 +287,11 @@
 
   (:method ((dnode <document-node>) function)
     (funcall function dnode)))
+
+(defmethod collect-figures ((doc <document>))
+  (let ((figures (list)))
+    (traverse-document doc
+                       #'(lambda (node)
+                           (when (typep node '<figure>)
+                             (push node figures))))
+    figures))
