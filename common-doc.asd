@@ -10,7 +10,8 @@
                 :serial t
                 :components
                 ((:file "common-doc"))))
-  :description "A set of classes and functions for manipulating documents"
+  :description "A framework for representing and manipulating documents as CLOS
+  objects."
   :long-description
   #.(uiop:read-file-string
      (uiop:subpathname *load-pathname* "README.md"))
