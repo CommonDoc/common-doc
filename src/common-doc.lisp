@@ -47,6 +47,7 @@
            :items
            :source
            :description
+           :image
            :rows
            :header
            :footer
