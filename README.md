@@ -37,6 +37,22 @@ for the creation of a [library for representing documents][strandh]:
 
 # Usage
 
+Most documentation can be found in the docstrings. A sample of usage is:
+
+```lisp
+(make-instance 'common-doc:<document>
+               :title "My Document"
+               :creator "me"
+               :keywords (list "test" "test1")
+               :content
+               (list
+                (make-instance 'common-doc:<paragraph>
+                               :children
+                               (list
+                                (make-instance 'common-doc:<text-node>
+                                               :text "test")
+```
+
 # License
 
 Copyright (c) 2014 Fernando Borretti
