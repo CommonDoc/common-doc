@@ -196,6 +196,34 @@
                 :documentation "A description of the image."))
   (:documentation "A figure, an image plus an annotation."))
 
+;;; Tables
+
+(defclass <table> (<document-node>)
+  ((rows :accessor rows
+         :initarg :rows
+         :type (proper-list <row>)
+         :documentation "The list of rows in a table."))
+  (:documentation "A table."))
+
+(defclass <row> (<document-node>)
+  ((header :accessor header
+           :initarg :header
+           :type (proper-list <document-node>)
+           :documentation "The row header.")
+   (footer :accessor footer
+           :initarg :footer
+           :type (proper-list <document-node>)
+           :documentation "The row footer.")
+   (cells :accessor cells
+          :initarg :cells
+          :type (proper-list <cell>)
+          :documentation "The cells in the row."))
+  (:documentation "A row in a table."))
+
+(defclass <cell> (<content-node>)
+  ()
+  (:documentation "A cell in a table."))
+
 ;;; Large-scale structure
 
 (defclass <section> (<content-node>)
@@ -289,6 +317,7 @@
     (funcall function dnode)))
 
 (defmethod collect-figures ((doc <document>))
+  "Return a list of figures in the document."
   (let ((figures (list)))
     (traverse-document doc
                        #'(lambda (node)
