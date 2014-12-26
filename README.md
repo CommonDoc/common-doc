@@ -1,5 +1,7 @@
 # CommonDoc
 
+[![Build Status](https://travis-ci.org/CommonDoc/common-doc.svg?branch=master)](https://travis-ci.org/CommonDoc/common-doc)
+
 A framework for representing and manipulating documents as CLOS objects.
 
 # Overview
@@ -34,6 +36,10 @@ for the creation of a [library for representing documents][strandh]:
 >possible gestures.
 
 [strandh]: http://metamodular.com/Common-Lisp/document-library.html
+
+## Parsers/Emitters
+
+* [![Build Status](https://travis-ci.org/CommonDoc/cd-html.svg)](https://travis-ci.org/CommonDoc/cd-html) [`cd-html`](https://github.com/CommonDoc/cd-html)
 
 # Usage
 
