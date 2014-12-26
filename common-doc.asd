@@ -4,7 +4,8 @@
   :license "MIT"
   :version "0.1"
   :depends-on (:trivial-types
-               :local-time)
+               :local-time
+               :quri)
   :components ((:module "src"
                 :serial t
                 :components

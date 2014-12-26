@@ -100,17 +100,35 @@
 
 ;;; Links
 
-(defclass <link> (<document-node>)
+(defclass <link> (<content-node>)
   ()
   (:documentation "The base class for all links, internal and external."))
 
-(defclass <internal-link> (<document-node>)
-  ()
-  (:documentation ""))
+(defclass <internal-link> (<link>)
+  ((section-reference :accessor section-reference
+                      :initarg :section-reference
+                      :type string
+                      :documentation "A reference key for the linked section."))
+  (:documentation "A link to a section of this document."))
 
-(defclass <external-link> (<document-node>)
-  ()
-  (:documentation ""))
+(defclass <external-link> (<link>)
+  ((document-reference :accessor document-reference
+                      :initarg :document-reference
+                      :type string
+                      :documentation "A reference key for the linked document.")
+   (section-reference :accessor section-reference
+                      :initarg :section-reference
+                      :type string
+                      :documentation "A reference key for the linked section."))
+  (:documentation "A link to another document (See `reference` slot in the
+  `<document>` class), and optionally a section within that document."))
+
+(defclass <web-link> (<link>)
+  ((uri :accessor uri
+        :initarg :uri
+        :type quri:uri
+        :documentation "The URI of the external resource."))
+  (:documentation "An external link."))
 
 ;;; Lists
 
@@ -161,10 +179,10 @@
           :initarg :title
           :type <document-node>
           :documentation "The section title.")
-   (ref :accessor ref
-        :initarg :ref
-        :type string
-        :documentation "A reference key for this section."))
+   (reference :accessor reference
+              :initarg :reference
+              :type string
+              :documentation "A reference key for this section."))
   (:documentation "Represents a section in the document. Unlike HTML, where a
   section is just another element, sections in CommonDoc contain their contents."))
 
@@ -201,6 +219,11 @@
              :initarg :keywords
              :type (proper-list string)
              :documentation "A list of strings, each being a keyword for the document.")
+   (reference :accessor reference
+              :initarg :reference
+              :type string
+              :documentation "A reference string to uniquely identify the
+              document within a certain context.")
    (language :accessor language
             :initarg :language
              :type string
