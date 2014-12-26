@@ -375,7 +375,7 @@
 
   (:method ((cnode <content-node>) function)
     (funcall function cnode)
-    (loop for child in cnode do
+    (loop for child in (children cnode) do
       (traverse-document child function)))
 
   (:method ((dnode <document-node>) function)
