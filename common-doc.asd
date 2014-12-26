@@ -9,7 +9,9 @@
   :components ((:module "src"
                 :serial t
                 :components
-                ((:file "common-doc"))))
+                ((:file "package")
+                 (:file "classes")
+                 (:file "methods"))))
   :description "A framework for representing and manipulating documents as CLOS
   objects."
   :long-description
