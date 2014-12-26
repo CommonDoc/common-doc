@@ -68,8 +68,6 @@
            :collect-tables))
 (in-package :common-doc)
 
-
-
 ;;; Basic classes
 
 (defclass <document-node> ()
