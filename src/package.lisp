@@ -54,7 +54,6 @@
            :cells
            :title
            :reference
-           :content
            :title
            :creator
            :publisher
@@ -66,5 +65,6 @@
            :created-on
            :traverse-document
            :collect-figures
-           :collect-tables))
+           :collect-tables
+           :doc))
 (in-package :common-doc)

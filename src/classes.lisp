@@ -236,10 +236,10 @@
   section is just another element, sections in CommonDoc contain their contents."))
 
 (defclass <document> ()
-  ((content :accessor content
-            :initarg :content
-            :type (proper-list <document-node>)
-            :documentation "The document's contents.")
+  ((children :accessor children
+             :initarg :children
+             :type (proper-list <document-node>)
+             :documentation "The document's children nodes.")
    ;;; Metadata, mostly based on Dublin Core[1] and the OpenDocument[2] format.
    ;;;
    ;;; [1]: https://en.wikipedia.org/wiki/Dublin_Core
