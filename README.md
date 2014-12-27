@@ -39,9 +39,11 @@ for the creation of a [library for representing documents][strandh]:
 
 ## Parsers/Emitters
 
-### [cd-html](https://github.com/CommonDoc/cd-html)
+### [common-html](https://github.com/CommonDoc/common-html)
 
-[![Build Status](https://travis-ci.org/CommonDoc/cd-html.svg)](https://travis-ci.org/CommonDoc/cd-html)
+[![Build Status](https://travis-ci.org/CommonDoc/common-html.svg)](https://travis-ci.org/CommonDoc/common-html)
+
+An HTML5 emitter.
 
 # Usage
 
