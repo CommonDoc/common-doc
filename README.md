@@ -39,7 +39,7 @@ for the creation of a [library for representing documents][strandh]:
 
 ## Parsers/Emitters
 
-### [common-html](https://github.com/CommonDoc/common-html)
+### [CommonHTML](https://github.com/CommonDoc/common-html)
 
 [![Build Status](https://travis-ci.org/CommonDoc/common-html.svg)](https://travis-ci.org/CommonDoc/common-html)
 
@@ -48,6 +48,11 @@ An HTML5 emitter.
 # Usage
 
 Most documentation can be found in the docstrings. A sample of usage is:
+
+## Examples
+
+Constructing a document with title "My Title", containing a paragraph with a
+single text node:
 
 ```lisp
 (doc
