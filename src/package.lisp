@@ -66,5 +66,6 @@
            :traverse-document
            :collect-figures
            :collect-tables
-           :doc))
+           :doc)
+  (:documentation "The CommonDoc package."))
 (in-package :common-doc)
