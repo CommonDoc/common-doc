@@ -1,6 +1,11 @@
 (in-package :cl-user)
 (defpackage common-doc-test
-  (:use :cl :fiveam))
+  (:use :cl :fiveam)
+  (:import-from :common-doc
+                :doc
+                :<document>
+                :<paragraph>
+                :<text-node>))
 (in-package :common-doc-test)
 
 (def-suite tests
@@ -12,25 +17,23 @@
     (common-doc:traverse-document
      doc
      #'(lambda (node)
-         (when (typep node 'common-doc:<text-node>)
+         (when (typep node '<text-node>)
            (write-string (common-doc:text node) stream))))))
 
 (test simple-doc
-  (let ((doc
-          (make-instance 'common-doc:<document>
-                         :title "My Document"
-                         :creator "me"
-                         :keywords (list "test" "test1")
-                         :content
-                         (list
-                          (make-instance 'common-doc:<paragraph>
-                                         :children
-                                         (list
-                                          (make-instance 'common-doc:<text-node>
-                                                         :text "test")))))))
+  (let ((document
+          (doc
+           <document>
+           (:title "My Document"
+            :creator "me"
+            :keywords (list "test" "test1"))
+           (<paragraph>
+            ()
+            (<text-node>
+             (:text "test"))))))
     (is
-     (equal (common-doc:keywords doc) (list "test" "test1")))
-    (is (equal (extract-doc-text doc)
+     (equal (common-doc:keywords document) (list "test" "test1")))
+    (is (equal (extract-doc-text document)
                "test"))))
 
 (run! 'tests)
