@@ -24,7 +24,7 @@
                        #'(lambda (node)
                            (when (typep node '<figure>)
                              (push node figures))))
-    figures))
+    (reverse figures)))
 
 (defmethod collect-tables ((doc <document>))
   "Return a list of tables in the document."
@@ -33,4 +33,4 @@
                        #'(lambda (node)
                            (when (typep node '<table>)
                              (push node tables))))
-    tables))
+    (reverse tables)))
