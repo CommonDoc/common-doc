@@ -1,11 +1,6 @@
 (in-package :cl-user)
 (defpackage common-doc-test
-  (:use :cl :fiveam)
-  (:import-from :common-doc
-                :doc
-                :<document>
-                :<paragraph>
-                :<text-node>))
+  (:use :cl :fiveam :common-doc))
 (in-package :common-doc-test)
 
 (def-suite tests
@@ -14,11 +9,11 @@
 
 (defun extract-doc-text (doc)
   (with-output-to-string (stream)
-    (common-doc:traverse-document
+    (traverse-document
      doc
      #'(lambda (node)
          (when (typep node '<text-node>)
-           (write-string (common-doc:text node) stream))))))
+           (write-string (text node) stream))))))
 
 (test simple-doc
   (let ((document
@@ -32,8 +27,43 @@
             (<text-node>
              (:text "test"))))))
     (is
-     (equal (common-doc:keywords document) (list "test" "test1")))
+     (equal (keywords document) (list "test" "test1")))
     (is (equal (extract-doc-text document)
                "test"))))
+
+(test extract-figures
+  (let ((document)
+        (figs))
+    (finishes
+      (setf document
+            (doc
+             <document>
+             ()
+             (<section>
+              (:title "Section 1")
+              (<figure>
+               (:image (doc <image> (:source "fig1.jpg"))
+                :description
+                (doc
+                 <text-node>
+                 (:text "Fig 1")))))
+             (<section>
+              (:title "Section 2")
+              (<figure>
+               (:image (doc <image> (:source "fig2.jpg"))
+                :description
+                (doc
+                 <text-node>
+                 (:text "Fig 2"))))))))
+    (finishes
+      (setf figs (collect-figures document)))
+    (let* ((first-fig (first figs))
+           (second-fig (second figs))
+           (first-img (image first-fig))
+           (second-img (image second-fig)))
+      (is
+       (equal (source first-img) "fig1.jpg"))
+      (is
+       (equal (source second-img) "fig2.jpg")))))
 
 (run! 'tests)
