@@ -45,6 +45,12 @@ for the creation of a [library for representing documents][strandh]:
 
 An HTML5 emitter.
 
+### [ParenML](https://github.com/CommonDoc/parenml)
+
+[![Build Status](https://travis-ci.org/CommonDoc/parenml.svg)](https://travis-ci.org/CommonDoc/parenml)
+
+An S-expression markup language.
+
 # Usage
 
 Most documentation can be found in the docstrings. A sample of usage is:
