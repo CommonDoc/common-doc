@@ -15,7 +15,7 @@ of completeness.
 What CommonDoc provides is a way to separate parser and emitter by providing a
 common framework for representing documents. Parsers and emitters can be written
 to convert text to and from various markup langages -- Markdown, Textile, ReST,
-etc. -- while keeping a single, agnostic internal representation.
+etc. -- while keeping a single, backend-agnostic internal representation.
 
 ## Motivation
 
@@ -39,24 +39,24 @@ for the creation of a [library for representing documents][strandh]:
 
 ## Parsers/Emitters
 
-* [![Build Status](https://travis-ci.org/CommonDoc/cd-html.svg)](https://travis-ci.org/CommonDoc/cd-html) [`cd-html`](https://github.com/CommonDoc/cd-html)
+### [cd-html](https://github.com/CommonDoc/cd-html)
+
+[![Build Status](https://travis-ci.org/CommonDoc/cd-html.svg)](https://travis-ci.org/CommonDoc/cd-html)
 
 # Usage
 
 Most documentation can be found in the docstrings. A sample of usage is:
 
 ```lisp
-(make-instance 'common-doc:<document>
-               :title "My Document"
-               :creator "me"
-               :keywords (list "test" "test1")
-               :content
-               (list
-                (make-instance 'common-doc:<paragraph>
-                               :children
-                               (list
-                                (make-instance 'common-doc:<text-node>
-                                               :text "test")
+(doc
+ (<document>
+  (:title "My Document"
+   :creator "me"
+   :keywords (list "test" "test1"))
+  (<paragraph>
+   ()
+   (<text-node>
+    (:text "test")))))
 ```
 
 # License
