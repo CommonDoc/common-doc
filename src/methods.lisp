@@ -6,7 +6,7 @@
 
   (:method ((doc <document>) function)
     (funcall function doc)
-    (loop for child in (content doc) do
+    (loop for child in (children doc) do
       (traverse-document child function)))
 
   (:method ((cnode <content-node>) function)

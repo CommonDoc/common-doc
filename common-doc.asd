@@ -11,7 +11,8 @@
                 :components
                 ((:file "package")
                  (:file "classes")
-                 (:file "methods"))))
+                 (:file "methods")
+                 (:file "macros"))))
   :description "A framework for representing and manipulating documents as CLOS
   objects."
   :long-description
