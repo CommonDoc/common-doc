@@ -131,7 +131,7 @@
 
 (defclass <list> (<document-node>)
   ()
-  (:documentation "The base class of all list nodes."))
+  (:documentation "The base class of all lists."))
 
 (defclass <list-item> (<content-node>)
   ()
@@ -148,21 +148,21 @@
                :documentation "Defines the term."))
   (:documentation "An item in a definition list."))
 
-(defclass <unordered-list> (<document-node>)
+(defclass <unordered-list> (<list>)
   ((items :accessor items
           :initarg :items
           :type (proper-list <list-item>)
           :documentation "The list of `<list-item>` instances."))
   (:documentation "A list where the elements are unordered."))
 
-(defclass <ordered-list> (<document-node>)
+(defclass <ordered-list> (<list>)
   ((items :accessor items
           :initarg :items
           :type (proper-list <list-item>)
           :documentation "The list of `<list-item>` instances."))
   (:documentation "A list where the elements are ordered."))
 
-(defclass <definition-list> (<document-node>)
+(defclass <definition-list> (<list>)
   ((items :accessor items
           :initarg :items
           :type (proper-list <definition>)
