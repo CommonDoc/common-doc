@@ -230,6 +230,7 @@
           :documentation "The section title.")
    (reference :accessor reference
               :initarg :reference
+              :initform nil
               :type string
               :documentation "A reference key for this section."))
   (:documentation "Represents a section in the document. Unlike HTML, where a
