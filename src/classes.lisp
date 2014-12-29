@@ -15,7 +15,11 @@
              :initarg :children
              :type (proper-list <document-node>)
              :documentation "The node's children."))
-  (:documentation "A node with generic content."))
+  (:documentation "A node with children. This is the base class of all nodes
+  that have a `children` slot (Except `<document>`, since this class inherits
+  from <document-node>) and can also be used as a way to represent a generic
+  grouping of elements. This is useful when building a CommonDoc document by
+  parsing some input language."))
 
 (defclass <text-node> (<document-node>)
   ((text :accessor text
