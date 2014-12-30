@@ -13,3 +13,10 @@
 
 (defgeneric expand-macro (node)
   (:documentation "Replace a macro node with a primitive node."))
+
+(defmethod expand-macro ((node <document-node>))
+  "The default macroexpansion: Do nothing."
+  t)
+
+(defmethod expand-macro ((macro <macro-node>))
+  (error 'common-doc.error:<no-macro-expander> :node macro))
