@@ -1,6 +1,11 @@
 (in-package :cl-user)
 (defpackage common-doc-test
-  (:use :cl :fiveam :common-doc))
+  (:use :cl :fiveam :common-doc)
+  (:import-from :common-doc.util
+   :doc)
+  (:import-from :common-doc.ops
+                :traverse-document
+                :collect-figures))
 (in-package :common-doc-test)
 
 (def-suite tests
