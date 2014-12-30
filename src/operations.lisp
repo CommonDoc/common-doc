@@ -1,4 +1,4 @@
-(in-package :common-doc)
+(in-package :common-doc.ops)
 
 (defgeneric traverse-document (node function)
   (:documentation "Apply a side effectful function recursively to every element

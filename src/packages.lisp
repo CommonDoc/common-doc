@@ -63,19 +63,33 @@
            :keywords
            :rights
            :version
-           :created-on
-           ;; Methods
-           :traverse-document
+           :created-on)
+  (:documentation "CommonDoc classes and and accessors."))
+
+(defpackage common-doc.ops
+  (:use :cl :common-doc)
+  (:export :traverse-document
            :collect-figures
-           :collect-tables
-           ;; Format
-           :<format>
+           :collect-tables)
+  (:documentation "Common operations on CommonDoc documents."))
+
+(defpackage common-doc.format
+  (:use :cl :common-doc)
+  (:export :<format>
            :parse-document
            :emit-document
-           :emit-to-string
-           ;; Macros
-           :expand-macro
-           ;; Utilities
-           :doc)
-  (:documentation "The CommonDoc package."))
-(in-package :common-doc)
+           :emit-to-string)
+  (:documentation "CommonDoc input/output formats."))
+
+(defpackage common-doc.macro
+  (:use :cl :common-doc)
+  (:export :<macro-node>
+           :name
+           :attributes
+           :expand-macro)
+  (:documentation "CommonDoc macros."))
+
+(defpackage common-doc.util
+  (:use :cl :common-doc)
+  (:export :doc)
+  (:documentation "CommonDoc utilities."))

@@ -9,9 +9,9 @@
   :components ((:module "src"
                 :serial t
                 :components
-                ((:file "package")
+                ((:file "packages")
                  (:file "classes")
-                 (:file "methods")
+                 (:file "operations")
                  (:file "macros")
                  (:file "format")
                  (:file "util"))))

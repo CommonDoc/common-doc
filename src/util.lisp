@@ -1,4 +1,4 @@
-(in-package :common-doc)
+(in-package :common-doc.util)
 
 (defmacro doc (class args &rest children)
   "Easily create a document or node.

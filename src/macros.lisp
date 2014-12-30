@@ -1,4 +1,4 @@
-(in-package :common-doc)
+(in-package :common-doc.macro)
 
 (defclass <macro-node> (<content-node>)
   ((name :accessor name

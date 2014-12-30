@@ -1,4 +1,4 @@
-(in-package :common-doc)
+(in-package :common-doc.format)
 
 (defclass <format> ()
   ()
