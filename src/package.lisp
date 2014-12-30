@@ -73,6 +73,8 @@
            :parse-document
            :emit-document
            :emit-to-string
+           ;; Macros
+           :expand-macro
            ;; Utilities
            :doc)
   (:documentation "The CommonDoc package."))
