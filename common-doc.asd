@@ -12,6 +12,7 @@
                 ((:file "packages")
                  (:file "classes")
                  (:file "operations")
+                 (:file "error")
                  (:file "macros")
                  (:file "format")
                  (:file "util"))))

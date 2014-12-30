@@ -81,6 +81,14 @@
            :emit-to-string)
   (:documentation "CommonDoc input/output formats."))
 
+(defpackage common-doc.error
+  (:use :cl)
+  (:export :<common-doc-error>
+           :<macro-error>
+           :<no-macro-expander>
+           :node)
+  (:documentation "CommonDoc errors."))
+
 (defpackage common-doc.macro
   (:use :cl :common-doc)
   (:export :<macro-node>
