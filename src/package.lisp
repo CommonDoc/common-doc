@@ -15,7 +15,6 @@
            :<superscript>
            :<subscript>
            :<code-block>
-           :<verbatim>
            :<quote>
            :<inline-quote>
            :<block-quote>

@@ -78,13 +78,6 @@
              :documentation "The language of the code block's contents."))
   (:documentation "A block of code."))
 
-(defclass <verbatim> (<document-node>)
-  ((text :accessor text
-         :initarg :text
-         :type string
-         :documentation "The node's text."))
-  (:documentation "Contains a verbatim text string."))
-
 ;;; Quotes
 
 (defclass <quote> (<content-node>)
