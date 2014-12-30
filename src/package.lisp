@@ -1,7 +1,8 @@
 (in-package :cl-user)
 (defpackage common-doc
   (:use :cl :trivial-types)
-  (:export :<document-node>
+  (:export ;; Document classes
+           :<document-node>
            :<content-node>
            :<text-node>
            :<paragraph>
@@ -35,6 +36,7 @@
            :<cell>
            :<section>
            :<document>
+           ;; Accessors
            :metadata
            :children
            :text
@@ -63,9 +65,16 @@
            :rights
            :version
            :created-on
+           ;; Methods
            :traverse-document
            :collect-figures
            :collect-tables
+           ;; Format
+           :<format>
+           :parse-document
+           :emit-document
+           :emit-to-string
+           ;; Utilities
            :doc)
   (:documentation "The CommonDoc package."))
 (in-package :common-doc)

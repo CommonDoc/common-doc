@@ -13,6 +13,7 @@
                  (:file "classes")
                  (:file "methods")
                  (:file "macros")
+                 (:file "format")
                  (:file "util"))))
   :description "A framework for representing and manipulating documents as CLOS
   objects."
