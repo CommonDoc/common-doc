@@ -32,6 +32,7 @@
                          (list (make-instance '<text-node> :text "$")))))
 
 (defmethod expand-macro ((texb <tex-block>))
+  "Wrap the children in TeX block tags."
   (make-instance '<content-node>
                  :children
                  (append (list (make-instance '<text-node> :text "\\("))

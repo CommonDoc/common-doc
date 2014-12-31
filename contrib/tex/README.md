@@ -2,11 +2,10 @@
 
 TeX macros for Common Doc.
 
-# Usage
+# Overview
 
-```lisp
-
-```
+This contrib introduces two new macros, `<tex>` and `<texb>`, which represent
+inline TeX code and TeX blocks, respectively.
 
 # License
 
