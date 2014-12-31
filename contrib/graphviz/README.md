@@ -1,6 +1,6 @@
 # CommonDoc Graphviz
 
-[Graphviz][gv] macro for Common Doc.
+[Graphviz][gv] macro for CommonDoc.
 
 [gv]: http://www.graphviz.org/
 

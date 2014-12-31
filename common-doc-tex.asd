@@ -3,8 +3,7 @@
   :maintainer "Fernando Borretti <eudoxiahp@gmail.com>"
   :license "MIT"
   :version "0.1"
-  :depends-on (:common-doc
-               :trivial-shell)
+  :depends-on (:common-doc)
   :components ((:module "contrib"
                 :components
                 ((:module "tex"

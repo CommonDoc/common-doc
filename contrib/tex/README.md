@@ -1,6 +1,6 @@
 # CommonDoc TeX
 
-TeX macros for Common Doc.
+TeX macros for CommonDoc.
 
 # Overview
 
