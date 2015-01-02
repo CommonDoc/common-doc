@@ -45,7 +45,6 @@
            :uri
            :term
            :definition
-           :items
            :source
            :description
            :image
@@ -63,7 +62,10 @@
            :keywords
            :rights
            :version
-           :created-on)
+           :created-on
+           ;; Node definition
+           :define-node
+           :find-node)
   (:documentation "CommonDoc classes and and accessors."))
 
 (defpackage common-doc.ops
@@ -93,7 +95,6 @@
   (:use :cl :common-doc)
   (:export :<macro-node>
            :name
-           :attributes
            :expand-macro)
   (:documentation "CommonDoc macros."))
 

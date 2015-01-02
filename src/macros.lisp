@@ -4,11 +4,7 @@
   ((name :accessor name
          :initarg :name
          :type string
-         :documentation "The name of the macro.")
-   (attributes :accessor attributes
-               :initarg :attributes
-               :type hash-table
-               :documentation "Macro attributes."))
+         :documentation "The name of the macro."))
   (:documentation "A macro to be expanded."))
 
 (defgeneric expand-macro (node)
