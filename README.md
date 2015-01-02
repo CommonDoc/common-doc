@@ -51,6 +51,12 @@ An HTML5 emitter.
 
 An S-expression markup language.
 
+### [VerTeX](https://github.com/CommonDoc/vertex)
+
+[![Build Status](https://travis-ci.org/CommonDoc/vertex.svg?branch=master)](https://travis-ci.org/CommonDoc/vertex)
+
+A TeX-like markup language.
+
 # Usage
 
 Most documentation can be found in the docstrings. A sample of usage is:
