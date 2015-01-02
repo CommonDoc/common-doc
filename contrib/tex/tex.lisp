@@ -7,18 +7,21 @@
   (:import-from :common-doc
                 :<text-node>
                 :<content-node>
-                :children)
+                :children
+                :define-node)
   (:documentation "TeX package."))
 (in-package :common-doc.tex)
 
 ;;; Classes
 
-(defclass <tex> (<macro-node>)
+(define-node <tex> (<macro-node>)
   ()
+  (:tag-name "tex")
   (:documentation "Inline TeX code."))
 
-(defclass <tex-block> (<macro-node>)
+(define-node <tex-block> (<macro-node>)
   ()
+  (:tag-name "texb")
   (:documentation "Block of TeX code."))
 
 ;;; Macroexpansions
