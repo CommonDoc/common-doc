@@ -10,6 +10,7 @@
                 :serial t
                 :components
                 ((:file "packages")
+                 (:file "define")
                  (:file "classes")
                  (:file "operations")
                  (:file "error")
