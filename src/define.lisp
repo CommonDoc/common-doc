@@ -41,7 +41,7 @@
                  (setf (gethash ,(cadr tag-name) *registry*)
                        (find-class ',name))
                  (setf (gethash ,(cadr tag-name) *node-slots*)
-                       ,special-slots)))
+                       ',special-slots)))
          t))))
 
 (defun find-node (tag-name)

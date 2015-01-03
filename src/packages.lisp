@@ -35,7 +35,7 @@
            :<section>
            :<document>
            ;; Accessors
-           :attributes
+           :metadata
            :children
            :text
            :language

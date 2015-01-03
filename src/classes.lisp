@@ -3,11 +3,11 @@
 ;;; Basic classes
 
 (define-node <document-node> ()
-  ((attributes :accessor attributes
-               :initarg :attributes
-               :type (or null hash-table)
-               :initform nil
-               :documentation "Node attributes."))
+  ((metadata :accessor metadata
+             :initarg :metadata
+             :type (or null hash-table)
+             :initform nil
+             :documentation "Node metadata."))
   (:documentation "The base class of all document classes."))
 
 (define-node <content-node> (<document-node>)
@@ -83,6 +83,7 @@
   ((language :accessor language
              :initarg :language
              :type string
+             :attribute-name "lang"
              :documentation "The language of the code block's contents."))
   (:tag-name "code")
   (:documentation "A block of code."))
@@ -114,11 +115,13 @@
                        :initarg :document-reference
                        :initform nil
                        :type string
+                       :attribute-name "doc"
                        :documentation "A reference key for the linked document.
  If `nil`, the link is only to a section within the document.")
    (section-reference :accessor section-reference
                       :initarg :section-reference
                       :type string
+                      :attribute-name "sec"
                       :documentation "A reference key for the linked section."))
   (:tag-name "ref")
   (:documentation "A link to a section of this document, to another document and
@@ -129,6 +132,7 @@
   ((uri :accessor uri
         :initarg :uri
         :type quri:uri
+        :attribute-name "uri"
         :documentation "The URI of the external resource."))
   (:tag-name "link")
   (:documentation "An external link."))
@@ -186,10 +190,12 @@
   ((source :accessor source
            :initarg :source
            :type string
+           :attribute-name "src"
            :documentation "The source where the image is stored.")
    (description :accessor description
                 :initarg :description
                 :type string
+                :attribute-name "desc"
                 :documentation "A plain text description of the image."))
   (:tag-name "image")
   (:documentation "An image."))
@@ -243,11 +249,13 @@
   ((title :accessor title
           :initarg :title
           :type <document-node>
+          :attribute-name "title"
           :documentation "The section title.")
    (reference :accessor reference
               :initarg :reference
               :initform nil
               :type string
+              :attribute-name "ref"
               :documentation "A reference key for this section."))
   (:tag-name "section")
   (:documentation "Represents a section in the document. Unlike HTML, where a
