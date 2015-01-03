@@ -1,6 +1,6 @@
 (in-package :cl-user)
 (defpackage common-doc
-  (:use :cl :trivial-types)
+  (:use :cl :trivial-types :anaphora)
   (:export ;; Document classes
            :<document-node>
            :<content-node>
@@ -35,7 +35,7 @@
            :<section>
            :<document>
            ;; Accessors
-           :metadata
+           :attributes
            :children
            :text
            :language

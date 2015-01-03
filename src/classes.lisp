@@ -3,11 +3,11 @@
 ;;; Basic classes
 
 (define-node <document-node> ()
-  ((metadata :accessor metadata
-             :initarg :metadata
-             :type (or null hash-table)
-             :initform nil
-             :documentation "Node metadata."))
+  ((attributes :accessor attributes
+               :initarg :attributes
+               :type (or null hash-table)
+               :initform nil
+               :documentation "Node attributes."))
   (:documentation "The base class of all document classes."))
 
 (define-node <content-node> (<document-node>)
