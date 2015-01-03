@@ -13,8 +13,15 @@
            ,slots
            ,@class-options)
          ,(if tag-name
-              `(setf (gethash ,(cadr tag-name) *registry*) ',name))
+              `(setf (gethash ,(cadr tag-name) *registry*)
+                     (find-class ',name)))
          t))))
 
 (defun find-node (tag-name)
   (gethash tag-name *registry*))
+
+(defun find-tag (class)
+  (loop for tag-name being the hash-keys of *registry*
+        using (hash-value tag-class)
+        if (equal class tag-class)
+        return tag-name))

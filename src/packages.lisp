@@ -19,8 +19,7 @@
            :<inline-quote>
            :<block-quote>
            :<link>
-           :<internal-link>
-           :<external-link>
+           :<document-link>
            :<web-link>
            :<list>
            :<list-item>
@@ -65,7 +64,8 @@
            :created-on
            ;; Node definition
            :define-node
-           :find-node)
+           :find-node
+           :find-tag)
   (:documentation "CommonDoc classes and and accessors."))
 
 (defpackage common-doc.ops
