@@ -109,30 +109,28 @@
   ()
   (:documentation "The base class for all links, internal and external."))
 
-(define-node <internal-link> (<link>)
-  ((section-reference :accessor section-reference
-                      :initarg :section-reference
-                      :type string
-                      :documentation "A reference key for the linked section."))
-  (:documentation "A link to a section of this document."))
-
-(define-node <external-link> (<link>)
+(define-node <document-link> (<link>)
   ((document-reference :accessor document-reference
-                      :initarg :document-reference
-                      :type string
-                      :documentation "A reference key for the linked document.")
+                       :initarg :document-reference
+                       :initform nil
+                       :type string
+                       :documentation "A reference key for the linked document.
+ If `nil`, the link is only to a section within the document.")
    (section-reference :accessor section-reference
                       :initarg :section-reference
                       :type string
                       :documentation "A reference key for the linked section."))
-  (:documentation "A link to another document (See `reference` slot in the
-  `<document>` class), and optionally a section within that document."))
+  (:tag-name "link")
+  (:documentation "A link to a section of this document, to another document and
+  optionally a section within that document. See also the `reference` slot in
+  the `<document>` class."))
 
 (define-node <web-link> (<link>)
   ((uri :accessor uri
         :initarg :uri
         :type quri:uri
         :documentation "The URI of the external resource."))
+  (:tag-name "uri")
   (:documentation "An external link."))
 
 ;;; Lists
