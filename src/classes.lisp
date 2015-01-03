@@ -120,7 +120,7 @@
                       :initarg :section-reference
                       :type string
                       :documentation "A reference key for the linked section."))
-  (:tag-name "link")
+  (:tag-name "ref")
   (:documentation "A link to a section of this document, to another document and
   optionally a section within that document. See also the `reference` slot in
   the `<document>` class."))
@@ -130,7 +130,7 @@
         :initarg :uri
         :type quri:uri
         :documentation "The URI of the external resource."))
-  (:tag-name "uri")
+  (:tag-name "link")
   (:documentation "An external link."))
 
 ;;; Lists
