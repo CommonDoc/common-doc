@@ -95,7 +95,8 @@
   (:use :cl :common-doc)
   (:export :<macro-node>
            :name
-           :expand-macro)
+           :expand-macro
+           :expand-macros)
   (:documentation "CommonDoc macros."))
 
 (defpackage common-doc.util
