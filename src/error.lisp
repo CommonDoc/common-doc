@@ -11,7 +11,8 @@
 (define-condition <no-macro-expander> (<macro-error>)
   ((node :accessor node
          :initarg :node
-         :type common-doc.macro:<macro-node>))
+         :type common-doc.macro:<macro-node>
+         :documentation "The node that couldn't be expanded."))
   (:report
    (lambda (condition stream)
      (format stream "No expand-macro method for node ~S."

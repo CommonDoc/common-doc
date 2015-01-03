@@ -37,18 +37,24 @@
            ,slots
            ,@class-options)
          ,(if tag-name
-              `(progn
+              `(let ((class (find-class ',name)))
                  (setf (gethash ,(cadr tag-name) *registry*)
-                       (find-class ',name))
-                 (setf (gethash ,(cadr tag-name) *node-slots*)
+                       class)
+                 (setf (gethash class *node-slots*)
                        ',special-slots)))
          t))))
 
 (defun find-node (tag-name)
+  "Find a node class by its tag name."
   (gethash tag-name *registry*))
 
 (defun find-tag (class)
+  "Return a node class' tag name."
   (loop for tag-name being the hash-keys of *registry*
         using (hash-value tag-class)
         if (equal class tag-class)
         return tag-name))
+
+(defun find-special-slots (class)
+  "Return a node class' special slots."
+  (gethash class *node-slots*))
