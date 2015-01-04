@@ -24,3 +24,10 @@
                                                   (recur child))))
                    `(make-instance ',class ,@args)))))
     (recur (cons class (cons args children)))))
+
+(defun make-meta (pairs)
+  "Create a metadata hash table from a list of cons cells."
+  (let ((table (make-hash-table :test #'equal)))
+    (loop for pair in pairs do
+      (setf (gethash (first pair) table) (rest pair)))
+    table))

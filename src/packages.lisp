@@ -65,7 +65,8 @@
            ;; Node definition
            :define-node
            :find-node
-           :find-tag)
+           :find-tag
+           :find-special-slots)
   (:documentation "CommonDoc classes and and accessors."))
 
 (defpackage common-doc.ops
@@ -101,5 +102,6 @@
 
 (defpackage common-doc.util
   (:use :cl :common-doc)
-  (:export :doc)
+  (:export :doc
+           :make-meta)
   (:documentation "CommonDoc utilities."))
