@@ -95,7 +95,12 @@
     (macrolet ((tests (&rest nodes)
                  `(progn
                     ,@(loop for node in nodes collecting
-                        `(is (node-equal ,node ,node))))))
+                            `(is (node-equal ,node ,node)))
+                    ,@(loop for node in nodes collecting
+                            `(progn
+                               ,@(loop for other-node in (set-difference nodes (list node))
+                                       collecting
+                                       `(is (not (node-equal ,node ,other-node)))))))))
       (tests image paragraph section))))
 
 (run! 'tests)
