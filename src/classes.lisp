@@ -195,6 +195,7 @@
    (description :accessor description
                 :initarg :description
                 :type string
+                :initform nil
                 :attribute-name "desc"
                 :documentation "A plain text description of the image."))
   (:tag-name "image")

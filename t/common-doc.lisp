@@ -76,6 +76,26 @@
 (test node-equality
   (is
    (node-equal (make-text "test")
-               (make-text "test"))))
+               (make-text "test")))
+  (let* ((image
+           (doc <image> (:source "fig1.jpg")))
+         (paragraph
+           (doc
+            <paragraph>
+            ()
+            (<text-node>
+             (:text "test"))))
+         (section
+           (doc
+            <section>
+            (:title "Section 1")
+            (<figure>
+             (:image image
+              :description paragraph)))))
+    (macrolet ((tests (&rest nodes)
+                 `(progn
+                    ,@(loop for node in nodes collecting
+                        `(is (node-equal ,node ,node))))))
+      (tests image paragraph section))))
 
 (run! 'tests)

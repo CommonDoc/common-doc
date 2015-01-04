@@ -138,7 +138,7 @@
 
 (defmethod node-specific-equal ((section-a <section>)
                                 (section-b <section>))
-  (and (node-equal (title section-a)
+  (and (equal (title section-a)
                    (title section-b))
        (equal (reference section-a)
               (reference section-b))))
