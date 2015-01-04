@@ -254,7 +254,7 @@
    (reference :accessor reference
               :initarg :reference
               :initform nil
-              :type string
+              :type (or null string)
               :attribute-name "ref"
               :documentation "A reference key for this section."))
   (:tag-name "section")

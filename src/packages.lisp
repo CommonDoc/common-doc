@@ -74,7 +74,8 @@
   (:export :traverse-document
            :collect-figures
            :collect-tables
-           :node-equal)
+           :node-equal
+           :node-specific-equal)
   (:documentation "Common operations on CommonDoc documents."))
 
 (defpackage common-doc.format
