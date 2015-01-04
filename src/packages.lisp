@@ -73,7 +73,8 @@
   (:use :cl :common-doc)
   (:export :traverse-document
            :collect-figures
-           :collect-tables)
+           :collect-tables
+           :node-equal)
   (:documentation "Common operations on CommonDoc documents."))
 
 (defpackage common-doc.format
