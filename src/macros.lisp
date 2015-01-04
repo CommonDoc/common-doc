@@ -12,7 +12,7 @@
 
 (defmethod expand-macro ((node <document-node>))
   "The default macroexpansion: Do nothing."
-  t)
+  node)
 
 (defmethod expand-macro ((macro <macro-node>))
   (error 'common-doc.error:<no-macro-expander> :node macro))
