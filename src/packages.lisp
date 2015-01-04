@@ -103,5 +103,6 @@
 (defpackage common-doc.util
   (:use :cl :common-doc)
   (:export :doc
-           :make-meta)
+           :make-meta
+           :make-text)
   (:documentation "CommonDoc utilities."))

@@ -31,3 +31,7 @@
     (loop for pair in pairs do
       (setf (gethash (first pair) table) (rest pair)))
     table))
+
+(defun make-text (string)
+  "Create a text node from the contents of a string."
+  (make-instance '<text-node> :text string))
