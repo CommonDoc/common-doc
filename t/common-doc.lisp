@@ -2,10 +2,12 @@
 (defpackage common-doc-test
   (:use :cl :fiveam :common-doc)
   (:import-from :common-doc.util
-   :doc)
+                :doc
+                :make-text)
   (:import-from :common-doc.ops
                 :traverse-document
-                :collect-figures))
+                :collect-figures
+                :node-equal))
 (in-package :common-doc-test)
 
 (def-suite tests
@@ -70,5 +72,10 @@
        (equal (source first-img) "fig1.jpg"))
       (is
        (equal (source second-img) "fig2.jpg")))))
+
+(test node-equality
+  (is
+   (node-equal (make-text "test")
+               (make-text "test"))))
 
 (run! 'tests)
