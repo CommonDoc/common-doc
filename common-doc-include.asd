@@ -3,7 +3,8 @@
   :maintainer "Fernando Borretti <eudoxiahp@gmail.com>"
   :license "MIT"
   :version "0.1"
-  :depends-on (:common-doc)
+  :depends-on (:common-doc
+               :cl-fad)
   :components ((:module "contrib"
                 :components
                 ((:module "include"
