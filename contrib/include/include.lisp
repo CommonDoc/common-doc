@@ -11,16 +11,6 @@
   (:documentation "Includex package."))
 (in-package :common-doc.include)
 
-;;; Utilities
-
-(defun parse-range (range-string)
-  "Return nil or a `(start-line, end-line)` pair."
-  (if range-string
-      ;; Actual parsing
-      (cons 1 2)
-      ;; If the input is nil, just return nil
-      nil))
-
 ;;; Classes
 
 (define-node <include> (<macro-node>)
@@ -29,12 +19,18 @@
          :type string
          :attribute-name "path"
          :documentation "Path to the local file to include.")
-   (range :reader include-range
-          :initarg :range
+   (start :reader include-start
+          :initarg :start
           :initform nil
           :type string
-          :attribute-name "range"
-          :documentation "The range of lines to include."))
+          :attribute-name "start"
+          :documentation "The line where the inclusion will start.")
+   (end :reader include-end
+        :initarg :end
+        :initform nil
+        :type string
+        :attribute-name "end"
+        :documentation "The line where the inclusion will end."))
   (:tag-name "include")
   (:documentation "Include an external file."))
 
@@ -43,16 +39,28 @@
 (defmethod expand-macro ((include <include>))
   "Expand the include file into a text node with its contents."
   (let* ((path (common-doc.file:absolute-path (include-path include)))
-         (range (parse-range (include-range include)))
+         (start (parse-integer (include-start include)
+                               :junk-allowed t))
+         (end (parse-integer (include-end include)
+                             :junk-allowed t))
          (full-text (uiop:read-file-string path)))
-    (if (null range)
-        ;; No range, so we just return everything as a chunk of text
-        (make-text full-text)
-        ;; Otherwise, select the range we want
-        (let* ((lines (split-sequence:split-sequence #\Newline full-text))
-               (lines-in-range (subseq lines
-                                       (1- (first range))
-                                       (rest range))))
-          (make-text (reduce
-                      #'(lambda (a b) (concatenate 'string a b))
-                      lines-in-range))))))
+    (if (or start end)
+        ;; We have at least some range information
+        (let ((lines (split-sequence:split-sequence #\Newline full-text)))
+          (flet ((make-text-from-lines (lines)
+                   (make-text (reduce
+                               #'(lambda (a b)
+                                   (concatenate 'string a b))
+                               lines))))
+            (cond
+              ((and start (not end))
+               ;; Start at a line, and go to the end
+               (make-text-from-lines (subseq lines (1- start))))
+              ((and (not start) end)
+               ;; Start at 0, go to the end
+               (make-text-from-lines (subseq lines 0)))
+              (t
+               ;; Full range, select the text we want
+               (make-text-from-lines (subseq lines (1- start) end))))))
+        ;; We have no range information, return the full text
+        (make-text full-text))))
