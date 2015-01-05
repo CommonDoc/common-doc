@@ -13,6 +13,7 @@
 (define-node <content-node> (<document-node>)
   ((children :accessor children
              :initarg :children
+             :initform nil
              :type (proper-list <document-node>)
              :documentation "The node's children."))
   (:documentation "A node with children. This is the base class of all nodes
