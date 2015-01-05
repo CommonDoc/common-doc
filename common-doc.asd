@@ -13,9 +13,10 @@
                 :components
                 ((:file "packages")
                  (:file "define")
+                 (:file "error")
+                 (:file "file")
                  (:file "classes")
                  (:file "operations")
-                 (:file "error")
                  (:file "macros")
                  (:file "format")
                  (:file "util"))))

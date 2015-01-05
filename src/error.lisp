@@ -18,3 +18,14 @@
      (format stream "No expand-macro method for node ~S."
              (type-of (node condition)))))
   (:documentation "Signaled when a macro node has no `expand-macro` method."))
+
+(define-condition <bad-pathname> (<common-doc-error> parse-error)
+  ((path-string :accessor path-string
+                :initarg :path-string
+                :type string
+                :documentation "The string that couldn't be parsed."))
+  (:report
+   (lambda (condition stream)
+     (format stream "Could not parse '~A' into a pathname."
+             (path-string condition))))
+  (:documentation "An error when parsing a string into pathname."))

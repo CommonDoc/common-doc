@@ -69,6 +69,22 @@
            :find-special-slots)
   (:documentation "CommonDoc classes and and accessors."))
 
+(defpackage common-doc.error
+  (:use :cl)
+  (:export :<common-doc-error>
+           :<macro-error>
+           :<no-macro-expander>
+           :<bad-pathname>
+           :node
+           :path-string)
+  (:documentation "CommonDoc errors."))
+
+(defpackage common-doc.file
+  (:use :cl)
+  (:export :*base-directory*
+           :absolute-path)
+  (:documentation "File-related operations for CommonDoc."))
+
 (defpackage common-doc.ops
   (:use :cl :common-doc)
   (:export :traverse-document
@@ -85,14 +101,6 @@
            :emit-document
            :emit-to-string)
   (:documentation "CommonDoc input/output formats."))
-
-(defpackage common-doc.error
-  (:use :cl)
-  (:export :<common-doc-error>
-           :<macro-error>
-           :<no-macro-expander>
-           :node)
-  (:documentation "CommonDoc errors."))
 
 (defpackage common-doc.macro
   (:use :cl :common-doc)
