@@ -3,6 +3,7 @@
   :maintainer "Fernando Borretti <eudoxiahp@gmail.com>"
   :license "MIT"
   :version "0.1"
+  :homepage "https://github.com/CommonDoc/common-doc"
   :depends-on (:trivial-types
                :local-time
                :quri
