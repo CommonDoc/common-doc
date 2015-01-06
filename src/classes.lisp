@@ -158,7 +158,6 @@
                :initarg :definition
                :type <document-node>
                :documentation "Defines the term."))
-  (:tag-name "def")
   (:documentation "An item in a definition list."))
 
 (define-node <unordered-list> (<list>)
