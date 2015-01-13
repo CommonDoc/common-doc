@@ -32,6 +32,6 @@
       (setf (gethash (first pair) table) (rest pair)))
     table))
 
-(defun make-text (string)
+(defun make-text (string &optional metadata)
   "Create a text node from the contents of a string."
-  (make-instance '<text-node> :text string))
+  (make-instance '<text-node> :text string :metadata metadata))
