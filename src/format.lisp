@@ -14,3 +14,7 @@
 (defmethod emit-to-string ((format <format>) (document <document>))
   (with-output-to-string (stream)
     (emit-document format document stream)))
+
+(defmethod emit-to-string ((format <format>) (node <document-node>))
+  (with-output-to-string (stream)
+    (emit-document format node stream)))
