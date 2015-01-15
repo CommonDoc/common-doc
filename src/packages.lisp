@@ -103,7 +103,11 @@
   (:documentation "CommonDoc input/output formats."))
 
 (defpackage common-doc.macro
-  (:use :cl :common-doc)
+  (:use :cl)
+  (:import-from :common-doc
+                :content-node
+                :document-node
+                :children)
   (:export :macro-node
            :name
            :expand-macro
