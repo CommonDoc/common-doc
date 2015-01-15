@@ -2,38 +2,38 @@
 (defpackage common-doc
   (:use :cl :trivial-types :anaphora)
   (:export ;; Document classes
-           :<document-node>
-           :<content-node>
-           :<text-node>
-           :<paragraph>
-           :<markup>
-           :<bold>
-           :<italic>
-           :<underline>
-           :<strikethrough>
-           :<code>
-           :<superscript>
-           :<subscript>
-           :<code-block>
-           :<quote>
-           :<inline-quote>
-           :<block-quote>
-           :<link>
-           :<document-link>
-           :<web-link>
-           :<list>
-           :<list-item>
-           :<definition>
-           :<unordered-list>
-           :<ordered-list>
-           :<definition-list>
-           :<image>
-           :<figure>
-           :<table>
-           :<row>
-           :<cell>
-           :<section>
-           :<document>
+           :document-node
+           :content-node
+           :text-node
+           :paragraph
+           :markup
+           :bold
+           :italic
+           :underline
+           :strikethrough
+           :code
+           :superscript
+           :subscript
+           :code-block
+           :base-quote
+           :inline-quote
+           :block-quote
+           :link
+           :document-link
+           :web-link
+           :base-list
+           :list-item
+           :definition
+           :unordered-list
+           :ordered-list
+           :definition-list
+           :image
+           :figure
+           :table
+           :row
+           :cell
+           :section
+           :document
            ;; Accessors
            :metadata
            :children
@@ -71,10 +71,10 @@
 
 (defpackage common-doc.error
   (:use :cl)
-  (:export :<common-doc-error>
-           :<macro-error>
-           :<no-macro-expander>
-           :<bad-pathname>
+  (:export :common-doc-error
+           :macro-error
+           :no-macro-expander
+           :bad-pathname
            :node
            :path-string)
   (:documentation "CommonDoc errors."))
@@ -96,7 +96,7 @@
 
 (defpackage common-doc.format
   (:use :cl :common-doc)
-  (:export :<format>
+  (:export :document-format
            :parse-document
            :emit-document
            :emit-to-string)
@@ -104,7 +104,7 @@
 
 (defpackage common-doc.macro
   (:use :cl :common-doc)
-  (:export :<macro-node>
+  (:export :macro-node
            :name
            :expand-macro
            :expand-macros)

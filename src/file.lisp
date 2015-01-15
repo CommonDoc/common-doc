@@ -16,9 +16,9 @@ intended to be bound by a `let` by specific input formats.")
 
 (defmethod absolute-path ((string string))
   "Parse a string into a pathname and return the absolute version. Signals
-`common-doc.error:<bad-pathname>` if parsing fails."
+`common-doc.error:bad-pathname` if parsing fails."
   (handler-case
       (absolute-path (parse-namestring string))
     (parse-error (c)
       (declare (ignore c))
-      (error 'common-doc.error:<bad-pathname> :path-string string))))
+      (error 'common-doc.error:bad-pathname :path-string string))))

@@ -2,7 +2,7 @@
 (defpackage common-doc.include
   (:use :cl)
   (:import-from :common-doc.macro
-                :<macro-node>
+                :macro-node
                 :expand-macro)
   (:import-from :common-doc
                 :define-node)
@@ -13,7 +13,7 @@
 
 ;;; Classes
 
-(define-node <include> (<macro-node>)
+(define-node include (macro-node)
   ((path :reader include-path
          :initarg :path
          :type string
@@ -36,7 +36,7 @@
 
 ;;; Macroexpansions
 
-(defmethod expand-macro ((include <include>))
+(defmethod expand-macro ((include include))
   "Expand the include file into a text node with its contents."
   (let* ((path (common-doc.file:absolute-path (include-path include)))
          (start (parse-integer (include-start include)

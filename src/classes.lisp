@@ -2,7 +2,7 @@
 
 ;;; Basic classes
 
-(define-node <document-node> ()
+(define-node document-node ()
   ((metadata :accessor metadata
              :initarg :metadata
              :type (or null hash-table)
@@ -10,69 +10,69 @@
              :documentation "Node metadata."))
   (:documentation "The base class of all document classes."))
 
-(define-node <content-node> (<document-node>)
+(define-node content-node (document-node)
   ((children :accessor children
              :initarg :children
              :initform nil
-             :type (proper-list <document-node>)
+             :type (proper-list document-node)
              :documentation "The node's children."))
   (:documentation "A node with children. This is the base class of all nodes
-  that have a `children` slot (Except `<document>`, since this class inherits
-  from <document-node>) and can also be used as a way to represent a generic
+  that have a `children` slot (Except `document`, since this class inherits
+  from document-node) and can also be used as a way to represent a generic
   grouping of elements. This is useful when building a CommonDoc document by
   parsing some input language."))
 
-(define-node <text-node> (<document-node>)
+(define-node text-node (document-node)
   ((text :accessor text
          :initarg :text
          :type string
          :documentation "The node's text."))
   (:documentation "A node representing a bare string of text."))
 
-(define-node <paragraph> (<content-node>)
+(define-node paragraph (content-node)
   ()
   (:tag-name "p")
   (:documentation "A paragraph."))
 
 ;;; Markup
 
-(define-node <markup> (<content-node>)
+(define-node markup (content-node)
   ()
   (:documentation "The superclass of all inline markup elements."))
 
-(define-node <bold> (<markup>)
+(define-node bold (markup)
   ()
   (:tag-name "b")
   (:documentation "Text in this element is bold."))
 
-(define-node <italic> (<markup>)
+(define-node italic (markup)
   ()
   (:tag-name "i")
   (:documentation "Text in this element is italicized."))
 
-(define-node <underline> (<markup>)
+(define-node underline (markup)
   ()
   (:tag-name "u")
   (:documentation "Text in this element is underlined."))
 
-(define-node <strikethrough> (<markup>)
+(define-node strikethrough (markup)
   ()
   (:tag-name "strike")
   (:documentation "Text in this element is striked out."))
 
-(define-node <code> (<markup>)
+(define-node code (markup)
   ()
   (:tag-name "c")
   (:documentation "Text in this element is monospaced or otherwise marked as
   code or computer output."))
 
-(define-node <superscript> (<markup>)
+(define-node superscript (markup)
   ()
   (:tag-name "sup")
   (:documentation "Text in this element is superscripted relative to containing
   elements."))
 
-(define-node <subscript> (<markup>)
+(define-node subscript (markup)
   ()
   (:tag-name "sub")
   (:documentation "Text in this element is subscripted relative to containing
@@ -80,7 +80,7 @@
 
 ;;; Code
 
-(define-node <code-block> (<content-node>)
+(define-node code-block (content-node)
   ((language :accessor language
              :initarg :language
              :type string
@@ -91,27 +91,27 @@
 
 ;;; Quotes
 
-(define-node <quote> (<content-node>)
+(define-node base-quote (content-node)
   ()
   (:documentation "The base class of all quotes."))
 
-(define-node <inline-quote> (<quote>)
+(define-node inline-quote (base-quote)
   ()
   (:tag-name "q")
   (:documentation "A quote that occurs inside a paragraph in the document."))
 
-(define-node <block-quote> (<quote>)
+(define-node block-quote (base-quote)
   ()
   (:tag-name "quote")
   (:documentation "A block quote."))
 
 ;;; Links
 
-(define-node <link> (<content-node>)
+(define-node link (content-node)
   ()
   (:documentation "The base class for all links, internal and external."))
 
-(define-node <document-link> (<link>)
+(define-node document-link (link)
   ((document-reference :accessor document-reference
                        :initarg :document-reference
                        :initform nil
@@ -127,9 +127,9 @@
   (:tag-name "ref")
   (:documentation "A link to a section of this document, to another document and
   optionally a section within that document. See also the `reference` slot in
-  the `<document>` class."))
+  the `document` class."))
 
-(define-node <web-link> (<link>)
+(define-node web-link (link)
   ((uri :accessor uri
         :initarg :uri
         :type quri:uri
@@ -140,53 +140,53 @@
 
 ;;; Lists
 
-(define-node <list> (<document-node>)
+(define-node base-list (document-node)
   ()
   (:documentation "The base class of all lists."))
 
-(define-node <list-item> (<content-node>)
+(define-node list-item (content-node)
   ()
   (:tag-name "item")
   (:documentation "The item in a non-definition list."))
 
-(define-node <definition> (<document-node>)
+(define-node definition (document-node)
   ((term :accessor term
          :initarg :term
-         :type <document-node>
+         :type document-node
          :documentation "The definition term.")
    (definition :accessor definition
                :initarg :definition
-               :type <document-node>
+               :type document-node
                :documentation "Defines the term."))
   (:documentation "An item in a definition list."))
 
-(define-node <unordered-list> (<list>)
+(define-node unordered-list (base-list)
   ((children :accessor children
              :initarg :children
-             :type (proper-list <list-item>)
-             :documentation "The list of `<list-item>` instances."))
+             :type (proper-list list-item)
+             :documentation "The list of `list-item` instances."))
   (:tag-name "list")
   (:documentation "A list where the elements are unordered."))
 
-(define-node <ordered-list> (<list>)
+(define-node ordered-list (base-list)
   ((children :accessor children
              :initarg :children
-             :type (proper-list <list-item>)
-             :documentation "The list of `<list-item>` instances."))
+             :type (proper-list list-item)
+             :documentation "The list of `list-item` instances."))
   (:tag-name "enum")
   (:documentation "A list where the elements are ordered."))
 
-(define-node <definition-list> (<list>)
+(define-node definition-list (base-list)
   ((children :accessor children
              :initarg :children
-             :type (proper-list <definition>)
-             :documentation "The list of `<definition>` instances."))
+             :type (proper-list definition)
+             :documentation "The list of `definition` instances."))
   (:tag-name "deflist")
   (:documentation "A list of definitions."))
 
 ;;; Figures
 
-(define-node <image> (<document-node>)
+(define-node image (document-node)
   ((source :accessor source
            :initarg :source
            :type string
@@ -201,55 +201,55 @@
   (:tag-name "image")
   (:documentation "An image."))
 
-(define-node <figure> (<document-node>)
+(define-node figure (document-node)
   ((image :accessor image
           :initarg :image
-          :type <image>
+          :type image
           :documentation "The figure's image.")
    (description :accessor description
                 :initarg :description
-                :type (proper-list <document-node>)
+                :type (proper-list document-node)
                 :documentation "A description of the image."))
   (:tag-name "figure")
   (:documentation "A figure, an image plus an annotation."))
 
 ;;; Tables
 
-(define-node <table> (<document-node>)
+(define-node table (document-node)
   ((rows :accessor rows
          :initarg :rows
-         :type (proper-list <row>)
+         :type (proper-list row)
          :documentation "The list of rows in a table."))
   (:tag-name "table")
   (:documentation "A table."))
 
-(define-node <row> (<document-node>)
+(define-node row (document-node)
   ((header :accessor header
            :initarg :header
-           :type (proper-list <document-node>)
+           :type (proper-list document-node)
            :documentation "The row header.")
    (footer :accessor footer
            :initarg :footer
-           :type (proper-list <document-node>)
+           :type (proper-list document-node)
            :documentation "The row footer.")
    (cells :accessor cells
           :initarg :cells
-          :type (proper-list <cell>)
+          :type (proper-list cell)
           :documentation "The cells in the row."))
   (:tag-name "row")
   (:documentation "A row in a table."))
 
-(define-node <cell> (<content-node>)
+(define-node cell (content-node)
   ()
   (:tag-name "cell")
   (:documentation "A cell in a table."))
 
 ;;; Large-scale structure
 
-(define-node <section> (<content-node>)
+(define-node section (content-node)
   ((title :accessor title
           :initarg :title
-          :type <document-node>
+          :type document-node
           :attribute-name "title"
           :documentation "The section title.")
    (reference :accessor reference
@@ -262,10 +262,10 @@
   (:documentation "Represents a section in the document. Unlike HTML, where a
   section is just another element, sections in CommonDoc contain their contents."))
 
-(defclass <document> ()
+(defclass document ()
   ((children :accessor children
              :initarg :children
-             :type (proper-list <document-node>)
+             :type (proper-list document-node)
              :documentation "The document's children nodes.")
    ;;; Metadata, mostly based on Dublin Core[1] and the OpenDocument[2] format.
    ;;;

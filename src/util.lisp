@@ -3,17 +3,17 @@
 (defmacro doc (class args &rest children)
   "Easily create a document or node.
 
-  `(doc <subscript> ())`
+  `(doc subscript ())`
 
   is equivalent to:
 
-  `(make-instance '<subscript>)`
+  `(make-instance 'subscript)`
 
-  `(doc <document> (:title \"My Document\") (<text-node> (:text \"...\")))`
+  `(doc document (:title \"My Document\") (text-node (:text \"...\")))`
 
   is equivalent to:
 
-  `(make-instance '<document> :title \"My Document\" :children (list (make-instance '<text-node> :text \"...\")))`"
+  `(make-instance 'document :title \"My Document\" :children (list (make-instance 'text-node :text \"...\")))`"
   (labels ((recur (args)
              (destructuring-bind (class args &rest children) args
                (if children
@@ -34,4 +34,4 @@
 
 (defun make-text (string &optional metadata)
   "Create a text node from the contents of a string."
-  (make-instance '<text-node> :text string :metadata metadata))
+  (make-instance 'text-node :text string :metadata metadata))

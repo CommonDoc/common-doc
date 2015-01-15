@@ -19,19 +19,19 @@
     (traverse-document
      doc
      #'(lambda (node)
-         (when (typep node '<text-node>)
+         (when (typep node 'text-node)
            (write-string (text node) stream))))))
 
 (test simple-doc
   (let ((document
           (doc
-           <document>
+           document
            (:title "My Document"
             :creator "me"
             :keywords (list "test" "test1"))
-           (<paragraph>
+           (paragraph
             ()
-            (<text-node>
+            (text-node
              (:text "test"))))))
     (is
      (equal (keywords document) (list "test" "test1")))
@@ -44,23 +44,23 @@
     (finishes
       (setf document
             (doc
-             <document>
+             document
              ()
-             (<section>
+             (section
               (:title "Section 1")
-              (<figure>
-               (:image (doc <image> (:source "fig1.jpg"))
+              (figure
+               (:image (doc image (:source "fig1.jpg"))
                 :description
                 (doc
-                 <text-node>
+                 text-node
                  (:text "Fig 1")))))
-             (<section>
+             (section
               (:title "Section 2")
-              (<figure>
-               (:image (doc <image> (:source "fig2.jpg"))
+              (figure
+               (:image (doc image (:source "fig2.jpg"))
                 :description
                 (doc
-                 <text-node>
+                 text-node
                  (:text "Fig 2"))))))))
     (finishes
       (setf figs (collect-figures document)))
@@ -78,18 +78,18 @@
    (node-equal (make-text "test")
                (make-text "test")))
   (let* ((image
-           (doc <image> (:source "fig1.jpg")))
+           (doc image (:source "fig1.jpg")))
          (paragraph
            (doc
-            <paragraph>
+            paragraph
             ()
-            (<text-node>
+            (text-node
              (:text "test"))))
          (section
            (doc
-            <section>
+            section
             (:title "Section 1")
-            (<figure>
+            (figure
              (:image image
               :description paragraph)))))
     (macrolet ((tests (&rest nodes)
