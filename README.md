@@ -14,8 +14,8 @@ of completeness.
 
 What CommonDoc provides is a way to separate parser and emitter by providing a
 common framework for representing documents. Parsers and emitters can be written
-to convert text to and from various markup langages -- Markdown, Textile, ReST,
-etc. -- while keeping a single, backend-agnostic internal representation.
+to convert text to and from various markup languages (Markdown, Textile, ReST,
+etc.) while keeping a single, backend-agnostic internal representation.
 
 ## Motivation
 
