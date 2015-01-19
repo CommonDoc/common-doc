@@ -68,13 +68,13 @@ single text node:
 
 ```lisp
 (doc
- (<document>
+ (document
   (:title "My Document"
    :creator "me"
    :keywords (list "test" "test1"))
-  (<paragraph>
+  (paragraph
    ()
-   (<text-node>
+   (text-node
     (:text "test")))))
 ```
 
