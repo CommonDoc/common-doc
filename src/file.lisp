@@ -10,7 +10,7 @@ intended to be bound by a `let` by specific input formats.")
 
 (defmethod absolute-path ((pathname pathname))
   "Return the absolute path of a pathname."
-  (if (fad:pathname-absolute-p pathname)
+  (if (uiop:absolute-pathname-p pathname)
       pathname
       (merge-pathnames pathname *base-directory*)))
 
