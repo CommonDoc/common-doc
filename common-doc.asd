@@ -17,7 +17,13 @@
                  (:file "error")
                  (:file "file")
                  (:file "classes")
-                 (:file "operations")
+                 (:module "operations"
+                  :serial t
+                  :components
+                  ((:file "traverse")
+                   (:file "figures")
+                   (:file "tables")
+                   (:file "equality")))
                  (:file "macros")
                  (:file "format")
                  (:file "util"))))
