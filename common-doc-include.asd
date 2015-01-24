@@ -13,4 +13,4 @@
   :description "Including external files into CommonDoc documents."
   :long-description
   #.(uiop:read-file-string
-     (uiop:subpathname *load-pathname* "contrib/tex/README.md")))
+     (uiop:subpathname *load-pathname* "contrib/include/README.md")))
