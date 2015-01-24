@@ -1,10 +1,13 @@
 (in-package :cl-user)
 (defpackage common-doc.split-paragraphs
   (:use :cl)
+  (:export :*paragraph-separator-regex*
+           :has-paragraph-separator
+           :split-paragraph)
   (:documentation "Main package of split-paragraphs."))
 (in-package :common-doc.split-paragraphs)
 
-(defparameter +paragraph-separator-regex+
+(defparameter *paragraph-separator-regex*
   (ppcre:create-scanner "\\n\\n")
   "A regular expression that matches double newlines.")
 
@@ -15,7 +18,7 @@ paragraphs.")
 
 (defun has-paragraph-separator (string)
   "Does string contain a paragraph separator?"
-  (if (ppcre:scan +paragraph-separator-regex+ string) t))
+  (if (ppcre:scan *paragraph-separator-regex* string) t))
 
 (defun split-paragraph (string)
   "Split a string by the separator into a list of strings, or return the intact
