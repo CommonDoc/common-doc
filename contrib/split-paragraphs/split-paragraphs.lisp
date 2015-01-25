@@ -113,4 +113,4 @@ paragraph nodes."
   "Split paragraphs in a document's children."
   (setf (children doc)
         (split-and-group (children doc)))
-  node)
+  doc)
