@@ -1,6 +1,13 @@
 (in-package :cl-user)
 (defpackage common-doc.split-paragraphs
   (:use :cl)
+  (:import-from :common-doc
+                :text-node
+                :paragraph
+                :children
+                :text)
+  (:import-from :common-doc.util
+                :make-text)
   (:export :*paragraph-separator-regex*
            :has-paragraph-separator
            :split-paragraph)
@@ -28,22 +35,45 @@ string if it has none."
       string))
 
 (defun excise-paragraph-separators (list)
-  "Take a list of strings or other elements. Separate strings by paragraphs,
+  "Take a list of text nodes or other elements. Separate strings by paragraphs,
 leaving a paragraph marker between each string."
   (let ((output (list)))
     (loop for elem in list do
-      (if (stringp elem)
-          ;; If it's a string, split it by its separator
-          (let ((split (split-paragraph elem)))
+      (if (typep elem 'text-node)
+          ;; If it's a text node, split it by its separator
+          (let ((split (split-paragraph (text elem))))
             (if (stringp split)
-                ;; Just a regular string with no separators, add it to the
+                ;; Just a regular text node with no separators, add it to the
                 ;; output
-                (push split output)
+                (push elem output)
                 ;; A list of text nodes, add each to the output, followed by a
                 ;; paragraph separator marker
                 (loop for text in split do
-                  (push text output)
+                  (push (make-text text) output)
                   (push +paragraph-marker+ output))))
           ;; If it's another node, add it to the output unconditionally
           (push elem output)))
     output))
+
+(defun has-paragraph-markers (list)
+  "Return whether a list has paragraph markers."
+  (if (member +paragraph-marker+ list) t))
+
+(defun group-into-paragraph-nodes (list)
+  "Take a list of nodes separated by paragraph markers and merge them into
+paragraph nodes."
+  (if (has-paragraph-markers list)
+      (let ((output (list))
+            (current-paragraph-contents (list)))
+        (loop for elem in list do
+          (if (eql elem +paragraph-marker+)
+              ;; End of the paragraph
+              (progn
+                (push (make-instance 'paragraph
+                                     :children current-paragraph-contents)
+                      output)
+                (setf current-paragraph-contents nil))
+              ;; Another node, so just push it in the paragraph
+              (push elem current-paragraph-contents)))
+        output)
+      list))
