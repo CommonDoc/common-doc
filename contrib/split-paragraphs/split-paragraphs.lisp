@@ -52,17 +52,19 @@ leaving a paragraph marker between each string."
       (if (typep elem 'text-node)
           ;; If it's a text node, split it by its separator
           (let ((split (split-paragraph (text elem))))
-            (if (stringp split)
+            (if (not (listp split))
                 ;; Just a regular text node with no separators, add it to the
                 ;; output
                 (push elem output)
                 ;; A list of text nodes, add each to the output, followed by a
                 ;; paragraph separator marker
-                (loop for text in split do
-                  (push (make-text text) output)
-                  (push +paragraph-marker+ output))))
+                (loop for sublist on split do
+                  (let ((text (first sublist)))
+                    (push (make-text text) output)
+                    (when (rest sublist)
+                      (push +paragraph-marker+ output))))))
           ;; If it's another node, add it to the output unconditionally
-          (push elem output)))
+          (push (split-paragraphs elem) output)))
     (reverse output)))
 
 (defun has-paragraph-markers (list)
@@ -75,16 +77,18 @@ paragraph nodes."
   (if (has-paragraph-markers list)
       (let ((output (list))
             (current-paragraph-contents (list)))
-        (loop for elem in list do
-          (if (eql elem +paragraph-marker+)
-              ;; End of the paragraph
-              (progn
-                (push (make-instance 'paragraph
-                                     :children current-paragraph-contents)
-                      output)
-                (setf current-paragraph-contents nil))
-              ;; Another node, so just push it in the paragraph
-              (push elem current-paragraph-contents)))
+        (flet ((make-paragraph ()
+                 (make-instance 'paragraph
+                                :children (reverse current-paragraph-contents))))
+          (loop for elem in list do
+            (if (eql elem +paragraph-marker+)
+                ;; End of the paragraph
+                (progn
+                  (push (make-paragraph) output)
+                  (setf current-paragraph-contents nil))
+                ;; Another node, so just push it in the paragraph
+                (push elem current-paragraph-contents)))
+          (push (make-paragraph) output))
         (reverse output))
       list))
 
