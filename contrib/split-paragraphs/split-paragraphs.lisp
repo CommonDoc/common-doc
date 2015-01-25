@@ -4,19 +4,29 @@
   (:import-from :common-doc
                 :text-node
                 :paragraph
+                :document-node
+                :content-node
+                :document
                 :children
                 :text)
   (:import-from :common-doc.util
                 :make-text)
   (:export :*paragraph-separator-regex*
-           :has-paragraph-separator
-           :split-paragraph)
+           :split-paragraphs)
   (:documentation "Main package of split-paragraphs."))
 (in-package :common-doc.split-paragraphs)
+
+;;; External interface
 
 (defparameter *paragraph-separator-regex*
   (ppcre:create-scanner "\\n\\n")
   "A regular expression that matches double newlines.")
+
+(defgeneric split-paragraphs (node)
+  (:documentation "Recursively go through a document, splitting paragraphs in
+  text nodes into paragraph nodes."))
+
+;;; Internals
 
 (defparameter +paragraph-marker+
   :paragraph-split
@@ -77,3 +87,24 @@ paragraph nodes."
               (push elem current-paragraph-contents)))
         output)
       list))
+
+(defun split-and-group (list)
+  "Take a list (A node's children), and split the paragraphs."
+  (group-into-paragraph-nodes
+   (excise-paragraph-separators list)))
+
+;;; Methods
+
+(defmethod split-paragraphs ((node content-node))
+  "Split the paragraphs in a node's children."
+  (setf (children node)
+        (split-and-group (children node))))
+
+(defmethod split-paragraphs ((node document-node))
+  "Regular nodes are just passed as-is."
+  node)
+
+(defmethod split-paragraphs ((doc document))
+  "Split paragraphs in a document's children."
+  (setf (children doc)
+        (split-and-group (children doc))))
