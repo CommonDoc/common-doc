@@ -63,7 +63,7 @@ leaving a paragraph marker between each string."
                   (push +paragraph-marker+ output))))
           ;; If it's another node, add it to the output unconditionally
           (push elem output)))
-    output))
+    (reverse output)))
 
 (defun has-paragraph-markers (list)
   "Return whether a list has paragraph markers."
@@ -85,7 +85,7 @@ paragraph nodes."
                 (setf current-paragraph-contents nil))
               ;; Another node, so just push it in the paragraph
               (push elem current-paragraph-contents)))
-        output)
+        (reverse output))
       list))
 
 (defun split-and-group (list)
@@ -98,7 +98,8 @@ paragraph nodes."
 (defmethod split-paragraphs ((node content-node))
   "Split the paragraphs in a node's children."
   (setf (children node)
-        (split-and-group (children node))))
+        (split-and-group (children node)))
+  node)
 
 (defmethod split-paragraphs ((node document-node))
   "Regular nodes are just passed as-is."
@@ -107,4 +108,5 @@ paragraph nodes."
 (defmethod split-paragraphs ((doc document))
   "Split paragraphs in a document's children."
   (setf (children doc)
-        (split-and-group (children doc))))
+        (split-and-group (children doc)))
+  node)
