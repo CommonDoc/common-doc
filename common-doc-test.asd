@@ -6,4 +6,7 @@
   :components ((:module "t"
                 :serial t
                 :components
-                ((:file "common-doc")))))
+                ((:file "common-doc")
+                 (:file "operations")
+                 (:file "equality")
+                 (:file "final")))))
