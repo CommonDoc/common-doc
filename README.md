@@ -67,15 +67,23 @@ Constructing a document with title "My Title", containing a paragraph with a
 single text node:
 
 ```lisp
+(in-package :cl-user)
+(defpackage common-doc-example
+  (:use :cl :common-doc)
+  (:import-from :common-doc.util
+                :doc
+                :make-text))
+(in-package :common-doc-example)
+
 (doc
- (document
-  (:title "My Document"
-   :creator "me"
-   :keywords (list "test" "test1"))
-  (paragraph
-   ()
-   (text-node
-    (:text "test")))))
+ document
+ (:title "My Document"
+  :creator "me"
+  :keywords (list "test" "test1"))
+ (paragraph
+  ()
+  (text-node
+   (:text "test"))))
 ```
 
 # License
