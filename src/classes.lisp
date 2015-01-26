@@ -115,13 +115,13 @@
   ((document-reference :accessor document-reference
                        :initarg :document-reference
                        :initform nil
-                       :type string
+                       :type (or null string)
                        :attribute-name "doc"
                        :documentation "A reference key for the linked document.
  If `nil`, the link is only to a section within the document.")
    (section-reference :accessor section-reference
                       :initarg :section-reference
-                      :type string
+                      :type (or null string)
                       :attribute-name "sec"
                       :documentation "A reference key for the linked section."))
   (:tag-name "ref")
