@@ -90,6 +90,7 @@
   (:export :traverse-document
            :collect-figures
            :collect-tables
+           :collect-external-links
            :node-equal
            :node-specific-equal)
   (:documentation "Common operations on CommonDoc documents."))

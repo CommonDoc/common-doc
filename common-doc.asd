@@ -23,6 +23,7 @@
                   ((:file "traverse")
                    (:file "figures")
                    (:file "tables")
+                   (:file "links")
                    (:file "equality")))
                  (:file "macros")
                  (:file "format")
