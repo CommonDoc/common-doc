@@ -51,17 +51,19 @@
               (figure
                (:image (doc image (:source "fig1.jpg"))
                 :description
-                (doc
-                 text-node
-                 (:text "Fig 1")))))
+                (list
+                 (doc
+                  text-node
+                  (:text "Fig 1"))))))
              (section
               (:title "Section 2")
               (figure
                (:image (doc image (:source "fig2.jpg"))
                 :description
-                (doc
-                 text-node
-                 (:text "Fig 2"))))))))
+                (list
+                 (doc
+                  text-node
+                  (:text "Fig 2")))))))))
     (finishes
       (setf figs (collect-figures document)))
     (let* ((first-fig (first figs))
@@ -91,7 +93,7 @@
             (:title "Section 1")
             (figure
              (:image image
-              :description paragraph)))))
+              :description (list paragraph))))))
     (macrolet ((tests (&rest nodes)
                  `(progn
                     ,@(loop for node in nodes collecting

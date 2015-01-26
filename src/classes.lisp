@@ -194,7 +194,7 @@
            :documentation "The source where the image is stored.")
    (description :accessor description
                 :initarg :description
-                :type string
+                :type (or null string)
                 :initform nil
                 :attribute-name "desc"
                 :documentation "A plain text description of the image."))

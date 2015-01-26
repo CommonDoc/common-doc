@@ -16,6 +16,13 @@
 (defgeneric node-equal (node-a node-b)
   (:documentation "Recursively check whether two nodes are equal."))
 
+(defun node-list-equal (list-a list-b)
+  (every #'identity
+         (loop for node-a in list-a
+               for node-b in list-b
+               collecting
+               (node-equal node-a node-b))))
+
 (defmethod node-children-equal ((node-a document-node)
                                 (node-b document-node))
   "Recursively check for equality in the children of a node."
@@ -23,11 +30,7 @@
       ;; If they have children, recursively check them
       (let ((children-a (children node-a))
             (children-b (children node-b)))
-        (every #'identity
-               (loop for child-a in children-a
-                     for child-b in children-b
-                     collecting
-                     (node-equal child-a child-b))))
+        (node-list-equal (children node-a) (children node-b)))
       t))
 
 (defmethod node-metadata-equal ((node-a document-node)
@@ -98,8 +101,8 @@
                                 (figure-b figure))
   (and (node-equal (image figure-a)
                    (image figure-b))
-       (node-equal (description figure-a)
-                   (description figure-b))))
+       (node-list-equal (description figure-a)
+                        (description figure-b))))
 
 (defmethod node-specific-equal ((section-a section)
                                 (section-b section))
