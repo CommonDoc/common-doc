@@ -47,7 +47,7 @@
              document
              ()
              (section
-              (:title "Section 1")
+              (:title (make-text "Section 1"))
               (figure
                (:image (doc image (:source "fig1.jpg"))
                 :description
@@ -56,7 +56,7 @@
                   text-node
                   (:text "Fig 1"))))))
              (section
-              (:title "Section 2")
+              (:title (make-text "Section 2"))
               (figure
                (:image (doc image (:source "fig2.jpg"))
                 :description
@@ -90,7 +90,7 @@
          (section
            (doc
             section
-            (:title "Section 1")
+            (:title (make-text "Section 1"))
             (figure
              (:image image
               :description (list paragraph))))))
