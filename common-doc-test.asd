@@ -2,6 +2,7 @@
   :author "Fernando Borretti <eudoxiahp@gmail.com>"
   :license "MIT"
   :depends-on (:common-doc
+               :common-doc-split-paragraphs
                :fiveam)
   :components ((:module "t"
                 :serial t
@@ -9,4 +10,8 @@
                 ((:file "common-doc")
                  (:file "operations")
                  (:file "equality")
+                 (:module "contrib"
+                  :serial t
+                  :components
+                  ((:file "split-paragraphs")))
                  (:file "final")))))
