@@ -83,7 +83,8 @@
 (define-node code-block (content-node)
   ((language :accessor language
              :initarg :language
-             :type string
+             :initform nil
+             :type (or null string)
              :attribute-name "lang"
              :documentation "The language of the code block's contents."))
   (:tag-name "code")
