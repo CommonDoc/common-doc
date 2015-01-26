@@ -28,9 +28,7 @@
   "Recursively check for equality in the children of a node."
   (if (subtypep (class-of node-a) 'content-node)
       ;; If they have children, recursively check them
-      (let ((children-a (children node-a))
-            (children-b (children node-b)))
-        (node-list-equal (children node-a) (children node-b)))
+      (node-list-equal (children node-a) (children node-b))
       t))
 
 (defmethod node-metadata-equal ((node-a document-node)
