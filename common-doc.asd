@@ -4,6 +4,8 @@
   :license "MIT"
   :version "0.1"
   :homepage "https://github.com/CommonDoc/common-doc"
+  :bug-tracker "https://github.com/CommonDoc/common-doc/issues"
+  :source-control (:git "git@github.com:CommonDoc/common-doc.git")
   :depends-on (:trivial-types
                :local-time
                :quri
