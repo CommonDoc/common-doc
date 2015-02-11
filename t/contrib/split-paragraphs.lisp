@@ -16,4 +16,8 @@
            (text-node
             (:text (format nil ".~%~%")))
            (text-node
-            (:text (format nil "Paragraph 3."))))))))
+            (:text (format nil "Paragraph 3."))))))
+    (finishes
+      (common-doc.split-paragraphs:split-paragraphs node))
+    (print
+     (children node))))

@@ -119,5 +119,6 @@
   (:use :cl :common-doc)
   (:export :doc
            :make-meta
-           :make-text)
+           :make-text
+           :string-to-slug)
   (:documentation "CommonDoc utilities."))

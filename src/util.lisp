@@ -35,3 +35,8 @@
 (defun make-text (string &optional metadata)
   "Create a text node from the contents of a string."
   (make-instance 'text-node :text string :metadata metadata))
+
+(defun string-to-slug (string)
+  "Take a string, usually the name of a section, and create something that is
+more similar to an identifier, i.e. no spaces, same case, etc."
+  (string-downcase (substitute #\- #\Space string)))
