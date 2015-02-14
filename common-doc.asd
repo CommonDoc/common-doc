@@ -26,6 +26,7 @@
                    (:file "figures")
                    (:file "tables")
                    (:file "links")
+                   (:file "text")
                    (:file "equality")))
                  (:file "macros")
                  (:file "format")
