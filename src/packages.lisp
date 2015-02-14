@@ -91,6 +91,7 @@
            :collect-figures
            :collect-tables
            :collect-external-links
+           :collect-all-text
            :node-equal
            :node-specific-equal)
   (:documentation "Common operations on CommonDoc documents."))
