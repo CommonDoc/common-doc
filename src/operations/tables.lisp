@@ -1,9 +1,9 @@
 (in-package :common-doc.ops)
 
-(defmethod collect-tables ((doc document))
+(defun collect-tables (doc-or-node)
   "Return a list of tables in the document."
   (let ((tables (list)))
-    (traverse-document doc
+    (traverse-document doc-or-node
                        #'(lambda (node)
                            (when (typep node 'table)
                              (push node tables))))

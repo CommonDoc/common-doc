@@ -1,9 +1,9 @@
 (in-package :common-doc.ops)
 
-(defmethod collect-external-links ((doc document))
+(defun collect-external-links (doc-or-node)
   "Return a list of external links in the document."
   (let ((links (list)))
-    (traverse-document doc
+    (traverse-document doc-or-node
                        #'(lambda (node)
                            (when (typep node 'web-link)
                              (push node links))))
