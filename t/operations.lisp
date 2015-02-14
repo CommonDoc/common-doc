@@ -1,5 +1,30 @@
 (in-package :common-doc-test)
 
+(test traverse-depth
+  (let ((document
+          (doc
+           document
+           ()
+           (bold
+            ()
+            (italic
+             ()
+             (underline
+              ())))))
+        (document-depth)
+        (bold-depth)
+        (italic-depth)
+        (underline-depth))
+    (finishes
+      (with-document-traversal (document node depth)
+        (typecase node
+          (document
+           (setf document-depth depth))
+          (t
+           t))))
+    (is
+     (equal document-depth 1))))
+
 (test extract-figures
   (let ((document)
         (figs))

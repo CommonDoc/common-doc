@@ -88,6 +88,7 @@
 (defpackage common-doc.ops
   (:use :cl :common-doc)
   (:export :traverse-document
+           :with-document-traversal
            :collect-figures
            :collect-tables
            :collect-external-links
