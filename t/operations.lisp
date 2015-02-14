@@ -20,10 +20,20 @@
         (typecase node
           (document
            (setf document-depth depth))
-          (t
-           t))))
+          (bold
+           (setf bold-depth depth))
+          (italic
+           (setf italic-depth depth))
+          (underline
+           (setf underline-depth depth)))))
     (is
-     (equal document-depth 1))))
+     (equal document-depth 0))
+    (is
+     (equal bold-depth 1))
+    (is
+     (equal italic-depth 2))
+    (is
+     (equal underline-depth 3))))
 
 (test extract-figures
   (let ((document)
