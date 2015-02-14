@@ -88,6 +88,6 @@ single text node:
 
 # License
 
-Copyright (c) 2014 Fernando Borretti
+Copyright (c) 2014-2015 Fernando Borretti
 
 Licensed under the MIT License.
