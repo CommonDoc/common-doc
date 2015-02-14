@@ -9,10 +9,11 @@
 
 (defmethod node-text ((list list))
   "Extract text from a list of nodes."
-  (reduce #'(lambda (a b)
-              (concatenate 'string a b))
-          (loop for elem in list collecting
-            (node-text elem))))
+  (let ((list-of-strings (loop for elem in list collecting
+                           (node-text elem))))
+    (reduce #'(lambda (a b)
+                (concatenate 'string a b))
+            (or list-of-strings (list "")))))
 
 (defmethod node-text ((text text-node))
   "Extract text from a text node."
