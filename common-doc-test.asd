@@ -1,6 +1,7 @@
 (defsystem common-doc-test
   :author "Fernando Borretti <eudoxiahp@gmail.com>"
   :license "MIT"
+  :description "CommonDoc tests."
   :depends-on (:common-doc
                :common-doc-split-paragraphs
                :fiveam)

@@ -37,25 +37,31 @@ for the creation of a [library for representing documents][strandh]:
 
 [strandh]: http://metamodular.com/Common-Lisp/document-library.html
 
-## Parsers/Emitters
+# Libraries
 
-### [CommonHTML](https://github.com/CommonDoc/common-html)
+## [CommonHTML](https://github.com/CommonDoc/common-html)
 
-[![Build Status](https://travis-ci.org/CommonDoc/common-html.svg)](https://travis-ci.org/CommonDoc/common-html)
+[![Build Status](https://travis-ci.org/CommonDoc/common-html.svg?branch=master)](https://travis-ci.org/CommonDoc/common-html)
 
 An HTML5 emitter.
 
-### [ParenML](https://github.com/CommonDoc/parenml)
-
-[![Build Status](https://travis-ci.org/CommonDoc/parenml.svg)](https://travis-ci.org/CommonDoc/parenml)
-
-An S-expression markup language.
-
-### [VerTeX](https://github.com/CommonDoc/vertex)
+## [VerTeX](https://github.com/CommonDoc/vertex)
 
 [![Build Status](https://travis-ci.org/CommonDoc/vertex.svg?branch=master)](https://travis-ci.org/CommonDoc/vertex)
 
 A TeX-like markup language.
+
+## [ParenML](https://github.com/CommonDoc/parenml)
+
+[![Build Status](https://travis-ci.org/CommonDoc/parenml.svg?branch=master)](https://travis-ci.org/CommonDoc/parenml)
+
+An S-expression markup language.
+
+## [Thorn](https://github.com/CommonDoc/thorn)
+
+[![Build Status](https://travis-ci.org/CommonDoc/thorn.svg?branch=master)](https://travis-ci.org/CommonDoc/thorn)
+
+A CommonDoc extension for inserting special characters.
 
 # Usage
 
