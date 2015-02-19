@@ -73,18 +73,26 @@
        (equal (source second-img) "fig2.jpg")))))
 
 (test toc
-  (let ((doc (doc
-              document
-              ()
-              (section
-               (:title (make-text "Section 1"))
-               (content-node
-                ()
+  (let* ((doc (doc
+               document
+               ()
+               (section
+                (:title (make-text "Section 1"))
                 (content-node
                  ()
-                 (section
-                  (:title (make-text "Section 1.1"))))))
-              (section
-               (:title (make-text "Section 2"))))))
-    (finishes
-     (print (common-doc.ops:table-of-contents doc)))))
+                 (content-node
+                  ()
+                  (section
+                   (:title (make-text "Section 1.1"))))))
+               (section
+                (:title (make-text "Section 2")))))
+         (toc (common-doc.ops:table-of-contents doc)))
+    (is
+     (equal (text (getf (first toc) :title))
+            "Section 1"))
+    (is
+     (equal (text (getf (first (getf (first toc) :children)) :title))
+            "Section 1.1"))
+    (is
+     (equal (text (getf (second toc) :title))
+            "Section 2"))))
