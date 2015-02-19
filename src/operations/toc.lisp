@@ -26,7 +26,10 @@
           (if (eq (first node) :title)
               (list :title (getf node :title)
                     :reference (getf node :reference)
-                    :children (list (un-nest (getf node :children))))
+                    :children (let ((un-nested (un-nest (getf node :children))))
+                                (if un-nested
+                                    (list un-nested)
+                                    nil)))
               (loop for elem in node collecting
                 (un-nest elem))))))
 
