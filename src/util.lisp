@@ -39,4 +39,6 @@
 (defun string-to-slug (string)
   "Take a string, usually the name of a section, and create something that is
 more similar to an identifier, i.e. no spaces, same case, etc."
-  (string-downcase (substitute #\- #\Space string)))
+  (let* ((no-space (substitute #\- #\Space string))
+         (no-slashes (substitute #\- #\/ no-space)))
+    (string-downcase no-slashes)))
