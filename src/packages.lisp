@@ -93,6 +93,7 @@
            :collect-tables
            :collect-external-links
            :collect-all-text
+           :table-of-contents
            :node-equal
            :node-specific-equal)
   (:documentation "Common operations on CommonDoc documents."))

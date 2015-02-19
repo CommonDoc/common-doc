@@ -71,3 +71,20 @@
        (equal (source first-img) "fig1.jpg"))
       (is
        (equal (source second-img) "fig2.jpg")))))
+
+(test toc
+  (let ((doc (doc
+              document
+              ()
+              (section
+               (:title (make-text "Section 1"))
+               (content-node
+                ()
+                (content-node
+                 ()
+                 (section
+                  (:title (make-text "Section 1.1"))))))
+              (section
+               (:title (make-text "Section 2"))))))
+    (finishes
+     (print (common-doc.ops:table-of-contents doc)))))
