@@ -83,7 +83,8 @@
                  (content-node
                   ()
                   (section
-                   (:title (make-text "Section 1.1"))))))
+                   (:title (make-text "Section 1.1")
+                    :section-reference "sec11"))))))
                (section
                 (:title (make-text "Section 2")))))
          (toc (common-doc.ops:table-of-contents doc)))
