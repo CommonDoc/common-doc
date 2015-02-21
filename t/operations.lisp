@@ -72,6 +72,36 @@
       (is
        (equal (source second-img) "fig2.jpg")))))
 
+(test unique-refs
+  (let ((doc (doc
+              document
+              ()
+              (section
+               (:title (make-text "Section 1"))
+               (content-node
+                ()
+                (content-node
+                 ()
+                 (section
+                  (:title (make-text "Section 1.1")
+                   :reference "sec11")))))
+              (section
+               (:title (make-text "Section 2"))))))
+    (finishes
+      (common-doc.ops:fill-unique-refs doc))
+    (is
+     (equal (reference (first (children doc)))
+            "section-1"))
+    (is
+     (equal (reference (first (children
+                               (first (children
+                                       (first (children
+                                               (first (children doc)))))))))
+            "sec11"))
+    (is
+     (equal (reference (second (children doc)))
+            "section-2"))))
+
 #|
 (test toc
   (let* ((doc (doc

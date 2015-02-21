@@ -28,6 +28,7 @@
                  (setf (reference section) final-ref)
                  (incf current-pos))))
       (with-document-traversal (doc-or-node node)
-        (when (typep node 'section)
+        (when (and (typep node 'section)
+                   (not (reference node)))
           (add-section-reference node)))
       doc-or-node)))
