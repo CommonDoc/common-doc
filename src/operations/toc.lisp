@@ -33,23 +33,31 @@
   (if (listp node)
       (if (eq (first node) :sec)
           (let ((sec (getf node :sec)))
-            (make-instance 'document-link
-                           :section-reference (reference sec)
-                           :children (append
-                                      (list
-                                       (make-instance 'content-node
-                                                      :children (list (title sec))))
-                                      (let ((children (extract (getf node :children))))
-                                        (if (listp children)
-                                            children
-                                            (list children))))))
+            (make-instance 'content-node
+                           :children
+                           (append
+                            (list (make-instance 'document-link
+                                                 :section-reference (reference sec)
+                                                 :children (title sec)))
+                            (let ((children (extract (getf node :children))))
+                              (if children
+                                  (let ((children (if (listp children)
+                                                      children
+                                                      (list children))))
+                                    (list
+                                     (make-instance 'ordered-list
+                                                    :children
+                                                    (loop for child in children collecting
+                                                       (make-instance 'list-item
+                                                                      :children (list child)))))))))))
           (loop for child in node collecting
             (extract child)))
       node))
 
 (defun table-of-contents (doc-or-node)
   "Extract a tree of document links representing the table of contents of a
-document."
+document. All the sections in the document must have references, so you should
+call fill-unique-refs first."
   (let ((toc (extract (un-nest (toc-traverse doc-or-node)))))
     (make-instance 'content-node
                    :metadata (common-doc.util:make-meta (list (cons "class" "toc")))
