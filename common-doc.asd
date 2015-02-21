@@ -30,6 +30,7 @@
                    (:file "tables")
                    (:file "links")
                    (:file "text")
+                   (:file "unique-ref")
                    (:file "toc")
                    (:file "equality"))))))
   :description "A framework for representing and manipulating documents as CLOS

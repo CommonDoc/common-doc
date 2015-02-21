@@ -121,6 +121,7 @@
            :collect-tables
            :collect-external-links
            :collect-all-text
+           :fill-unique-refs
            :table-of-contents
            :node-equal
            :node-specific-equal)

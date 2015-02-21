@@ -72,27 +72,56 @@
       (is
        (equal (source second-img) "fig2.jpg")))))
 
+(test unique-refs
+  (let ((doc (doc
+              document
+              ()
+              (section
+               (:title (make-text "Section 1"))
+               (content-node
+                ()
+                (content-node
+                 ()
+                 (section
+                  (:title (make-text "Section 1.1")
+                   :reference "sec11")))))
+              (section
+               (:title (make-text "Section 2"))))))
+    (finishes
+      (common-doc.ops:fill-unique-refs doc))
+    (is
+     (equal (reference (first (children doc)))
+            "section-1"))
+    (is
+     (equal (reference (first (children
+                               (first (children
+                                       (first (children
+                                               (first (children doc)))))))))
+            "sec11"))
+    (is
+     (equal (reference (second (children doc)))
+            "section-2"))))
+
+#|
 (test toc
   (let* ((doc (doc
                document
                ()
                (section
-                (:title (make-text "Section 1"))
+                (:title (make-text "Section 1")
+                 :reference "sec1")
                 (content-node
                  ()
                  (content-node
                   ()
                   (section
-                   (:title (make-text "Section 1.1"))))))
+                   (:title (make-text "Section 1.1")
+                    :reference "sec11")))))
                (section
-                (:title (make-text "Section 2")))))
+                (:title (make-text "Section 2")
+                 :reference "sec2"))))
          (toc (common-doc.ops:table-of-contents doc)))
     (is
-     (equal (text (getf (first toc) :title))
-            "Section 1"))
-    (is
-     (equal (text (getf (first (getf (first toc) :children)) :title))
-            "Section 1.1"))
-    (is
-     (equal (text (getf (second toc) :title))
-            "Section 2"))))
+     (equal (common-html.emitter:node-to-html-string toc)
+            "<div class=\"toc\"><a href=\"#sec1\">Section 1</a><ol><li><a href=\"#sec11\">Section 1.1</a></li></ol><a href=\"#sec2\">Section 2</a></div>"))))
+|#

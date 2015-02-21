@@ -8,8 +8,7 @@
   (:method ((node content-node))
     (toc-traverse (children node)))
   (:method ((sec section))
-    (list :title (title sec)
-          :reference (reference sec)
+    (list :sec sec
           :children (toc-traverse (children sec))))
   (:method ((list list))
     (remove-if #'null
@@ -19,20 +18,47 @@
     nil))
 
 (defun un-nest (node)
-  (if (atom node)
-      node
-      (if (eql (length node) 1)
-          (un-nest (first node))
-          (if (eq (first node) :title)
-              (list :title (getf node :title)
-                    :reference (getf node :reference)
-                    :children (let ((un-nested (un-nest (getf node :children))))
-                                (if un-nested
-                                    (list un-nested)
-                                    nil)))
-              (loop for elem in node collecting
-                (un-nest elem))))))
+  (cond
+    ((null node)
+     node)
+    ((listp node)
+     (if (eql (length node) 1)
+         (un-nest (first node))
+         (loop for child in node collecting
+           (un-nest child))))
+    (t
+     node)))
+
+(defun extract (node)
+  (if (listp node)
+      (if (eq (first node) :sec)
+          (let ((sec (getf node :sec)))
+            (make-instance 'content-node
+                           :children
+                           (append
+                            (list (make-instance 'document-link
+                                                 :section-reference (reference sec)
+                                                 :children (title sec)))
+                            (let ((children (extract (getf node :children))))
+                              (if children
+                                  (let ((children (if (listp children)
+                                                      children
+                                                      (list children))))
+                                    (list
+                                     (make-instance 'ordered-list
+                                                    :children
+                                                    (loop for child in children collecting
+                                                       (make-instance 'list-item
+                                                                      :children (list child)))))))))))
+          (loop for child in node collecting
+            (extract child)))
+      node))
 
 (defun table-of-contents (doc-or-node)
-  "Extract a nested plist representing the table of contents of a document."
-  (un-nest (toc-traverse doc-or-node)))
+  "Extract a tree of document links representing the table of contents of a
+document. All the sections in the document must have references, so you should
+call fill-unique-refs first."
+  (let ((toc (extract (un-nest (toc-traverse doc-or-node)))))
+    (make-instance 'content-node
+                   :metadata (common-doc.util:make-meta (list (cons "class" "toc")))
+                   :children toc)))
