@@ -6,6 +6,9 @@
                 :paragraph
                 :document-node
                 :content-node
+                :definition
+                :definition-list
+                :base-list
                 :document
                 :children
                 :text)
@@ -108,6 +111,16 @@ paragraph nodes."
 (defmethod split-paragraphs ((node document-node))
   "Regular nodes are just passed as-is."
   node)
+
+(defmethod split-paragraphs ((def definition))
+  (setf (definition def)
+        (split-and-group (definition def)))
+  def)
+
+(defmethod split-paragraphs ((list base-list))
+  (setf (children list)
+        (split-and-group (children list)))
+  list)
 
 (defmethod split-paragraphs ((doc document))
   "Split paragraphs in a document's children."
