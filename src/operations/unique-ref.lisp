@@ -6,16 +6,16 @@
         (current-pos 0))
     ;; 'table' is a hash table that maps the position of a section (0 for first,
     ;; 1 for second, etc.) to a unique section ID
-    (labels ((slug-in-table-p (slug)
-               ;; Determine if 'slug' is in the table.
-               (member slug
+    (labels ((ref-in-table-p (ref)
+               ;; Determine if 'ref' is in the table.
+               (member ref
                        (alexandria:hash-table-values table)
                        :test #'equal))
              (add-section-reference (section)
                ;; Extract a unique ref from a section's title, and add it to
                ;; the table to the section.
                (let* ((section-text (common-doc.ops:collect-all-text (title section)))
-                      (section-ref (common-doc.util:string-to-ref section-text))
+                      (section-ref (common-doc.util:string-to-slug section-text))
                       (final-ref (if (ref-in-table-p section-ref)
                                      (concatenate 'string
                                                   (write-to-string current-pos)
