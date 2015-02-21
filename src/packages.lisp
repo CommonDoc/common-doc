@@ -85,19 +85,6 @@
            :absolute-path)
   (:documentation "File-related operations for CommonDoc."))
 
-(defpackage common-doc.ops
-  (:use :cl :common-doc)
-  (:export :traverse-document
-           :with-document-traversal
-           :collect-figures
-           :collect-tables
-           :collect-external-links
-           :collect-all-text
-           :table-of-contents
-           :node-equal
-           :node-specific-equal)
-  (:documentation "Common operations on CommonDoc documents."))
-
 (defpackage common-doc.format
   (:use :cl :common-doc)
   (:export :document-format
@@ -125,3 +112,16 @@
            :make-text
            :string-to-slug)
   (:documentation "CommonDoc utilities."))
+
+(defpackage common-doc.ops
+  (:use :cl :common-doc)
+  (:export :traverse-document
+           :with-document-traversal
+           :collect-figures
+           :collect-tables
+           :collect-external-links
+           :collect-all-text
+           :table-of-contents
+           :node-equal
+           :node-specific-equal)
+  (:documentation "Common operations on CommonDoc documents."))

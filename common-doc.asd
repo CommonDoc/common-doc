@@ -19,6 +19,9 @@
                  (:file "error")
                  (:file "file")
                  (:file "classes")
+                 (:file "macros")
+                 (:file "format")
+                 (:file "util")
                  (:module "operations"
                   :serial t
                   :components
@@ -28,10 +31,7 @@
                    (:file "links")
                    (:file "text")
                    (:file "toc")
-                   (:file "equality")))
-                 (:file "macros")
-                 (:file "format")
-                 (:file "util"))))
+                   (:file "equality"))))))
   :description "A framework for representing and manipulating documents as CLOS
   objects."
   :long-description
