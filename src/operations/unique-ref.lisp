@@ -12,20 +12,20 @@
                        (alexandria:hash-table-values table)
                        :test #'equal))
              (add-section-reference (section)
-               ;; Extract a unique slug from a section's title, and add it to
+               ;; Extract a unique ref from a section's title, and add it to
                ;; the table to the section.
                (let* ((section-text (common-doc.ops:collect-all-text (title section)))
-                      (section-slug (common-doc.util:string-to-slug section-text))
-                      (final-slug (if (slug-in-table-p section-slug)
-                                      (concatenate 'string
-                                                   (write-to-string current-pos)
-                                                   "-"
-                                                   section-slug)
-                                      section-slug)))
+                      (section-ref (common-doc.util:string-to-ref section-text))
+                      (final-ref (if (ref-in-table-p section-ref)
+                                     (concatenate 'string
+                                                  (write-to-string current-pos)
+                                                  "-"
+                                                  section-ref)
+                                     section-ref)))
                  ;; Add it to the table
-                 (setf (gethash current-pos table) final-slug)
-                 ;; Set the section's reference to the slug
-                 (setf (reference section) final-slug)
+                 (setf (gethash current-pos table) final-ref)
+                 ;; Set the section's reference to the ref
+                 (setf (reference section) final-ref)
                  (incf current-pos))))
       (with-document-traversal (doc-or-node node)
         (when (typep node 'section)
