@@ -72,6 +72,7 @@
       (is
        (equal (source second-img) "fig2.jpg")))))
 
+#|
 (test toc
   (let* ((doc (doc
                document
@@ -97,3 +98,4 @@
     (is
      (equal (text (getf (second toc) :title))
             "Section 2"))))
+|#
