@@ -153,11 +153,11 @@
 (define-node definition (document-node)
   ((term :accessor term
          :initarg :term
-         :type document-node
+         :type (proper-list document-node)
          :documentation "The definition term.")
    (definition :accessor definition
                :initarg :definition
-               :type document-node
+               :type (proper-list document-node)
                :documentation "Defines the term."))
   (:documentation "An item in a definition list."))
 
