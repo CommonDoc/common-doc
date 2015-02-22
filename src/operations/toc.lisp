@@ -59,6 +59,6 @@
 document. All the sections in the document must have references, so you should
 call fill-unique-refs first."
   (let ((toc (extract (un-nest (toc-traverse doc-or-node)))))
-    (make-instance 'content-node
+    (make-instance 'ordered-list
                    :metadata (common-doc.util:make-meta (list (cons "class" "toc")))
                    :children toc)))
