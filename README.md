@@ -51,6 +51,12 @@ An HTML5 emitter.
 
 A TeX-like markup language.
 
+## [Codex](https://github.com/CommonDoc/codex)
+
+[![Build Status](https://travis-ci.org/CommonDoc/codex.svg?branch=master)](https://travis-ci.org/CommonDoc/codex)
+
+A documentation system for Common Lisp.
+
 ## [ParenML](https://github.com/CommonDoc/parenml)
 
 [![Build Status](https://travis-ci.org/CommonDoc/parenml.svg?branch=master)](https://travis-ci.org/CommonDoc/parenml)
