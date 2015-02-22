@@ -30,6 +30,7 @@
 (defmethod expand-macros ((node content-node))
   "Expand the macros in a node with children."
   (let ((current-node (expand-macro node)))
+    (assert (typep current-node '(or document-node document)))
     (if (and (slot-exists-p current-node 'children)
              (children current-node))
         (progn
@@ -37,7 +38,9 @@
                 (loop for child in (children current-node) collecting
                   (expand-macros child)))
           current-node)
-        current-node)))
+        (if (subtypep (type-of current-node) 'macro-node)
+            (expand-macros current-node)
+            current-node))))
 
 (defmethod expand-macros ((doc document))
   "Expand the macros in a document."
