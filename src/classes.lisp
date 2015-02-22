@@ -250,7 +250,7 @@
 (define-node section (content-node)
   ((title :accessor title
           :initarg :title
-          :type document-node
+          :type (proper-list document-node)
           :attribute-name "title"
           :documentation "The section title.")
    (reference :accessor reference

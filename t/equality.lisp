@@ -15,7 +15,7 @@
          (section
            (doc
             section
-            (:title (make-text "Section 1"))
+            (:title (list (make-text "Section 1")))
             (figure
              (:image image
               :description (list paragraph))))))

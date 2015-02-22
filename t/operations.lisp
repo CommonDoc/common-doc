@@ -44,7 +44,7 @@
              document
              ()
              (section
-              (:title (make-text "Section 1"))
+              (:title (list (make-text "Section 1")))
               (figure
                (:image (doc image (:source "fig1.jpg"))
                 :description
@@ -53,7 +53,7 @@
                   text-node
                   (:text "Fig 1"))))))
              (section
-              (:title (make-text "Section 2"))
+              (:title (list (make-text "Section 2")))
               (figure
                (:image (doc image (:source "fig2.jpg"))
                 :description
@@ -77,16 +77,16 @@
               document
               ()
               (section
-               (:title (make-text "Section 1"))
+               (:title (list (make-text "Section 1")))
                (content-node
                 ()
                 (content-node
                  ()
                  (section
-                  (:title (make-text "Section 1.1")
+                  (:title (list (make-text "Section 1.1"))
                    :reference "sec11")))))
               (section
-               (:title (make-text "Section 2"))))))
+               (:title (list (make-text "Section 2")))))))
     (finishes
       (common-doc.ops:fill-unique-refs doc))
     (is
