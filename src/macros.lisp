@@ -14,19 +14,34 @@
   "The default macroexpansion: Do nothing."
   node)
 
+(defmethod expand-macro ((doc document))
+  "The default macroexpansion: Return the document itself."
+  doc)
+
 (defmethod expand-macro ((macro macro-node))
   (error 'common-doc.error:no-macro-expander :node macro))
 
 (defgeneric expand-macros (node)
   (:documentation "Recursively expand all macros in `node`."))
 
+(defmethod expand-macros ((node document-node))
+  node)
+
 (defmethod expand-macros ((node content-node))
   "Expand the macros in a node with children."
   (let ((current-node (expand-macro node)))
-    (if (children current-node)
+    (if (and (slot-exists-p current-node 'children)
+             (children current-node))
         (progn
           (setf (children current-node)
                 (loop for child in (children current-node) collecting
                   (expand-macros child)))
           current-node)
         current-node)))
+
+(defmethod expand-macros ((doc document))
+  "Expand the macros in a document."
+  (setf (children doc)
+        (loop for child in (children doc) collecting
+          (expand-macros child)))
+  doc)

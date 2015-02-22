@@ -98,6 +98,7 @@
   (:import-from :common-doc
                 :content-node
                 :document-node
+                :document
                 :children)
   (:export :macro-node
            :name
