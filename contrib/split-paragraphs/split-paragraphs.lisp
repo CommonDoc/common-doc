@@ -3,6 +3,7 @@
   (:use :cl)
   (:import-from :common-doc
                 :text-node
+                :markup
                 :paragraph
                 :document-node
                 :content-node
@@ -75,24 +76,34 @@ leaving a paragraph marker between each string."
   "Return whether a list has paragraph markers."
   (if (member +paragraph-marker+ list) t))
 
+(defun make-paragraph (contents)
+  (cond
+    ((null contents)
+     nil)
+    ((and (eql (length contents) 1)
+          (typep (first contents) 'markup))
+     (first contents))
+    (t
+     (make-instance 'paragraph
+                    :children contents))))
+
 (defun group-into-paragraph-nodes (list)
   "Take a list of nodes separated by paragraph markers and merge them into
 paragraph nodes."
   (if (has-paragraph-markers list)
       (let ((output (list))
             (current-paragraph-contents (list)))
-        (flet ((make-paragraph ()
-                 (make-instance 'paragraph
-                                :children (reverse current-paragraph-contents))))
-          (loop for elem in list do
-            (if (eql elem +paragraph-marker+)
-                ;; End of the paragraph
-                (progn
-                  (push (make-paragraph) output)
-                  (setf current-paragraph-contents nil))
-                ;; Another node, so just push it in the paragraph
-                (push elem current-paragraph-contents)))
-          (push (make-paragraph) output))
+        (loop for elem in list do
+          (if (eql elem +paragraph-marker+)
+              ;; End of the paragraph
+              (progn
+                (push (make-paragraph (reverse current-paragraph-contents))
+                      output)
+                (setf current-paragraph-contents nil))
+              ;; Another node, so just push it in the paragraph
+              (push elem current-paragraph-contents)))
+        (push (make-paragraph (reverse current-paragraph-contents))
+              output)
         (reverse output))
       list))
 
