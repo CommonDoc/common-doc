@@ -32,7 +32,8 @@
                    (:file "text")
                    (:file "unique-ref")
                    (:file "toc")
-                   (:file "equality"))))))
+                   (:file "equality")))
+                 (:file "print"))))
   :description "A framework for representing and manipulating documents as CLOS
   objects."
   :long-description
