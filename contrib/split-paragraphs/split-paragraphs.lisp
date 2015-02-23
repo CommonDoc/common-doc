@@ -9,6 +9,7 @@
                 :definition
                 :definition-list
                 :base-list
+                :code-block
                 :document
                 :children
                 :text)
@@ -121,6 +122,10 @@ paragraph nodes."
   (setf (children list)
         (split-and-group (children list)))
   list)
+
+(defmethod split-paragraphs ((code-block code-block))
+  "Don't split paragraphs in code blocks."
+  code-block)
 
 (defmethod split-paragraphs ((doc document))
   "Split paragraphs in a document's children."
