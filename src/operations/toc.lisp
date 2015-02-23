@@ -61,4 +61,5 @@ call fill-unique-refs first."
   (let ((toc (extract (un-nest (toc-traverse doc-or-node)))))
     (make-instance 'ordered-list
                    :metadata (common-doc.util:make-meta (list (cons "class" "toc")))
-                   :children toc)))
+                   :children (loop for child in toc collecting
+                               (make-instance 'list-item :children (list child))))))
