@@ -49,7 +49,7 @@ An HTML5 emitter.
 
 [![Build Status](https://travis-ci.org/CommonDoc/vertex.svg?branch=master)](https://travis-ci.org/CommonDoc/vertex)
 
-A TeX-like markup language.
+A TeX-like markup language (parser and emitter).
 
 ## [Codex](https://github.com/CommonDoc/codex)
 
