@@ -1,4 +1,4 @@
-(in-package :common-doc-test)
+(in-package :common-doc-test.contrib)
 
 (test split-paragraphs
   (let ((node
