@@ -1,4 +1,4 @@
-(in-package :common-doc-test)
+(in-package :common-doc-test.ops)
 
 (test node-equality
   (is

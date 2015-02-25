@@ -1,4 +1,19 @@
-(in-package :common-doc-test)
+(in-package :cl-user)
+(defpackage common-doc-test.ops
+  (:use :cl :fiveam :common-doc)
+  (:import-from :common-doc.util
+                :doc
+                :make-text)
+  (:import-from :common-doc.ops
+                :with-document-traversal
+                :collect-figures
+                :node-equal)
+  (:export :tests))
+(in-package :common-doc-test.ops)
+
+(def-suite tests
+  :description "common-doc operations tests.")
+(in-suite tests)
 
 (test traverse-depth
   (let ((document
