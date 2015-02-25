@@ -117,7 +117,6 @@
      (equal (reference (second (children doc)))
             "section-2"))))
 
-#|
 (test toc
   (let* ((doc (doc
                document
@@ -136,7 +135,15 @@
                 (:title (make-text "Section 2")
                  :reference "sec2"))))
          (toc (common-doc.ops:table-of-contents doc)))
+    (is-true (typep toc 'ordered-list))
     (is
-     (equal (common-html.emitter:node-to-html-string toc)
-            "<div class=\"toc\"><a href=\"#sec1\">Section 1</a><ol><li><a href=\"#sec11\">Section 1.1</a></li></ol><a href=\"#sec2\">Section 2</a></div>"))))
-|#
+     (equal (length (children toc))
+            2))
+    (let ((list-item (first (children toc))))
+      (is-true (typep list-item 'list-item)))
+    (let ((list-item (second (children toc))))
+      (is-true (typep list-item 'list-item))
+      (let ((link (first (children list-item))))
+        (is
+         (equal (common-doc.ops:collect-all-text link)
+                "Section 2"))))))
