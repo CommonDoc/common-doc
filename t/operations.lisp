@@ -122,17 +122,17 @@
                document
                ()
                (section
-                (:title (make-text "Section 1")
+                (:title (list (make-text "Section 1"))
                  :reference "sec1")
                 (content-node
                  ()
                  (content-node
                   ()
                   (section
-                   (:title (make-text "Section 1.1")
+                   (:title (list (make-text "Section 1.1"))
                     :reference "sec11")))))
                (section
-                (:title (make-text "Section 2")
+                (:title (list (make-text "Section 2"))
                  :reference "sec2"))))
          (toc (common-doc.ops:table-of-contents doc)))
     (is-true (typep toc 'ordered-list))
