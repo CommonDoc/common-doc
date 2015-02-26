@@ -18,6 +18,7 @@
     nil))
 
 (defun un-nest (node)
+  "Remove unnecessary nesting, ie: (((A))) => (A)."
   (cond
     ((null node)
      node)
@@ -28,6 +29,21 @@
            (un-nest child))))
     (t
      node)))
+
+(defun filter-depth (node max-depth)
+  "Remove all nodes deeper than max-depth."
+  (labels ((traverse (node depth)
+             (if (listp node)
+                 (if (eq (first node) :sec)
+                     (if (>= depth max-depth)
+                         (append
+                          (alexandria:remove-from-plist node :children)
+                          (list :children nil))
+                         node)
+                     (loop for child in node collecting
+                       (traverse child (1+ depth))))
+                 node)))
+    (traverse node 1)))
 
 (defun extract (node)
   (if (listp node)
@@ -54,11 +70,14 @@
             (extract child)))
       node))
 
-(defun table-of-contents (doc-or-node)
+(defun table-of-contents (doc-or-node &key max-depth)
   "Extract a tree of document links representing the table of contents of a
 document. All the sections in the document must have references, so you should
 call fill-unique-refs first."
-  (let ((toc (extract (un-nest (toc-traverse doc-or-node)))))
+  (let* ((list (un-nest (toc-traverse doc-or-node)))
+         (toc (extract (if max-depth
+                           (filter-depth list max-depth)
+                           list))))
     (make-instance 'ordered-list
                    :metadata (common-doc.util:make-meta (list (cons "class" "toc")))
                    :children (loop for child in toc collecting
