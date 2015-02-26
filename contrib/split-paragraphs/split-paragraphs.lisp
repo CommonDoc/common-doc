@@ -1,19 +1,6 @@
 (in-package :cl-user)
 (defpackage common-doc.split-paragraphs
-  (:use :cl)
-  (:import-from :common-doc
-                :text-node
-                :markup
-                :paragraph
-                :document-node
-                :content-node
-                :definition
-                :definition-list
-                :base-list
-                :code-block
-                :document
-                :children
-                :text)
+  (:use :cl :common-doc)
   (:import-from :common-doc.util
                 :make-text)
   (:export :*paragraph-separator-regex*
@@ -100,7 +87,12 @@ paragraph nodes."
              (push (make-paragraph (reverse current-paragraph-contents))
                    output)
              (setf current-paragraph-contents nil))
-            ((not (typep elem 'text-node))
+            ((or (typep elem 'code-block)
+                 (typep elem 'block-quote)
+                 (typep elem 'base-list)
+                 (typep elem 'figure)
+                 (typep elem 'table)
+                 (typep elem 'section))
              ;; Another end of paragraph
              (push (make-paragraph (reverse current-paragraph-contents))
                    output)
