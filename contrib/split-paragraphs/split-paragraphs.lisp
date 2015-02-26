@@ -101,9 +101,10 @@ paragraph nodes."
             (t
              ;; Another node, so just push it in the paragraph
              (push elem current-paragraph-contents))))
-        (push (make-paragraph (reverse current-paragraph-contents))
-              output)
-        (reverse output))
+        (when current-paragraph-contents
+          (push (make-paragraph (reverse current-paragraph-contents))
+                output))
+        (remove-if #'null (reverse output)))
       list))
 
 (defun split-and-group (list)
