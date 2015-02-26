@@ -94,14 +94,21 @@ paragraph nodes."
       (let ((output (list))
             (current-paragraph-contents (list)))
         (loop for elem in list do
-          (if (eql elem +paragraph-marker+)
-              ;; End of the paragraph
-              (progn
-                (push (make-paragraph (reverse current-paragraph-contents))
-                      output)
-                (setf current-paragraph-contents nil))
-              ;; Another node, so just push it in the paragraph
-              (push elem current-paragraph-contents)))
+          (cond
+            ((equal elem +paragraph-marker+)
+             ;; End of the paragraph
+             (push (make-paragraph (reverse current-paragraph-contents))
+                   output)
+             (setf current-paragraph-contents nil))
+            ((not (typep elem 'text-node))
+             ;; Another end of paragraph
+             (push (make-paragraph (reverse current-paragraph-contents))
+                   output)
+             (setf current-paragraph-contents nil)
+             (push elem output))
+            (t
+             ;; Another node, so just push it in the paragraph
+             (push elem current-paragraph-contents))))
         (push (make-paragraph (reverse current-paragraph-contents))
               output)
         (reverse output))
