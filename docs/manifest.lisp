@@ -7,4 +7,5 @@
                               :template :min)
               :sources ("nodes.tex"
                         "defining-nodes.tex"
+                        "format.tex"
                         "util.tex"))))
