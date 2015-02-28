@@ -3,17 +3,22 @@
 (defmacro doc (class args &rest children)
   "Easily create a document or node.
 
-  `(doc subscript ())`
+  \\code[lang=lisp]{(doc subscript ())}
 
   is equivalent to:
 
-  `(make-instance 'subscript)`
+  \\code[lang=lisp]{(make-instance 'subscript)}
 
-  `(doc document (:title \"My Document\") (text-node (:text \"...\")))`
+  \\code[lang=lisp]{(doc document
+                         (:title \"My Document\")
+                         (text-node (:text \"...\")))
+  }
 
   is equivalent to:
 
-  `(make-instance 'document :title \"My Document\" :children (list (make-instance 'text-node :text \"...\")))`"
+  \\code[lang=lisp]{(make-instance 'document
+                                   :title \"My Document\"
+                                   :children (list (make-instance 'text-node :text \"...\")))}"
   (labels ((recur (args)
              (destructuring-bind (class args &rest children) args
                (if children
