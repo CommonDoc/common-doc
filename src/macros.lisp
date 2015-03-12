@@ -27,8 +27,7 @@
 (defmethod expand-macros ((node document-node))
   node)
 
-(defmethod expand-macros ((node content-node))
-  "Expand the macros in a node with children."
+(defun %expand-macros (node)
   (let ((current-node (expand-macro node)))
     (assert (typep current-node '(or document-node document)))
     (if (and (slot-exists-p current-node 'children)
@@ -41,6 +40,24 @@
         (if (subtypep (type-of current-node) 'macro-node)
             (expand-macros current-node)
             current-node))))
+
+(defmethod expand-macros ((node base-list))
+  "Expand the macros in a base list."
+  (%expand-macros node))
+
+(defmethod expand-macros ((node definition))
+  "Expand the macros in a definition."
+  (setf (term node)
+        (loop for child in (term node) collecting
+          (expand-macros child)))
+  (setf (definition node)
+        (loop for child in (definition node) collecting
+          (expand-macros child)))
+  node)
+
+(defmethod expand-macros ((node content-node))
+  "Expand the macros in a node with children."
+  (%expand-macros node))
 
 (defmethod expand-macros ((doc document))
   "Expand the macros in a document."
