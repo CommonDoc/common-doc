@@ -80,5 +80,8 @@ call fill-unique-refs first."
                            list))))
     (make-instance 'ordered-list
                    :metadata (common-doc.util:make-meta (list (cons "class" "toc")))
-                   :children (loop for child in toc collecting
+                   :children (loop for child in (if (listp toc)
+                                                    toc
+                                                    (children toc))
+                                   collecting
                                (make-instance 'list-item :children (list child))))))
