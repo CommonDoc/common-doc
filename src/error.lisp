@@ -15,8 +15,8 @@
          :documentation "The node that couldn't be expanded."))
   (:report
    (lambda (condition stream)
-     (format stream "No expand-macro method for node ~S."
-             (type-of (node condition)))))
+     (format stream "No expand-macro method for node with name ~S."
+             (common-doc.macro:name (node condition)))))
   (:documentation "Signaled when a macro node has no `expand-macro` method."))
 
 (define-condition bad-pathname (common-doc-error parse-error)
