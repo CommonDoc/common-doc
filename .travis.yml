@@ -20,7 +20,8 @@ script:
                  (lambda (c h)
                    (declare (ignore c h))
                    (uiop:quit -1)))'
-       -e '(coveralls:with-coveralls () (ql:quickload :common-doc-test))'
+       -e '(coveralls:with-coveralls (:exclude (list "t"))
+             (ql:quickload :common-doc-test))'
 
 notifications:
   email:
