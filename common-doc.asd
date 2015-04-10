@@ -19,7 +19,6 @@
                  (:file "error")
                  (:file "file")
                  (:file "classes")
-                 (:file "copy")
                  (:file "macros")
                  (:file "format")
                  (:file "util")
