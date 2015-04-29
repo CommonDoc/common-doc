@@ -74,15 +74,14 @@
   (:export :common-doc-error
            :macro-error
            :no-macro-expander
-           :bad-pathname
-           :node
-           :path-string)
+           :node)
   (:documentation "CommonDoc errors."))
 
 (defpackage common-doc.file
   (:use :cl)
   (:export :*base-directory*
-           :absolute-path)
+           :absolute-path
+           :relativize-pathname)
   (:documentation "File-related operations for CommonDoc."))
 
 (defpackage common-doc.format
