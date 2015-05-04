@@ -1,9 +1,9 @@
 (in-package :common-doc)
 
-(defparameter *registry* (make-hash-table :test #'equal)
+(defvar *registry* (make-hash-table :test #'equal)
   "A hash table from tag names to node classes.")
 
-(defparameter *node-slots* (make-hash-table :test #'equal))
+(defvar *node-slots* (make-hash-table :test #'equal))
 
 (defmacro define-node (name (&rest superclasses) slots &rest class-options)
   "Define a CommonDoc node."
