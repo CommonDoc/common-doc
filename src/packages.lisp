@@ -1,8 +1,8 @@
 (in-package :cl-user)
 (defpackage common-doc
   (:use :cl :trivial-types :anaphora)
-  (:export ;; Document classes
-           :document-node
+  ;; Classes
+  (:export :document-node
            :content-node
            :text-node
            :paragraph
@@ -33,9 +33,9 @@
            :row
            :cell
            :section
-           :document
-           ;; Accessors
-           :metadata
+           :document)
+  ;; Accessors
+  (:export :metadata
            :children
            :text
            :language
@@ -61,9 +61,9 @@
            :keywords
            :rights
            :version
-           :created-on
-           ;; Node definition
-           :define-node
+           :created-on)
+  ;; Node definition
+  (:export :define-node
            :find-node
            :find-tag
            :find-special-slots)
