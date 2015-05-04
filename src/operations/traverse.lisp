@@ -1,7 +1,7 @@
 (in-package :common-doc.ops)
 
 (defgeneric traverse-document (node function &optional depth)
-  (:documentation "Apply a side effectful function recursively to every element
+  (:documentation "Apply a side-effectful function recursively to every element
   in the document. Depth-first.")
 
   (:method ((doc document) function &optional (depth 0))
