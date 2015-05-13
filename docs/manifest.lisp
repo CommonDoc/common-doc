@@ -1,11 +1,7 @@
-(:markup-format :vertex
+(:docstring-markup-format :scriba
  :systems (:common-doc)
  :documents ((:title "CommonDoc"
               :authors ("Fernando Borretti")
-              :markup-format :vertex
               :output-format (:type :multi-html
                               :template :min)
-              :sources ("nodes.tex"
-                        "defining-nodes.tex"
-                        "format.tex"
-                        "util.tex"))))
+              :sources ("manual.scr"))))
