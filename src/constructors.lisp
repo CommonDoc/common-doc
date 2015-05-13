@@ -84,7 +84,7 @@ empty metadata table."
 (defun make-web-link (uri children &key metadata)
   "Create a web link."
   (make-instance 'web-link
-                 :uri (quri:parse-uri uri)
+                 :uri (quri:uri uri)
                  :children children
                  :metadata metadata))
 
