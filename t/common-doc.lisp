@@ -40,6 +40,17 @@
     (is-true (make-definition-list (list def))
              'definition-list)))
 
+(test nodes
+  (is
+   (eql (find-node "b")
+        (find-class 'bold)))
+  (is
+   (equal (find-tag (find-class 'bold))
+          "b"))
+  (is
+   (equal (find-special-slots (find-class 'code-block))
+          (list (cons "lang" 'language)))))
+
 
 (test simple-doc
   (let ((document (make-document
