@@ -79,9 +79,10 @@ call fill-unique-refs first."
                            (filter-depth list max-depth)
                            list))))
     (make-instance 'ordered-list
-                   :metadata (common-doc.util:make-meta (list (cons "class" "toc")))
+                   :metadata (make-meta (list (cons "class" "toc")))
                    :children (loop for child in (if (listp toc)
                                                     toc
                                                     (children toc))
                                    collecting
-                               (make-instance 'list-item :children (list child))))))
+                                   (make-instance 'list-item
+                                                  :children (list child))))))
