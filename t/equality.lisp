@@ -1,10 +1,14 @@
 (in-package :common-doc-test.ops)
 
 (test node-equality
-  (is
-   (node-equal (make-text "test")
-               (make-text "test")))
-  (let* ((image (make-image "fig1.jpg"))
+  (let* ((text (make-text "test"))
+         (code-block (make-code-block "lisp"
+                                      (list (make-text "test"))))
+         (doc-link (make-document-link "doc" "sec"
+                                       (list (make-text "test"))))
+         (web-link (make-web-link "http://www.example.com"
+                                  (list (make-text "test"))))
+         (image (make-image "fig1.jpg"))
          (paragraph (make-paragraph
                      (list (make-text "test"))))
          (section (make-section
@@ -23,4 +27,4 @@
                                ,@(loop for other-node in (set-difference nodes (list node))
                                        collecting
                                        `(is (not (node-equal ,node ,other-node)))))))))
-      (tests image paragraph section))))
+      (tests text code-block image paragraph section))))
