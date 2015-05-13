@@ -67,3 +67,17 @@
             (list "test" "test1")))
     (is (equal (common-doc.ops:collect-all-text document)
                "test"))))
+
+(test file
+  (let ((common-doc.file:*base-directory* (user-homedir-pathname)))
+    (is
+     (equal
+      (common-doc.file:absolute-path #p"file.txt")
+      (merge-pathnames #p"file.txt"
+                       (user-homedir-pathname))))
+    (is
+     (equal
+      (common-doc.file:relativize-pathname
+       (merge-pathnames #p"file.txt"
+                        (user-homedir-pathname)))
+      #p"file.txt"))))
