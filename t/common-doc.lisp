@@ -81,3 +81,7 @@
        (merge-pathnames #p"file.txt"
                         (user-homedir-pathname)))
       #p"file.txt"))))
+
+(test macros
+  (signals common-doc.error:no-macro-expander
+    (common-doc.macro:expand-macros (make-instance 'common-doc.macro:macro-node))))
