@@ -19,6 +19,7 @@
                  (:file "error")
                  (:file "file")
                  (:file "classes")
+                 (:file "constructors")
                  (:file "macros")
                  (:file "format")
                  (:file "util")

@@ -62,6 +62,35 @@
            :rights
            :version
            :created-on)
+  ;; Constructors
+  (:export :make-meta
+           :make-content
+           :make-text
+           :make-paragraph
+           :make-bold
+           :make-italic
+           :make-underline
+           :make-strikethrough
+           :make-code
+           :make-superscript
+           :make-subscript
+           :make-code-block
+           :make-inline-quote
+           :make-block-quote
+           :make-document-link
+           :make-web-link
+           :make-list-item
+           :make-definition
+           :make-unordered-list
+           :make-ordered-list
+           :make-definition-list
+           :make-image
+           :make-figure
+           :make-table
+           :make-row
+           :make-cell
+           :make-section
+           :make-document)
   ;; Node definition
   (:export :define-node
            :find-node
@@ -110,10 +139,7 @@
 
 (defpackage common-doc.util
   (:use :cl :common-doc)
-  (:export :doc
-           :make-meta
-           :make-text
-           :string-to-slug)
+  (:export :string-to-slug)
   (:documentation "CommonDoc utilities."))
 
 (defpackage common-doc.ops

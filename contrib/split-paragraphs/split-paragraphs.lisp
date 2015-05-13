@@ -63,7 +63,7 @@ leaving a paragraph marker between each string."
   "Return whether a list has paragraph markers."
   (if (member +paragraph-marker+ list) t))
 
-(defun make-paragraph (contents)
+(defun create-paragraph (contents)
   (cond
     ((null contents)
      nil)
@@ -84,7 +84,7 @@ paragraph nodes."
           (cond
             ((equal elem +paragraph-marker+)
              ;; End of the paragraph
-             (push (make-paragraph (reverse current-paragraph-contents))
+             (push (create-paragraph (reverse current-paragraph-contents))
                    output)
              (setf current-paragraph-contents nil))
             ((or (typep elem 'code-block)
@@ -94,7 +94,7 @@ paragraph nodes."
                  (typep elem 'table)
                  (typep elem 'section))
              ;; Another end of paragraph
-             (push (make-paragraph (reverse current-paragraph-contents))
+             (push (create-paragraph (reverse current-paragraph-contents))
                    output)
              (setf current-paragraph-contents nil)
              (push elem output))
@@ -102,7 +102,7 @@ paragraph nodes."
              ;; Another node, so just push it in the paragraph
              (push elem current-paragraph-contents))))
         (when current-paragraph-contents
-          (push (make-paragraph (reverse current-paragraph-contents))
+          (push (create-paragraph (reverse current-paragraph-contents))
                 output))
         (remove-if #'null (reverse output)))
       list))

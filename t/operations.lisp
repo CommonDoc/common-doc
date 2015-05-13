@@ -1,31 +1,27 @@
 (in-package :cl-user)
 (defpackage common-doc-test.ops
   (:use :cl :fiveam :common-doc)
-  (:import-from :common-doc.util
-                :doc
-                :make-text)
   (:import-from :common-doc.ops
                 :with-document-traversal
                 :collect-figures
                 :node-equal)
-  (:export :tests))
+  (:export :operations))
 (in-package :common-doc-test.ops)
 
-(def-suite tests
+(def-suite operations
   :description "common-doc operations tests.")
-(in-suite tests)
+(in-suite operations)
 
-(test traverse-depth
-  (let ((document
-          (doc
-           document
-           ()
-           (bold
-            ()
-            (italic
-             ()
-             (underline
-              ())))))
+(test traverse
+  (let ((document (make-document
+                   "test"
+                   :children
+                   (list
+                    (make-bold
+                     (list
+                      (make-italic
+                       (list
+                        (make-underline nil))))))))
         (document-depth)
         (bold-depth)
         (italic-depth)
@@ -50,32 +46,31 @@
     (is
      (equal underline-depth 3))))
 
-(test extract-figures
+(test figures
   (let ((document)
         (figs))
     (finishes
       (setf document
-            (doc
-             document
-             ()
-             (section
-              (:title (list (make-text "Section 1")))
-              (figure
-               (:image (doc image (:source "fig1.jpg"))
-                :description
-                (list
-                 (doc
-                  text-node
-                  (:text "Fig 1"))))))
-             (section
-              (:title (list (make-text "Section 2")))
-              (figure
-               (:image (doc image (:source "fig2.jpg"))
-                :description
-                (list
-                 (doc
-                  text-node
-                  (:text "Fig 2")))))))))
+            (make-document
+             "test"
+             :children
+             (list
+              (make-section
+               (list (make-text "Section 1"))
+               :children
+               (list
+                (make-figure
+                 (make-image "fig1.jpg")
+                 (list
+                  (make-text "Fig 1")))))
+              (make-section
+               (list (make-text "Section 2"))
+               :children
+               (list
+                (make-figure
+                 (make-image "fig2.jpg")
+                 (list
+                  (make-text "Fig 2")))))))))
     (finishes
       (setf figs (collect-figures document)))
     (let* ((first-fig (first figs))
@@ -87,21 +82,22 @@
       (is
        (equal (source second-img) "fig2.jpg")))))
 
-(test unique-refs
-  (let ((doc (doc
-              document
-              ()
-              (section
-               (:title (list (make-text "Section 1")))
-               (content-node
-                ()
-                (content-node
-                 ()
-                 (section
-                  (:title (list (make-text "Section 1.1"))
-                   :reference "sec11")))))
-              (section
-               (:title (list (make-text "Section 2")))))))
+(test unique-ref
+  (let ((doc (make-document
+              "test"
+              :children
+              (list
+               (make-section
+                (list (make-text "Section 1"))
+                :children (list
+                           (make-content
+                            (list
+                             (make-content
+                              (list
+                               (make-section (list (make-text "Section 1.1"))
+                                             :reference "sec11")))))))
+               (make-section
+                (list (make-text "Section 2")))))))
     (finishes
       (common-doc.ops:fill-unique-refs doc))
     (is
@@ -117,22 +113,26 @@
      (equal (reference (second (children doc)))
             "section-2"))))
 
+
 (test toc
-  (let* ((doc (doc
-               document
-               ()
-               (section
-                (:title (list (make-text "Section 1"))
-                 :reference "sec1")
-                (content-node
-                 ()
-                 (content-node
-                  ()
-                  (section
-                   (:title (list (make-text "Section 1.1"))
-                    :reference "sec11")))))
-               (section
-                (:title (list (make-text "Section 2"))
+  (let* ((doc (make-document
+               "test"
+               :children
+               (list
+                (make-section
+                 (list (make-text "Section 1"))
+                 :reference "sec1"
+                 :children
+                 (list
+                  (make-content
+                   (list
+                    (make-content
+                     (list
+                      (make-section
+                       (list (make-text "Section 1.1"))
+                       :reference "sec11")))))))
+                (make-section
+                 (list (make-text "Section 2"))
                  :reference "sec2"))))
          (toc (common-doc.ops:table-of-contents doc)))
     (is-true (typep toc 'ordered-list))

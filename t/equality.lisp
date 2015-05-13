@@ -4,21 +4,16 @@
   (is
    (node-equal (make-text "test")
                (make-text "test")))
-  (let* ((image
-           (doc image (:source "fig1.jpg")))
-         (paragraph
-           (doc
-            paragraph
-            ()
-            (text-node
-             (:text "test"))))
-         (section
-           (doc
-            section
-            (:title (list (make-text "Section 1")))
-            (figure
-             (:image image
-              :description (list paragraph))))))
+  (let* ((image (make-image "fig1.jpg"))
+         (paragraph (make-paragraph
+                     (list (make-text "test"))))
+         (section (make-section
+                   (list (make-text "Section 1"))
+                   :children
+                   (list
+                    (make-figure
+                     image
+                     (list paragraph))))))
     (macrolet ((tests (&rest nodes)
                  `(progn
                     ,@(loop for node in nodes collecting
