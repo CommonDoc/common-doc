@@ -3,7 +3,7 @@
   :license "MIT"
   :description "CommonDoc tests."
   :depends-on (:common-doc
-               :common-doc-split-paragraphs
+               :common-doc-contrib
                :fiveam)
   :components ((:module "t"
                 :serial t
