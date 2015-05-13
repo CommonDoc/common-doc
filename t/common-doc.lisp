@@ -77,6 +77,11 @@
                        (user-homedir-pathname))))
     (is
      (equal
+      (common-doc.file:absolute-path "file.txt")
+      (merge-pathnames #p"file.txt"
+                       (user-homedir-pathname))))
+    (is
+     (equal
       (common-doc.file:relativize-pathname
        (merge-pathnames #p"file.txt"
                         (user-homedir-pathname)))
