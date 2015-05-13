@@ -1,0 +1,96 @@
+@begin(section)
+@title(Formats)
+
+@begin(section)
+@title(Existing Formats)
+
+@begin[ref=scriba](section)
+@title(Scriba)
+
+Scriba is a markup format with a syntax similar to that of
+@link[uri=https://en.wikipedia.org/wiki/Scribe_(markup_language)](Scribe), the
+late-seventies markup language.
+
+@end(section)
+
+@begin(section)
+@title(VerTeX)
+
+VerTeX is a markup format with a
+@link[uri=https://en.wikipedia.org/wiki/TeX](TeX) like syntax.
+
+An example of VerTeX syntax is:
+
+@begin[lang=tex](code)
+
+@end(code)
+
+One disadvantage of using VerTeX comes when writing documents with TeX (to be
+rendered, say, by @link[uri=https://www.mathjax.org/](MathJax) in the HTML
+backend). Because TeX mathematics has operators which would be parsed as VerTeX
+syntax (e.g. @c(\int), @c(\sigma)), you either need to escape the slashes or use
+the @c(\verb) tag to enter verbatim text. For example:
+
+@begin[lang=tex](code)
+The speed of light is $@verb(\frac{1}{\sqrt{\mu_0 \epsilon_0}})$.
+
+The derivative of $\\log(x)$ is $\\frac{1}{x}$.
+@end(code)
+
+As such, documents using TeX extensive should consider @ref[sec=scriba](Scriba).
+
+The parser uses the
+@link[uri=https://github.com/Shinmera/plump-tex](@c(plump-tex)) library.
+
+@end(section)
+
+@end(section)
+
+@end(section)
+
+@begin(section)
+@title(Nodes)
+
+@begin(section)
+@title(Basic Classes)
+
+@cl:with-package[name="common-doc"](
+@cl:doc(class document-node)
+@cl:doc(class content-node)
+@cl:doc(class text-node)
+@cl:doc(class paragraph)
+)
+
+@end(section)
+
+@end(section)
+
+@begin(section)
+@title(Defining Nodes)
+
+@begin(section)
+@title(API)
+
+@cl:with-package[name="common-doc"](
+@cl:doc(macro define-node)
+)
+
+@end(section)
+
+@end(section)
+
+@begin(section)
+@title(Files)
+
+@cl:with-package[name="common-doc.file"](
+@cl:doc(variable *base-directory*)
+@cl:doc(function absolute-path)
+@cl:doc(function relativize-pathname)
+)
+
+@end(section)
+
+@begin(section)
+@title(Errors)
+
+@end(section)
