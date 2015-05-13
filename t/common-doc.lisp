@@ -82,6 +82,32 @@
                         (user-homedir-pathname)))
       #p"file.txt"))))
 
+(define-node custom-macro (common-doc.macro:macro-node)
+  ())
+
+(defmethod common-doc.macro:expand-macro ((node custom-macro))
+  (make-text "test"))
+
 (test macros
+  (is
+   (typep (common-doc.macro:expand-macros (make-paragraph nil))
+          'paragraph))
+  (is
+   (typep (common-doc.macro:expand-macros (make-document "title"))
+          'document))
   (signals common-doc.error:no-macro-expander
-    (common-doc.macro:expand-macros (make-instance 'common-doc.macro:macro-node))))
+    (common-doc.macro:expand-macros (make-instance 'common-doc.macro:macro-node)))
+  (let ((doc
+          (make-document
+           "test"
+           :children
+           (list
+            (make-unordered-list
+             (list
+              (make-list-item (list (make-instance 'custom-macro)))))
+            (make-definition-list
+             (list
+              (make-definition (list (make-text "term"))
+                               (list (make-instance 'custom-macro)))))))))
+    (finishes
+      (setf doc (common-doc.macro:expand-macros doc)))))
