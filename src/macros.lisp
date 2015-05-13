@@ -14,10 +14,6 @@
   "The default macroexpansion: Do nothing."
   node)
 
-(defmethod expand-macro ((doc document))
-  "The default macroexpansion: Return the document itself."
-  doc)
-
 (defmethod expand-macro ((macro macro-node))
   (error 'common-doc.error:no-macro-expander :node macro))
 
