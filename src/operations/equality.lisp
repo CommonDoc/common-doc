@@ -89,10 +89,10 @@
 
 (defmethod node-specific-equal ((definition-a definition)
                                 (definition-b definition))
-  (and (node-equal (term definition-a)
-                   (term definition-b))
-       (node-equal (definition definition-a)
-                   (definition definition-b))))
+  (and (node-list-equal (term definition-a)
+                        (term definition-b))
+       (node-list-equal (definition definition-a)
+                        (definition definition-b))))
 
 (defmethod node-specific-equal ((image-a image)
                                 (image-b image))
@@ -109,6 +109,6 @@
 (defmethod node-specific-equal ((section-a section)
                                 (section-b section))
   (and (equal (title section-a)
-                   (title section-b))
+              (title section-b))
        (equal (reference section-a)
               (reference section-b))))
