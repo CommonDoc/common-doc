@@ -89,49 +89,60 @@ empty metadata table."
                  :metadata metadata))
 
 (defun make-list-item (children &key metadata)
+  "Create a list item."
   (construct 'list-item children metadata))
 
 (defun make-definition (term definition &key metadata)
+  "Create a definition list item."
   (make-instance 'definition
                  :term term
                  :definition definition
                  :metadata metadata))
 
 (defun make-unordered-list (children &key metadata)
+  "Create an unordered list."
   (construct 'unordered-list children metadata))
 
 (defun make-ordered-list (children &key metadata)
+  "Create an ordered list."
   (construct 'ordered-list children metadata))
 
 (defun make-definition-list (children &key metadata)
+  "Create a definition list."
   (construct 'definition-list children metadata))
 
 (defun make-image (source &key description metadata)
+  "Create an image."
   (make-instance 'image
                  :source source
                  :description description
                  :metadata metadata))
 
 (defun make-figure (image description &key metadata)
+  "Create a figure."
   (make-instance 'figure
                  :image image
                  :description description
                  :metadata metadata))
 
 (defun make-table (rows &key metadata)
+  "Create a table from a list of rows."
   (make-instance 'table
                  :rows rows
                  :metadata metadata))
 
 (defun make-row (cells &key metadata)
+  "Create a row from a list of cells."
   (make-instance 'row
                  :cells cells
                  :metadata metadata))
 
 (defun make-cell (children &key metadata)
+  "Create a cell from its children."
   (construct 'cell children metadata))
 
 (defun make-section (title &key children reference metadata)
+  "Create a section from its title and children."
   (make-instance 'section
                  :title title
                  :reference reference
@@ -139,6 +150,7 @@ empty metadata table."
                  :metadata metadata))
 
 (defun make-document (title &key children keywords &allow-other-keys)
+  "Create a document."
   (make-instance 'document
                  :title title
                  :children children
