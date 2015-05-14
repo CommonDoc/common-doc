@@ -15,6 +15,9 @@
                                        (list (make-text "test"))))
          (web-link (make-web-link "http://www.example.com"
                                   (list (make-text "test"))))
+         (def (make-definition
+               (list (make-text "test"))
+               (list (make-text "test"))))
          (image (make-image "fig1.jpg"))
          (paragraph (make-paragraph
                      (list (make-text "test"))))
@@ -34,4 +37,4 @@
                                ,@(loop for other-node in (limit-list (set-difference nodes (list node)))
                                        collecting
                                        `(is (not (node-equal ,node ,other-node)))))))))
-      (tests text text-meta code-block doc-link web-link image paragraph section))))
+      (tests text text-meta code-block doc-link web-link def image paragraph section))))
