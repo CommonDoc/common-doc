@@ -17,10 +17,10 @@
              :type (proper-list document-node)
              :documentation "The node's children."))
   (:documentation "A node with children. This is the base class of all nodes
-  that have a \\c{children} slot (Except \\c{document}, since this class
-  inherits from document-node) and can also be used as a way to represent a
-  generic grouping of elements. This is useful when building a CommonDoc
-  document by parsing some input language."))
+  that have a @c(children) slot (Except @c(document), since this class inherits
+  from @c(document-node)) and can also be used as a way to represent a generic
+  grouping of elements. This is useful when building a CommonDoc document by
+  parsing some input language."))
 
 (define-node text-node (document-node)
   ((text :accessor text
@@ -119,7 +119,7 @@
                        :type (or null string)
                        :attribute-name "doc"
                        :documentation "A reference key for the linked document.
- If \\c{nil}, the link is only to a section within the document.")
+ If @c(NIL), the link is only to a section within the document.")
    (section-reference :accessor section-reference
                       :initarg :section-reference
                       :type (or null string)
@@ -127,8 +127,8 @@
                       :documentation "A reference key for the linked section."))
   (:tag-name "ref")
   (:documentation "A link to a section of this document, to another document and
-  optionally a section within that document. See also the \\c{reference} slot in
-  the \\c{document} class."))
+  optionally a section within that document. See also the @c(reference) slot in
+  the @c(document) class."))
 
 (define-node web-link (link)
   ((uri :accessor uri
@@ -165,7 +165,7 @@
   ((children :accessor children
              :initarg :children
              :type (proper-list list-item)
-             :documentation "The list of \\c{list-item} instances."))
+             :documentation "The list of @c(list-item) instances."))
   (:tag-name "list")
   (:documentation "A list where the elements are unordered."))
 
@@ -173,7 +173,7 @@
   ((children :accessor children
              :initarg :children
              :type (proper-list list-item)
-             :documentation "The list of \\c{list-item} instances."))
+             :documentation "The list of @c(list-item) instances."))
   (:tag-name "enum")
   (:documentation "A list where the elements are ordered."))
 
@@ -181,7 +181,7 @@
   ((children :accessor children
              :initarg :children
              :type (proper-list definition)
-             :documentation "The list of \\c{definition} instances."))
+             :documentation "The list of @c(definition) instances."))
   (:tag-name "deflist")
   (:documentation "A list of definitions."))
 
@@ -268,10 +268,6 @@
              :initarg :children
              :type (proper-list document-node)
              :documentation "The document's children nodes.")
-   ;;; Metadata, mostly based on Dublin Core[1] and the OpenDocument[2] format.
-   ;;;
-   ;;; [1]: https://en.wikipedia.org/wiki/Dublin_Core
-   ;;; [2]: https://en.wikipedia.org/wiki/OpenDocument_technical_specification#Metadata
    (title :accessor title
           :initarg :title
           :type string
@@ -304,7 +300,7 @@
    (language :accessor language
             :initarg :language
              :type string
-             :documentation "An \\link[uri=http://www.ietf.org/rfc/rfc4646.txt]{RFC4646} string denoting the language the document is written in.")
+             :documentation "An @link[uri=http://www.ietf.org/rfc/rfc4646.txt](RFC4646) string denoting the language the document is written in.")
    (rights :accessor rights
            :initarg :rights
            :type string
@@ -320,4 +316,9 @@
                :documentation "The date and time when the document was
                created. By default, this is the date and time at instance
                creation."))
-  (:documentation "A document."))
+  (:documentation "A document.
+
+Metadata is mostly based on
+@link[uri=https://en.wikipedia.org/wiki/Dublin_Core](Dublin Core) and the
+@link[uri=https://en.wikipedia.org/wiki/OpenDocument_technical_specification#Metadata](OpenDocument)
+format."))
