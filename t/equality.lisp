@@ -2,6 +2,8 @@
 
 (test node-equality
   (let* ((text (make-text "test"))
+         (text-meta (make-text "test"
+                               :metadata (make-meta (list (cons "a" 1)))))
          (code-block (make-code-block "lisp"
                                       (list (make-text "test"))))
          (doc-link (make-document-link "doc" "sec"
