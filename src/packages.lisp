@@ -96,6 +96,9 @@
            :find-node
            :find-tag
            :find-special-slots)
+  ;; Printing
+  (:export :dump
+           :dump-to-string)
   (:documentation "CommonDoc classes and and accessors."))
 
 (defpackage common-doc.error
