@@ -10,6 +10,8 @@
 
 (test constructors
   (is-true
+   (typep (make-code nil) 'code))
+  (is-true
    (typep (make-strikethrough nil) 'strikethrough))
   (is-true
    (typep (make-superscript nil) 'superscript))

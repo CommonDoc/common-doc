@@ -132,6 +132,8 @@
                                (make-section (list (make-text "Section 1.1"))
                                              :reference "sec11")))))))
                (make-section
+                (list (make-text "Section 2")))
+               (make-section
                 (list (make-text "Section 2")))))))
     (finishes
       (common-doc.ops:fill-unique-refs doc))
