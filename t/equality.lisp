@@ -1,5 +1,10 @@
 (in-package :common-doc-test.ops)
 
+(defun limit-list (list)
+  (if (> (length list) 3)
+      (subseq list 0 3)
+      list))
+
 (test node-equality
   (let* ((text (make-text "test"))
          (text-meta (make-text "test"
@@ -26,7 +31,7 @@
                             `(is (node-equal ,node ,node)))
                     ,@(loop for node in nodes collecting
                             `(progn
-                               ,@(loop for other-node in (set-difference nodes (list node))
+                               ,@(loop for other-node in (limit-list (set-difference nodes (list node)))
                                        collecting
                                        `(is (not (node-equal ,node ,other-node)))))))))
-      (tests text code-block image paragraph section))))
+      (tests text text-meta code-block doc-link web-link image paragraph section))))
