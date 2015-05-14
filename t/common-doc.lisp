@@ -116,3 +116,36 @@
                                (list (make-instance 'custom-macro)))))))))
     (finishes
       (setf doc (common-doc.macro:expand-macros doc)))))
+
+(test print
+  (is
+   (equal (prin1-to-string (make-text "abc"))
+          "#<TEXT-NODE text: abc>"))
+  (is
+   (equal (prin1-to-string (make-paragraph
+                            (list (make-text "test")
+                                  (make-text "abc"))))
+          "#<PARAGRAPH children: TEXT-NODE, TEXT-NODE>"))
+  (is
+   (equal (dump-to-string (make-text "test"))
+"text-node
+  \"test\"
+"))
+  (is
+   (equal (dump-to-string (make-paragraph
+                            (list (make-text "a")
+                                  (make-text "b"))))
+"paragraph
+  text-node
+    \"a\"
+  text-node
+    \"b\"
+"))
+  (is
+   (equal (dump-to-string (make-text "test"
+                                     :metadata (make-meta
+                                                (list
+                                                 (cons "a" 1)))))
+"text-node [a=1]
+  \"test\"
+")))
