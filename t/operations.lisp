@@ -4,6 +4,8 @@
   (:import-from :common-doc.ops
                 :with-document-traversal
                 :collect-figures
+                :collect-tables
+                :collect-external-links
                 :node-equal)
   (:export :operations))
 (in-package :common-doc-test.ops)
@@ -81,6 +83,39 @@
        (equal (source first-img) "fig1.jpg"))
       (is
        (equal (source second-img) "fig2.jpg")))))
+
+(test tables
+  (let ((document
+          (make-document
+           "test"
+           :children
+           (list
+            (make-table
+             (list
+              (make-row (list (make-cell nil)))))
+            (make-table
+             (list
+              (make-row (list (make-cell nil))))))))
+        (tables))
+    (finishes
+      (setf tables (collect-tables document)))
+    (is
+     (equal (length tables) 2))))
+
+(test links
+  (let ((document
+          (make-document
+           "test"
+           :children
+           (list
+            (make-paragraph
+             (list
+              (make-web-link "http://example.com/" nil))))))
+        (links))
+    (finishes
+      (setf links (collect-external-links document)))
+    (is
+     (equal (length links) 1))))
 
 (test unique-ref
   (let ((doc (make-document
