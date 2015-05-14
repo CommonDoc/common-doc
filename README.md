@@ -40,35 +40,11 @@ for the creation of a [library for representing documents][strandh]:
 
 # Libraries
 
-## [CommonHTML](https://github.com/CommonDoc/common-html)
-
-[![Build Status](https://travis-ci.org/CommonDoc/common-html.svg?branch=master)](https://travis-ci.org/CommonDoc/common-html)
-
-An HTML5 emitter.
-
-## [VerTeX](https://github.com/CommonDoc/vertex)
-
-[![Build Status](https://travis-ci.org/CommonDoc/vertex.svg?branch=master)](https://travis-ci.org/CommonDoc/vertex)
-
-A TeX-like markup language (parser and emitter).
-
-## [Codex](https://github.com/CommonDoc/codex)
-
-[![Build Status](https://travis-ci.org/CommonDoc/codex.svg?branch=master)](https://travis-ci.org/CommonDoc/codex)
-
-A documentation system for Common Lisp.
-
-## [ParenML](https://github.com/CommonDoc/parenml)
-
-[![Build Status](https://travis-ci.org/CommonDoc/parenml.svg?branch=master)](https://travis-ci.org/CommonDoc/parenml)
-
-An S-expression markup language.
-
-## [Thorn](https://github.com/CommonDoc/thorn)
-
-[![Build Status](https://travis-ci.org/CommonDoc/thorn.svg?branch=master)](https://travis-ci.org/CommonDoc/thorn)
-
-A CommonDoc extension for inserting special characters.
+* [CommonHTML](https://github.com/CommonDoc/common-html) [![Build Status](https://travis-ci.org/CommonDoc/common-html.svg?branch=master)](https://travis-ci.org/CommonDoc/common-html)
+* [VerTeX](https://github.com/CommonDoc/vertex) [![Build Status](https://travis-ci.org/CommonDoc/vertex.svg?branch=master)](https://travis-ci.org/CommonDoc/vertex)
+* [Codex](https://github.com/CommonDoc/codex) [![Build Status](https://travis-ci.org/CommonDoc/codex.svg?branch=master)](https://travis-ci.org/CommonDoc/codex)
+* [ParenML](https://github.com/CommonDoc/parenml) [![Build Status](https://travis-ci.org/CommonDoc/parenml.svg?branch=master)](https://travis-ci.org/CommonDoc/parenml)
+* [Thorn](https://github.com/CommonDoc/thorn) [![Build Status](https://travis-ci.org/CommonDoc/thorn.svg?branch=master)](https://travis-ci.org/CommonDoc/thorn)
 
 # Usage
 
