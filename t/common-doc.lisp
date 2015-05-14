@@ -149,3 +149,27 @@
 "text-node [a=1]
   \"test\"
 ")))
+
+;;; Formats
+
+(defclass custom-format (common-doc.format:document-format)
+  ())
+
+(defmethod common-doc.format:parse-document ((document-format custom-format)
+                                             input)
+  (make-document "test document"))
+
+(defmethod common-doc.format:emit-document ((document-format custom-format)
+                                             document stream)
+  (write-string "test document" stream))
+
+(test formats
+  (let ((doc (common-doc.format:parse-document (make-instance 'custom-format)
+                                               "test")))
+    (is
+     (equal (title doc)
+            "test document"))
+    (is
+     (equal (common-doc.format:emit-to-string (make-instance 'custom-format)
+                                              doc)
+            "test document"))))
