@@ -38,9 +38,13 @@
         (metadata-b (metadata node-b)))
      ;; If the nodes are the same, we verify the metadata match. Either both
      ;; metadata are null, or they are equal hash tables.
-     (or (and (null metadata-a)
-              (null metadata-b))
-         (hash-table-equal metadata-a metadata-b))))
+    (if (and (null metadata-a)
+             (null metadata-b))
+        t
+        (if (or (null metadata-a)
+                (null metadata-b))
+            nil
+            (hash-table-equal metadata-a metadata-b)))))
 
 (defgeneric node-specific-equal (node-a node-b)
   (:documentation "Use this method to make node equality more specific."))
