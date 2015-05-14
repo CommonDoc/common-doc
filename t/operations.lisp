@@ -217,7 +217,10 @@
                        :reference "sec11")))))))
                 (make-section
                  (list (make-text "Section 2"))
-                 :reference "sec2"))))
+                 :reference "sec2"
+                 :children
+                 (list
+                  (make-text "sec2 contents"))))))
          (toc (common-doc.ops:table-of-contents doc)))
     (is-true (typep toc 'ordered-list))
     (is
@@ -230,4 +233,17 @@
       (let ((link (first (children list-item))))
         (is
          (equal (common-doc.ops:collect-all-text link)
-                "Section 2"))))))
+                "Section 2"))))
+    (let ((toc (common-doc.ops:table-of-contents doc :max-depth 1)))
+      (is-true (typep toc 'ordered-list))
+      (is
+       (equal (length (children toc))
+              2))
+      (let ((list-item (first (children toc))))
+        (is-true (typep list-item 'list-item)))
+      (let ((list-item (second (children toc))))
+        (is-true (typep list-item 'list-item))
+        (let ((link (first (children list-item))))
+          (is
+           (equal (common-doc.ops:collect-all-text link)
+                  "Section 2")))))))
