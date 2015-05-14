@@ -117,6 +117,54 @@
     (is
      (equal (length links) 1))))
 
+(test text
+  (let ((document (make-document
+                   "test"
+                   :children
+                   (list
+                    (make-text "test")))))
+    (is (equal (common-doc.ops:collect-all-text document)
+               "test")))
+  (let ((document (make-document
+                   "test"
+                   :children
+                   (list
+                    (make-definition
+                     (list (make-image "pic.jpg" :description "desc1"))
+                     (list (make-figure
+                            (make-image "pic.jpg" :description "desc2")
+                            (list (make-text "test")))))))))
+    (is (equal (common-doc.ops:collect-all-text document)
+               "desc1 desc2 test")))
+  (let ((document (make-document
+                   "test"
+                   :children
+                   (list
+                    (make-table
+                     (list
+                      (make-row
+                       (list
+                        (make-cell (list (make-text "a")))
+                        (make-cell (list (make-text "b")))
+                        (make-cell (list (make-text "c")))))
+                      (make-row
+                       (list
+                        (make-cell (list (make-text "1")))
+                        (make-cell (list (make-text "2")))
+                        (make-cell (list (make-text "3")))))))))))
+    (is (equal (common-doc.ops:collect-all-text document)
+               "a b c 1 2 3")))
+  (let ((document (make-document
+                   "test"
+                   :children
+                   (list
+                    (make-section (list (make-text "sec1"))
+                                  :children
+                                  (list
+                                   (make-text "test")))))))
+    (is (equal (common-doc.ops:collect-all-text document)
+               "sec1 test"))))
+
 (test unique-ref
   (let ((doc (make-document
               "test"
@@ -149,7 +197,6 @@
     (is
      (equal (reference (second (children doc)))
             "section-2"))))
-
 
 (test toc
   (let* ((doc (make-document

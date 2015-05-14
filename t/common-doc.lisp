@@ -66,9 +66,7 @@
                       (make-text "test")))))))
     (is
      (equal (keywords document)
-            (list "test" "test1")))
-    (is (equal (common-doc.ops:collect-all-text document)
-               "test"))))
+            (list "test" "test1")))))
 
 (test file
   (let ((common-doc.file:*base-directory* (user-homedir-pathname)))
