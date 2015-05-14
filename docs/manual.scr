@@ -1,4 +1,35 @@
 @begin(section)
+@title(Examples)
+
+We'll create an example document using the constructor functions:
+
+@begin[lang=lisp](code)@begin(verb)(in-package :common-doc)
+
+(make-document "My Document"
+  :children
+  (list
+    (make-section (list (make-text "Introduction"))
+      :children
+      (list
+        (make-paragraph
+          (list (make-text "...")))))))
+@end(verb)
+@end(code)
+
+We can use the @c(dump) function to inspect the structure of this document:
+
+@begin[lang=lisp](code)@begin(verb)COMMON-DOC> (dump my-doc)
+document
+  section
+    paragraph
+      text-node
+        "..."
+@end(verb)
+@end(code)
+
+@end(section)
+
+@begin(section)
 @title(Formats)
 
 @begin(section)
@@ -55,10 +86,130 @@ The parser uses the
 @title(Basic Classes)
 
 @cl:with-package[name="common-doc"](
+@cl:doc(class document)
+@cl:doc(class section)
 @cl:doc(class document-node)
 @cl:doc(class content-node)
 @cl:doc(class text-node)
 @cl:doc(class paragraph)
+)
+
+@end(section)
+
+@begin(section)
+@title(Inline Nodes)
+
+@cl:with-package[name="common-doc"](
+@cl:doc(class markup)
+@cl:doc(class bold)
+@cl:doc(class italic)
+@cl:doc(class underline)
+@cl:doc(class strikethrough)
+@cl:doc(class code)
+@cl:doc(class superscript)
+@cl:doc(class subscript)
+)
+
+@end(section)
+
+@begin(section)
+@title(Code)
+
+@cl:with-package[name="common-doc"](
+@cl:doc(class code-block)
+)
+
+@end(section)
+
+@begin(section)
+@title(Quotes)
+
+@cl:with-package[name="common-doc"](
+@cl:doc(class base-quote)
+@cl:doc(class inline-quote)
+@cl:doc(class block-quote)
+)
+
+@end(section)
+
+@begin(section)
+@title(Links)
+
+@cl:with-package[name="common-doc"](
+@cl:doc(class link)
+@cl:doc(class document-link)
+@cl:doc(class web-link)
+)
+
+@end(section)
+
+@begin(section)
+@title(Lists)
+
+@cl:with-package[name="common-doc"](
+@cl:doc(class base-list)
+@cl:doc(class unordered-list)
+@cl:doc(class ordered-list)
+@cl:doc(class definition-list)
+@cl:doc(class list-item)
+@cl:doc(class definition)
+)
+
+@end(section)
+
+@begin(section)
+@title(Images & Figures)
+
+@cl:with-package[name="common-doc"](
+@cl:doc(class image)
+@cl:doc(class figure)
+)
+
+@end(section)
+
+@begin(section)
+@title(Tables)
+
+@cl:with-package[name="common-doc"](
+@cl:doc(class table)
+@cl:doc(class row)
+@cl:doc(class cell)
+)
+
+@end(section)
+
+@begin(section)
+@title(Constructors)
+
+@cl:with-package[name="common-doc"](
+@cl:doc(function make-meta)
+@cl:doc(function make-content)
+@cl:doc(function make-text)
+@cl:doc(function make-paragraph)
+@cl:doc(function make-bold)
+@cl:doc(function make-italic)
+@cl:doc(function make-underline)
+@cl:doc(function make-strikethrough)
+@cl:doc(function make-code)
+@cl:doc(function make-superscript)
+@cl:doc(function make-subscript)
+@cl:doc(function make-code-block)
+@cl:doc(function make-inline-quote)
+@cl:doc(function make-block-quote)
+@cl:doc(function make-document-link)
+@cl:doc(function make-web-link)
+@cl:doc(function make-list-item)
+@cl:doc(function make-definition)
+@cl:doc(function make-unordered-list)
+@cl:doc(function make-ordered-list)
+@cl:doc(function make-definition-list)
+@cl:doc(function make-image)
+@cl:doc(function make-figure)
+@cl:doc(function make-table)
+@cl:doc(function make-row)
+@cl:doc(function make-cell)
+@cl:doc(function make-section)
+@cl:doc(function make-document)
 )
 
 @end(section)
