@@ -9,6 +9,8 @@
                 :content-node
                 :children
                 :define-node)
+  (:export :tex
+           :tex-block)
   (:documentation "TeX package."))
 (in-package :common-doc.tex)
 
