@@ -19,7 +19,7 @@ script:
                  (lambda (c h)
                    (declare (ignore c h))
                    (uiop:quit -1)))'
-       -e '(coveralls:with-coveralls (:exclude (list "t" "contrib"))
+       -e '(coveralls:with-coveralls (:exclude (list "t" "contrib" "src/error.lisp"))
              (ql:quickload :common-doc-test))'
 
 notifications:

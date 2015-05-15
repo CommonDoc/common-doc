@@ -130,10 +130,10 @@
                                   (make-text "abc"))))
           "#<PARAGRAPH children: TEXT-NODE, TEXT-NODE>"))
   (finishes
-   (prin1-to-string (make-document-link "doc" "sec" nil))
-   (prin1-to-string (make-unordered-list nil))
-   (prin1-to-string (make-section (list (make-text "title"))))
-   (prin1-to-string (make-document "title")))
+   (print (make-document-link "doc" "sec" nil))
+   (print (make-unordered-list nil))
+   (print (make-section (list (make-text "title"))))
+   (print (make-document "title")))
   (is
    (equal (dump-to-string (make-text "test"))
 "text-node
