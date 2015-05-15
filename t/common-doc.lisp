@@ -194,7 +194,7 @@
 (defmethod common-doc.macro:expand-macro ((node macro-b))
   (make-text "test"))
 
-(test macros
+(test recursive-macros
   (let ((doc
           (make-document
            "test"
