@@ -14,6 +14,5 @@
                  (:module "contrib"
                   :serial t
                   :components
-                  ((:file "contrib")
-                   (:file "split-paragraphs")))
+                  ((:file "contrib")))
                  (:file "final")))))
