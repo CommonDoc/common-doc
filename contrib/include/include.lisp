@@ -1,6 +1,11 @@
 (in-package :cl-user)
 (defpackage common-doc.include
   (:use :cl)
+  (:import-from :anaphora
+                :aif
+                :it)
+  (:import-from :split-sequence
+                :split-sequence)
   (:import-from :common-doc.macro
                 :macro-node
                 :expand-macro)
@@ -8,6 +13,10 @@
                 :define-node)
   (:import-from :common-doc.util
                 :make-text)
+  (:export :include
+           :include-path
+           :include-start
+           :include-end)
   (:documentation "Includex package."))
 (in-package :common-doc.include)
 
@@ -22,13 +31,13 @@
    (start :reader include-start
           :initarg :start
           :initform nil
-          :type string
+          :type (or null string)
           :attribute-name "start"
           :documentation "The line where the inclusion will start.")
    (end :reader include-end
         :initarg :end
         :initform nil
-        :type string
+        :type (or null string)
         :attribute-name "end"
         :documentation "The line where the inclusion will end."))
   (:tag-name "include")
@@ -39,14 +48,16 @@
 (defmethod expand-macro ((include include))
   "Expand the include file into a text node with its contents."
   (let* ((path (common-doc.file:absolute-path (include-path include)))
-         (start (parse-integer (include-start include)
-                               :junk-allowed t))
-         (end (parse-integer (include-end include)
-                             :junk-allowed t))
+         (start (aif (include-start include)
+                     (parse-integer it :junk-allowed t)
+                     nil))
+         (end (aif (include-end include)
+                   (parse-integer it :junk-allowed t)
+                   nil))
          (full-text (uiop:read-file-string path)))
     (if (or start end)
         ;; We have at least some range information
-        (let ((lines (split-sequence:split-sequence #\Newline full-text)))
+        (let ((lines (split-sequence #\Newline full-text)))
           (flet ((make-text-from-lines (lines)
                    (make-text (reduce
                                #'(lambda (a b)
