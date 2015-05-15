@@ -46,35 +46,6 @@ for the creation of a [library for representing documents][strandh]:
 * [ParenML](https://github.com/CommonDoc/parenml) [![Build Status](https://travis-ci.org/CommonDoc/parenml.svg?branch=master)](https://travis-ci.org/CommonDoc/parenml)
 * [Thorn](https://github.com/CommonDoc/thorn) [![Build Status](https://travis-ci.org/CommonDoc/thorn.svg?branch=master)](https://travis-ci.org/CommonDoc/thorn)
 
-# Usage
-
-Most documentation can be found in the docstrings. A sample of usage is:
-
-## Examples
-
-Constructing a document with title "My Title", containing a paragraph with a
-single text node:
-
-```lisp
-(in-package :cl-user)
-(defpackage common-doc-example
-  (:use :cl :common-doc)
-  (:import-from :common-doc.util
-                :doc
-                :make-text))
-(in-package :common-doc-example)
-
-(doc
- document
- (:title "My Document"
-  :creator "me"
-  :keywords (list "test" "test1"))
- (paragraph
-  ()
-  (text-node
-   (:text "test"))))
-```
-
 # License
 
 Copyright (c) 2014-2015 Fernando Borretti
