@@ -10,6 +10,8 @@ install:
   - curl https://raw.githubusercontent.com/luismbo/cl-travis/master/install.sh | bash
   # coveralls.io
   - git clone https://github.com/fukamachi/cl-coveralls ~/lisp/cl-coveralls
+  # needed to test the gnuplot contrib
+  - sudo apt-get install gnuplot
 
 script:
   - cl -l fiveam -l cl-coveralls
