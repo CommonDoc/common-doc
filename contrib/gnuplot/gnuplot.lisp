@@ -1,12 +1,26 @@
 (in-package :cl-user)
 (defpackage common-doc.gnuplot
   (:use :cl)
+  (:import-from :common-doc
+                :text
+                :children
+                :make-text
+                :make-image
+                :define-node)
+  (:import-from :common-doc.macro
+                :macro-node
+                :expand-macro)
+  (:import-from :common-doc.file
+                :absolute-path
+                :relativize-pathname)
+  (:export :gnuplot
+           :image-path)
   (:documentation "gnuplot contrib package."))
 (in-package :common-doc.gnuplot)
 
 ;;; Classes
 
-(common-doc:define-node gnuplot (common-doc.macro:macro-node)
+(define-node gnuplot (macro-node)
   ((path :reader image-path
          :initarg :path
          :type string
@@ -17,12 +31,12 @@
 
 ;;; Macroexpansion
 
-(defmethod common-doc.macro:expand-macro ((plot gnuplot))
+(defmethod expand-macro ((plot gnuplot))
   "Take the gnuplot source code from the children and the image name, render it
 with gnuplot into an image."
-  (let* ((pathname (common-doc.file:absolute-path (image-path plot)))
+  (let* ((pathname (absolute-path (image-path plot)))
          ;; The gnuplot commands
-         (text (common-doc:text (first (common-doc:children plot))))
+         (text (text (first (children plot))))
          ;; The gnuplot commands to set output format, file etc.
          (input (format nil "set term png; set output ~S; ~A~%"
                         (namestring pathname)
@@ -34,7 +48,6 @@ with gnuplot into an image."
         (progn
           (with-input-from-string (stream input)
             (uiop:run-program command :input stream))
-          (make-instance 'common-doc:image
-                         :source (namestring (common-doc.file:relativize-pathname pathname))))
+          (make-image (namestring (relativize-pathname pathname))))
       (t ()
-        (make-instance 'common-doc:text-node :text "gnuplot error.")))))
+        (make-text "gnuplot error.")))))
