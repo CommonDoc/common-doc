@@ -122,10 +122,18 @@
    (equal (prin1-to-string (make-text "abc"))
           "#<TEXT-NODE text: abc>"))
   (is
+   (equal (prin1-to-string (make-text "The quick brown fox jumps over the lazy dog"))
+          "#<TEXT-NODE text: The quick brown fox jumps over...>"))
+  (is
    (equal (prin1-to-string (make-paragraph
                             (list (make-text "test")
                                   (make-text "abc"))))
           "#<PARAGRAPH children: TEXT-NODE, TEXT-NODE>"))
+  (finishes
+   (prin1-to-string (make-document-link "doc" "sec" nil))
+   (prin1-to-string (make-unordered-list nil))
+   (prin1-to-string (make-section (list (make-text "title"))))
+   (prin1-to-string (make-document "title")))
   (is
    (equal (dump-to-string (make-text "test"))
 "text-node
