@@ -1,85 +1,4 @@
 @begin(section)
-@title(Examples)
-
-We'll create an example document using the constructor functions:
-
-@begin[lang=lisp](code)@begin(verb)(in-package :common-doc)
-
-(make-document "My Document"
-  :children
-  (list
-    (make-section (list (make-text "Introduction"))
-      :children
-      (list
-        (make-paragraph
-          (list (make-text "...")))))))
-@end(verb)
-@end(code)
-
-We can use the @c(dump) function to inspect the structure of this document:
-
-@begin[lang=lisp](code)@begin(verb)COMMON-DOC> (dump my-doc)
-document
-  section
-    paragraph
-      text-node
-        "..."
-@end(verb)
-@end(code)
-
-@end(section)
-
-@begin(section)
-@title(Formats)
-
-@begin(section)
-@title(Existing Formats)
-
-@begin[ref=scriba](section)
-@title(Scriba)
-
-Scriba is a markup format with a syntax similar to that of
-@link[uri=https://en.wikipedia.org/wiki/Scribe_(markup_language)](Scribe), the
-late-seventies markup language.
-
-@end(section)
-
-@begin(section)
-@title(VerTeX)
-
-VerTeX is a markup format with a
-@link[uri=https://en.wikipedia.org/wiki/TeX](TeX) like syntax.
-
-An example of VerTeX syntax is:
-
-@begin[lang=tex](code)
-
-@end(code)
-
-One disadvantage of using VerTeX comes when writing documents with TeX (to be
-rendered, say, by @link[uri=https://www.mathjax.org/](MathJax) in the HTML
-backend). Because TeX mathematics has operators which would be parsed as VerTeX
-syntax (e.g. @c(\int), @c(\sigma)), you either need to escape the slashes or use
-the @c(\verb) tag to enter verbatim text. For example:
-
-@begin[lang=tex](code)
-The speed of light is $@verb(\frac{1}{\sqrt{\mu_0 \epsilon_0}})$.
-
-The derivative of $\\log(x)$ is $\\frac{1}{x}$.
-@end(code)
-
-As such, documents using TeX extensive should consider @ref[sec=scriba](Scriba).
-
-The parser uses the
-@link[uri=https://github.com/Shinmera/plump-tex](@c(plump-tex)) library.
-
-@end(section)
-
-@end(section)
-
-@end(section)
-
-@begin(section)
 @title(Nodes)
 
 @begin(section)
@@ -214,34 +133,35 @@ The parser uses the
 
 @end(section)
 
-@end(section)
-
 @begin(section)
-@title(Defining Nodes)
+@title(Examples)
 
-@begin(section)
-@title(API)
+We'll create an example document using the constructor functions:
 
-@cl:with-package[name="common-doc"](
-@cl:doc(macro define-node)
-)
+@begin[lang=lisp](code)@begin(verb)(in-package :common-doc)
+
+(make-document "My Document"
+  :children
+  (list
+    (make-section (list (make-text "Introduction"))
+      :children
+      (list
+        (make-paragraph
+          (list (make-text "...")))))))
+@end(verb)
+@end(code)
+
+We can use the @c(dump) function to inspect the structure of this document:
+
+@begin[lang=lisp](code)@begin(verb)COMMON-DOC> (dump my-doc)
+document
+  section
+    paragraph
+      text-node
+        "..."
+@end(verb)
+@end(code)
 
 @end(section)
-
-@end(section)
-
-@begin(section)
-@title(Files)
-
-@cl:with-package[name="common-doc.file"](
-@cl:doc(variable *base-directory*)
-@cl:doc(function absolute-path)
-@cl:doc(function relativize-pathname)
-)
-
-@end(section)
-
-@begin(section)
-@title(Errors)
 
 @end(section)

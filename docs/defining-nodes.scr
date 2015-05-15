@@ -1,0 +1,13 @@
+@begin(section)
+@title(Defining Nodes)
+
+@begin(section)
+@title(API)
+
+@cl:with-package[name="common-doc"](
+@cl:doc(macro define-node)
+)
+
+@end(section)
+
+@end(section)

@@ -1,0 +1,80 @@
+@begin(section)
+@title(Overview)
+
+@begin(section)
+@title(Features)
+
+@begin(deflist)
+
+@term(Separation of Concerns)
+@begin(def)
+Parsers for Markdown and other markup languages generally implement their
+internal representation of document structure, and code to transform it directly
+to one or more output formats. Generally, every parser has a different internal
+representation, a different set of supported backends, each in various degrees
+of completeness.
+
+What CommonDoc provides is a way to separate parser and emitter by providing a
+common framework for representing documents. Parsers and emitters can be written
+to convert text to and from various markup languages (Markdown, Textile, ReST,
+etc.) while keeping a single, backend-agnostic internal representation.
+@end(def)
+
+@term(Macros)
+
+@begin(def)
+CommonDoc has macro nodes that can be expanded to other nodes, and has built-in
+nodes for including external text files, rendering gnuplot graphs, among other
+things.
+@end(def)
+
+@end(deflist)
+
+@end(section)
+
+@begin(section)
+@title(Use Cases)
+
+@begin(section)
+@title(Documentation Generation)
+
+The @link[uri=""](Codex) documentation generation (used to build this manual)
+uses CommonDoc to represent the documentation as well as parse docstrings, and
+build highly customizable user and programer documentation for Common Lisp
+projects.
+
+@end(section)
+
+@begin(section)
+@title(Wiki)
+
+@end(section)
+
+@end(section)
+
+@begin(section)
+@title(Motivation)
+
+This library can be considered an implementation of Robert Strandh's suggestion
+for the creation of a
+@link[uri="http://metamodular.com/Common-Lisp/document-library.html"](library
+for representing documents):
+
+@begin(quote)
+The purpose of this project is to create a library that defines a set of classes
+and generic functions that allow some client code to create and manipulate a
+document. Contrary to the types of systems cited above, the specification of
+this system is thus in terms of what kind of objects it manipulates, and what
+functions exist to manipulate them.
+
+A library like this can then be used both by an application that reads some
+markup syntax and produces the document in the form of a graph of class
+instances, and by an interactive application that allows the user to create the
+document by issuing gestures. In fact, it will be possible to create several
+different application with different markups and with a different set of
+possible gestures.
+@end(quote)
+
+@end(section)
+
+@end(section)

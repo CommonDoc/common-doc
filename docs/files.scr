@@ -1,0 +1,57 @@
+@begin(section)
+@title(Files)
+
+Documents are hardly ever self-contained, and references to external resources
+are necessary and useful for the following reasons:
+
+@begin(enum)
+
+@item(We don't want to have to load images to memory just to represent the
+document, and then have to write those images to base-64 when writing the
+document to an output format.)
+
+@item(External resources can reduce errors. For instance, if we're writing an
+article detailing the internals of a piece of code, we can keep the code in an
+external file (along with a script to test it), and simply include bits of it
+using the very flexible
+@link[uri="https://github.com/CommonDoc/common-doc/tree/master/contrib/include"](@c(include))
+contrib. Then, changes to the file will be automatically reflected in the
+document, reducing duplication and removing the need to manually synchronize
+contents.)
+
+@item(Just about every markup format supports at least referencing images both
+on the local filesystem and on the web, so we have to support that if we are to
+support that markup.)
+
+@end(enum)
+
+CommonDoc has simple support for doing operations with external files. There's a
+special variable, @c(*base-directory*), which basically the directory where all
+relative pathnames referenced in the document begin. Once that variable is
+bound, a couple of functions can be used to manipulate pathnames.
+
+@begin(section)
+@title(API)
+
+@cl:with-package[name="common-doc.file"](
+@cl:doc(variable *base-directory*)
+@cl:doc(function absolute-path)
+@cl:doc(function relativize-pathname)
+)
+
+@end(section)
+
+@begin(section)
+@title(Examples)
+
+@begin[lang=lisp](code)@begin(verb)(in-package :common-doc.file)
+
+(let ((*base-directory* (user-homedir-pathname)))
+  (absolute-path #p"directory/file.txt"))
+;; => #p"/home/eudoxia/directory/file.txt"
+@end(verb)
+@end(code)
+
+@end(section)
+
+@end(section)

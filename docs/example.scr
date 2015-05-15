@@ -1,0 +1,30 @@
+@title(My Document)
+
+@begin(section)
+@title(Lists)
+
+This is a list with two items:
+
+@begin(list)
+@item(As promised)
+@item(Just two)
+@end(list)
+
+And this is an enumerated list:
+
+@begin(enum)
+@item(This is the first item)
+@item(And this the second)
+@end(enum)
+
+The real numbers have these properties, among others:
+
+@begin(deflist)
+@term(Associative Law for Addition)
+@def($(x + y) + z = x + (y + z)$)
+
+@term(Commutative Law for Addition)
+@def($x + y = y + x$)
+@end(deflist)
+
+@end(section)

@@ -1,0 +1,10 @@
+@begin(section)
+@title(Errors)
+
+@cl:with-package[name="common-doc.error"](
+@cl:doc(condition common-doc-error)
+@cl:doc(condition macro-error)
+@cl:doc(condition no-macro-expander)
+)
+
+@end(section)
