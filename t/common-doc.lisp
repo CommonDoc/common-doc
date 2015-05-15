@@ -160,7 +160,11 @@
   (make-document "test document"))
 
 (defmethod common-doc.format:emit-document ((document-format custom-format)
-                                             document stream)
+                                             (node document-node) stream)
+  (write-string "test node" stream))
+
+(defmethod common-doc.format:emit-document ((document-format custom-format)
+                                             (document document) stream)
   (write-string "test document" stream))
 
 (test formats
@@ -172,7 +176,11 @@
     (is
      (equal (common-doc.format:emit-to-string (make-instance 'custom-format)
                                               doc)
-            "test document"))))
+            "test document"))
+    (is
+     (equal (common-doc.format:emit-to-string (make-instance 'custom-format)
+                                              (make-text "test"))
+            "test node"))))
 
 (define-node macro-a (common-doc.macro:macro-node)
   ())
