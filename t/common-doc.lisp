@@ -173,3 +173,34 @@
      (equal (common-doc.format:emit-to-string (make-instance 'custom-format)
                                               doc)
             "test document"))))
+
+(define-node macro-a (common-doc.macro:macro-node)
+  ())
+
+(define-node macro-b (common-doc.macro:macro-node)
+  ())
+
+(defmethod common-doc.macro:expand-macro ((node macro-a))
+  (make-instance 'macro-b))
+
+(defmethod common-doc.macro:expand-macro ((node macro-b))
+  (make-text "test"))
+
+(test macros
+  (let ((doc
+          (make-document
+           "test"
+           :children
+           (list
+            (make-instance 'macro-a)))))
+    (finishes
+      (setf doc (common-doc.macro:expand-macros doc)))
+    (is
+     (equal (length (children doc))
+            1))
+    (let ((child (first (children doc))))
+      (is
+       (typep child 'text-node))
+      (is
+       (equal (text child)
+              "test")))))
