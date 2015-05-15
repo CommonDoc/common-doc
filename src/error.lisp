@@ -17,4 +17,4 @@
    (lambda (condition stream)
      (format stream "No expand-macro method for node with name ~S."
              (common-doc.macro:name (node condition)))))
-  (:documentation "Signaled when a macro node has no `expand-macro` method."))
+  (:documentation "Signaled when a macro node has no @c(expand-macro) method."))
