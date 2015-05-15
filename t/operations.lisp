@@ -118,6 +118,9 @@
      (equal (length links) 1))))
 
 (test text
+  (let ((document (make-document "test")))
+    (is (equal (common-doc.ops:collect-all-text document)
+               "")))
   (let ((document (make-document
                    "test"
                    :children
