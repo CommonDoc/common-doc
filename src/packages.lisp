@@ -63,8 +63,7 @@
            :version
            :created-on)
   ;; Constructors
-  (:export :make-meta
-           :make-content
+  (:export :make-content
            :make-text
            :make-paragraph
            :make-bold
@@ -91,6 +90,10 @@
            :make-cell
            :make-section
            :make-document)
+  ;; Metadata
+  (:export :make-meta
+           :get-meta
+           :do-meta)
   ;; Node definition
   (:export :define-node
            :find-node

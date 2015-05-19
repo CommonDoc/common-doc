@@ -8,14 +8,6 @@
 
 ;;; Interface
 
-(defun make-meta (pairs)
-  "Create a metadata table from a list of pairs. If the list is empty, return an
-empty metadata table."
-  (let ((table (make-hash-table :test #'equal)))
-    (loop for pair in pairs do
-      (setf (gethash (first pair) table) (rest pair)))
-    table))
-
 (defun make-content (children &key metadata)
   "Create a content node from its children."
   (construct 'content-node children metadata))
