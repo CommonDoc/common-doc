@@ -101,7 +101,6 @@
 @title(Constructors)
 
 @cl:with-package[name="common-doc"](
-@cl:doc(function make-meta)
 @cl:doc(function make-content)
 @cl:doc(function make-text)
 @cl:doc(function make-paragraph)
@@ -129,6 +128,17 @@
 @cl:doc(function make-cell)
 @cl:doc(function make-section)
 @cl:doc(function make-document)
+)
+
+@end(section)
+
+@begin(section)
+@title(Metadata)
+
+@cl:with-package[name="common-doc"](
+@cl:doc(function make-meta)
+@cl:doc(function get-meta)
+@cl:doc(macro do-meta)
 )
 
 @end(section)
