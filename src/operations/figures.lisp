@@ -7,3 +7,11 @@
       (when (typep node 'figure)
         (push node figures)))
     (reverse figures)))
+
+(defun collect-images (doc-or-node)
+  "Return a list of images in the document."
+  (let ((images (list)))
+    (with-document-traversal (doc-or-node node)
+      (when (typep node 'image)
+        (push node images)))
+    (reverse images)))

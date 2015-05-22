@@ -153,6 +153,7 @@
   (:export :traverse-document
            :with-document-traversal
            :collect-figures
+           :collect-images
            :collect-tables
            :collect-external-links
            :collect-all-text
