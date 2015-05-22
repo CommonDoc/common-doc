@@ -38,10 +38,10 @@ things.
 @begin(section)
 @title(Documentation Generation)
 
-The @link[uri=""](Codex) documentation generation (used to build this manual)
-uses CommonDoc to represent the documentation as well as parse docstrings, and
-build highly customizable user and programer documentation for Common Lisp
-projects.
+The @link[uri="https://github.com/CommonDoc/codex"](Codex) documentation
+generation (used to build this manual) uses CommonDoc to represent the
+documentation as well as parse docstrings, and build highly customizable user
+and programer documentation for Common Lisp projects.
 
 @end(section)
 
