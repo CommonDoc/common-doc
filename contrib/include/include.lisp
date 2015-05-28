@@ -61,7 +61,7 @@
           (flet ((make-text-from-lines (lines)
                    (make-text (reduce
                                #'(lambda (a b)
-                                   (concatenate 'string a b))
+                                   (concatenate 'string a (string #\Newline) b))
                                lines))))
             (cond
               ((and start (not end))
