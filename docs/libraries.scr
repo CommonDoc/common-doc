@@ -2,30 +2,87 @@
 @title(Libraries)
 
 @begin(section)
-@title(Codex)
-
+@title(Codex
 @image[src="https://travis-ci.org/CommonDoc/codex.svg?branch=master"]()
-@image[src="https://coveralls.io/repos/CommonDoc/codex/badge.svg?branch=master"]()
+@image[src="https://coveralls.io/repos/CommonDoc/codex/badge.svg?branch=master"]())
+
+@link[uri="https://github.com/CommonDoc/codex"](@b(Codex)) is the documentation
+generator used to create this manual.
 
 @end(section)
 
 @begin(section)
-@title(CommonHTML)
-
+@title(CommonHTML
 @image[src="https://travis-ci.org/CommonDoc/common-html.svg?branch=master"]()
-@image[src="https://coveralls.io/repos/CommonDoc/common-html/badge.svg?branch=master"]()
+@image[src="https://coveralls.io/repos/CommonDoc/common-html/badge.svg?branch=master"]())
+
+@link[uri="https://github.com/CommonDoc/common-html"](@b(CommonHTML)) is
+CommonDoc's HTML parser and emitter.
 
 @end(section)
 
 @begin(section)
-@title(Thorn)
+@title(Thorn
+@image[src="https://travis-ci.org/CommonDoc/thorn.svg?branch=master"]())
 
-@image[src="https://travis-ci.org/CommonDoc/thorn.svg?branch=master"]()
+@link[uri="https://github.com/CommonDoc/thorn"](@b(Thorn)) is a library for
+inserting special characters into CommonDoc documents.
+
+Most input methods allow the user to insert characters in different alphabets
+and accented or modified versions of the same, but these are different for
+everyone and often the user will end up looking up a character by name.
+
+Thorn is a tool for inserting Unicode characters by an ASCII name, the way TeX
+allows users to insert the letters @l(alpha) and @l(beta) with the commands
+@c(\alpha) and @c(\beta), respectively.
+
+Simply put, it defines a macro, @c(l), that maps a string to a Unicode
+character.
+
+@begin(section)
+@title(Examples)
+
+The following Scriba input:
+
+@begin[lang=scribe](code)
+@include[path=libraries.scr start=55 end=66]()
+@end(code)
+
+Produces the first lines of
+@link[uri=http://www.sacred-texts.com/neu/asbeo.htm](@q(Beowulf)) in
+Anglo-Saxon:
+
+@begin(quote)
+Hw@l(ae)t! We Gardena in geardagum,
+
+
+@l(th)eodcyninga, @l(th)rym gefrunon,
+
+
+hu @l(eth)a @l(ae)þelingas ellen fremedon.
+
+
+Oft Scyld Scefing scea@l(th)ena @l(th)reatum,
+@end(quote)
+
+@end(section)
 
 @end(section)
 
 @begin(section)
 @title(Pandocl)
+
+@link[uri="https://github.com/CommonDoc/pandocl"](@b(Pandocl)) is an easy to use
+document converter, meant as a simple interface to CommonDoc.
+
+@begin(section)
+@title(Examples)
+
+@begin[lang=lisp](code)
+@include[path=pandocl.txt]()
+@end(code)
+
+@end(section)
 
 @end(section)
 
