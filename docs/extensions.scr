@@ -7,9 +7,14 @@
 The gnuplot module allows you to render gnuplot charts using gnuplot commands
 from inside the document.
 
-Examples:
+@begin(section)
+@title(Examples)
 
 Rendering a direction field:
+
+@begin[lang=scribe](code)
+@include[path=extensions.scr start=19 end=30]()
+@end(code)
 
 @begin[path=dir-field.png](gnuplot)
 @begin(verb)
@@ -17,11 +22,26 @@ set xrange [-10:10]
 set yrange [-10:10]
 set samples 25
 set isosamples 25
+set key off
 dx(x) = x
 dy(x) = 2*x
 plot "++" using 1:2:(dx($1)):(dy($2)) w vec
 @end(verb)
 @end(gnuplot)
+
+The sine and cosine functions:
+
+@begin[lang=scribe](code)
+@include[path=extensions.scr start=38 end=42]()
+@end(code)
+
+@begin[path=sin-cos.png](gnuplot)
+@begin(verb)
+plot sin(x), cos(x)
+@end(verb)
+@end(gnuplot)
+
+@end(section)
 
 @end(section)
 
