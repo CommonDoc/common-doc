@@ -1,12 +1,72 @@
 @begin(section)
 @title(Defining Nodes)
 
+CommonDoc has a macro, @c(define-node), which is exactly like @c(defclass) but
+with a few minor extensions to define CommonDoc nodes. These are the
+@c(:tag-name) class option and the @c(:attribute-name) slot option.
+
+In a language with a regular syntax, like Scriba or VerTeX, where all syntactic
+structures have an explicit name and optionally an attribute list, these allow
+the parser and emitter to associate these with CommonDoc nodes, my mapping a
+string (The @c(:tag-name)) in the text to a class. This way, macro nodes can be
+parsed without actually modifying the parser of any of these formats.
+
+Markdown, Textile, and other formats that @i(explicitly) map specific syntaxes
+to specific nodes won't benefit from these extensions, since for every node you
+want to support you have to modify both parser and emitter to add a new
+syntactic construct that creates it.
+
+For example, Codex defines the following macro nodes:
+
+@begin[lang=lisp](code)
+@begin(verb)(define-node cl-doc (macro-node)
+  ()
+  (:tag-name "cl:doc")
+  (:documentation "Insert documentation of a node."))
+
+(define-node with-package (macro-node)
+  ((name :reader package-macro-name
+         :type string
+         :attribute-name "name"
+         :documentation "The package's name."))
+  (:tag-name "cl:with-package")
+  (:documentation "Set the current package to use in the body."))
+
+(define-node param (macro-node)
+  ()
+  (:tag-name "cl:param")
+  (:documentation "An argument of an operator."))
+
+(define-node spec (macro-node)
+  ()
+  (:tag-name "cl:spec")
+  (:documentation "Add a link to the Common Lisp HyperSpec."))
+@end(verb)
+@end(code)
+
+This means that, if there's a Scriba file with the text:
+
+@begin(code)
+@include[path=defining-nodes.txt]()
+@end(code)
+
+The @c(cl:param) tag will be parsed into the @c(param) macro node. This doesn't
+require modifying the source code of the Scriba parser.
+
 @begin(section)
 @title(API)
 
 @cl:with-package[name="common-doc"](
 @cl:doc(macro define-node)
+@cl:doc(function find-node)
+@cl:doc(function find-tag)
+@cl:doc(function find-special-slots)
 )
+
+@end(section)
+
+@begin(section)
+@title(Examples)
 
 @end(section)
 
