@@ -36,7 +36,7 @@ things.
 @title(Use Cases)
 
 @begin(section)
-@title(Documentation Generation)
+@title(Documentation)
 
 The @link[uri="https://github.com/CommonDoc/codex"](Codex) documentation
 generation (used to build this manual) uses CommonDoc to represent the
@@ -46,7 +46,17 @@ and programer documentation for Common Lisp projects.
 @end(section)
 
 @begin(section)
+@title(Document Conversion)
+
+CommonDoc defines input and output parsers for each input format, making it an
+ideal tool to convert documents from one markup format to the other.
+
+@end(section)
+
+@begin(section)
 @title(Wiki)
+
+CommonDoc, along with CommonHTML, can be used as the backend of a wiki system.
 
 @end(section)
 
