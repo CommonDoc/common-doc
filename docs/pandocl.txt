@@ -1,0 +1,19 @@
+CL-USER> (pandocl:convert #p"input.tex" #p"output.html")
+#<COMMON-DOC:DOCUMENT "My Document">
+
+CL-USER> (pandocl:emit #p"input.tex" #p"output.html"
+                       :input-format :vertex
+                       :output-format :html)
+#<COMMON-DOC:DOCUMENT "My Document">
+
+CL-USER> (pandocl:parse #p"path/to/doc.tex")
+#<COMMON-DOC:DOCUMENT "My Document">
+
+CL-USER> (pandocl:parse #p"path/to/doc.tex" :format :vertex)
+#<COMMON-DOC:DOCUMENT "My Document">
+
+CL-USER> (pandocl:emit doc #p"path/to/output.html")
+#<COMMON-DOC:DOCUMENT "My Document">
+
+CL-USER> (pandocl:emit doc #p"path/to/output.html" :format :html)
+#<COMMON-DOC:DOCUMENT "My Document">
