@@ -1,0 +1,90 @@
+@begin(section)
+@title(Operations)
+
+CommonDoc, on top of providing the representation of documents, also provides
+operations that can be applied to all documents. These range from the simple
+operation of traversing every node in the document to more complex tasks like
+generating a table of contents or ensuring every section in the document has a
+unique ID.
+
+@begin(section)
+@title(Document Traversal)
+
+@cl:with-package[name="common-doc.ops"](
+@cl:doc(generic traverse-document)
+@cl:doc(macro with-document-traversal)
+)
+
+@begin(section)
+@title(Examples)
+
+@code[lang=lisp](@include[path=traverse.lisp]())
+
+@end(section)
+
+@end(section)
+
+@begin(section)
+@title(Extraction)
+
+Many textbooks include lists of figures and tables. These operations make this
+kind of document preparation tasks easier.
+
+@cl:with-package[name="common-doc.ops"](
+@cl:doc(function collect-figures)
+@cl:doc(function collect-images)
+@cl:doc(function collect-tables)
+@cl:doc(function collect-external-links)
+@cl:doc(function collect-all-text)
+)
+
+@begin(section)
+@title(Examples)
+
+@code[lang=lisp](@include[path=extraction.lisp]())
+
+@end(section)
+
+@end(section)
+
+@begin(section)
+@title(Filling References)
+
+This operation goes through a document, ensuring every section has a unique
+reference ID. Each ID is the 'slug' of the title's text (The text is extracted
+using the @c(collect-all-text) operations), optionally with a number preprended
+if this slug is not unique.
+
+@cl:with-package[name="common-doc.ops"](
+@cl:doc(function fill-unique-refs)
+)
+
+@end(section)
+
+@begin(section)
+@title(Table of Contents)
+
+@cl:with-package[name="common-doc.ops"](
+@cl:doc(function table-of-contents)
+)
+
+@begin(section)
+@title(Examples)
+
+@code[lang=lisp](@include[path=toc.lisp]())
+
+@end(section)
+
+@end(section)
+
+@begin(section)
+@title(Equality)
+
+@cl:with-package[name="common-doc.ops"](
+@cl:doc(generic node-equal)
+@cl:doc(generic node-specific-equal)
+)
+
+@end(section)
+
+@end(section)
