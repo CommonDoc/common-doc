@@ -5,7 +5,8 @@
 @title(Existing Formats)
 
 @begin[ref=scriba](section)
-@title(Scriba)
+@title(Scriba
+@image[src="https://travis-ci.org/CommonDoc/scriba.svg?branch=master"]())
 
 Scriba is a markup format with a syntax similar to that of
 @link[uri=https://en.wikipedia.org/wiki/Scribe_(markup_language)](Scribe), the
@@ -14,6 +15,46 @@ late-seventies markup language.
 @begin[lang=scribe](code)
 @include[path=example.scr]()
 @end(code)
+
+@begin(section)
+@title(Emacs Mode)
+
+The Scriba repository contains a file, @c(scriba.el), which implements an Emacs
+mode for @c(.scr) files. The following commands are defined:
+
+@begin(deflist)
+@term(@c(Tab))
+@def(Insert an at sign.)
+
+@term(@c(C-c C-c b))
+@def(Prompts for a tag name and inserts the begin/end block with that name.)
+
+@term(@c(C-c C-c s))
+@def(Prompts for a title and inserts the section block.)
+
+@term(@c(C-c C-s b))
+@def(Inserts bold markup around the selection.)
+
+@term(@c(C-c C-s i))
+@def(Inserts italic markup around the selection.)
+
+@term(@c(C-c C-s u))
+@def(Inserts underline markup around the selection.)
+
+@term(@c(C-c C-s s))
+@def(Inserts strikethrough markup around the selection.)
+
+@term(@c(C-c C-s c))
+@def(Inserts code markup around the selection.)
+
+@term(@c(C-c C-s ^))
+@def(Inserts superscript markup around the selection.)
+
+@term(@c(C-c C-s v))
+@def(Inserts subscript markup around the selection.)
+@end(deflist)
+
+@end(section)
 
 @end(section)
 
@@ -39,7 +80,8 @@ the @c(\verb) tag to enter verbatim text. For example:
 @include[path=math.tex]()
 @end(code)
 
-As such, documents using TeX extensive should consider @ref[sec=scriba](Scriba).
+As such, documents using TeX extensively should consider
+@ref[sec=scriba](Scriba).
 
 The parser uses the
 @link[uri=https://github.com/Shinmera/plump-tex](@c(plump-tex)) library.
@@ -51,6 +93,9 @@ The parser uses the
 @begin(section)
 @title(Defining Formats)
 
+To define a new format, you simply subclass @c(document-format) and define the
+necessary mehods.
+
 @begin(section)
 @title(API)
 
@@ -59,6 +104,15 @@ The parser uses the
 @cl:doc(generic parse-document)
 @cl:doc(generic emit-document)
 )
+
+@end(section)
+
+@begin(section)
+@title(Examples)
+
+Here's how the VerTeX format is defined:
+
+@code[lang=lisp](@include[path=vertex-format.lisp]())
 
 @end(section)
 
