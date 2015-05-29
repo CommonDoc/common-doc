@@ -1,0 +1,11 @@
+The derivative of a function @tex(f) at @tex(a), @tex(f'(a)), is
+
+@begin(texb)
+f'(a) = \lim_{h \to 0} \frac{f(a+h)-f(a)}{h}
+@end(texb)
+
+The derivative of a function $f$ at $a$, $f'(a)$, is
+
+\(
+f'(a) = \lim_{h \to 0} \frac{f(a+h)-f(a)}{h}
+\)
