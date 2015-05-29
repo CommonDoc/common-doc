@@ -2,10 +2,19 @@
 @title(Extensions)
 
 @begin(section)
-@title(gnuplot)
+@title(Plotting with gnuplot)
 
-The gnuplot module allows you to render gnuplot charts using gnuplot commands
-from inside the document.
+The @c(common-doc-gnuplot) system allows you to render plots using gnuplot
+commands from inside the document.
+
+@begin(section)
+@title(API)
+
+@cl:with-package[name="common-doc.gnuplot"](
+@cl:doc(class gnuplot)
+)
+
+@end(section)
 
 @begin(section)
 @title(Examples)
@@ -40,6 +49,94 @@ The sine and cosine functions:
 plot sin(x), cos(x)
 @end(verb)
 @end(gnuplot)
+
+@end(section)
+
+@end(section)
+
+@begin(section)
+@title(Include Files)
+
+The @c(common-doc-include) contrib loads external text files into the
+document. The @c(path) attribute is the path to the file, and the optional
+@c(start) and @c(end) attributes can be used to specify a numeric range of
+lines.
+
+@begin(section)
+@title(API)
+
+@cl:with-package[name="common-doc.include"](
+@cl:doc(class include)
+)
+
+@end(section)
+
+@begin(section)
+@title(Examples)
+
+The @link[uri=https://github.com/CommonDoc/common-doc/tree/master/docs](source
+code) of this documentation uses @c(common-doc-include) extensively.
+
+@end(section)
+
+@end(section)
+
+@begin(section)
+@title(Split Paragraphs)
+
+The @c(common-doc-split-paragraphs) contrib splits text nodes on double newlines
+into separate paragraphs.
+
+@begin(section)
+@title(API)
+
+@cl:with-package[name="common-doc.split-paragraphs"](
+@cl:doc(variable *paragraph-separator-regex*)
+@cl:doc(generic split-paragraphs)
+)
+
+@end(section)
+
+@begin(section)
+@title(Examples)
+
+@code[lang=lisp](@include[path=split.lisp]())
+
+@end(section)
+
+@end(section)
+
+@begin(section)
+@title(TeX)
+
+The @c(common-doc-tex) contrib is just a couple of macros that expand to TeX
+notation. They are useful for two reasons:
+
+@begin(enum)
+@item(Using them is more semantic than using the resulting @c($...$) syntax.)
+@item(The macroexpansion can be overriden.)
+@end(enum)
+
+@begin(section)
+@title(API)
+
+@cl:with-package[name="common-doc.tex"](
+@cl:doc(class tex)
+@cl:doc(class tex-block)
+)
+
+@end(section)
+
+@begin(section)
+@title(Examples)
+
+The following Scriba input:
+
+@code[lang=scribe](@include[path=tex.scr start=1 end=5]())
+
+Expands to the following:
+
+@code[lang=scribe](@include[path=tex.scr start=7]())
 
 @end(section)
 
