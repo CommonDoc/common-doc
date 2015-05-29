@@ -38,7 +38,7 @@ with gnuplot into an image."
          ;; The gnuplot commands
          (text (text (first (children plot))))
          ;; The gnuplot commands to set output format, file etc.
-         (input (format nil "set term png; set output ~S; ~A~%"
+         (input (format nil "set term pngcairo; set output ~S; ~A~%"
                         (namestring pathname)
                         text))
          ;; The gnuplot command
