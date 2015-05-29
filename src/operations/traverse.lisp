@@ -17,8 +17,8 @@
   (:method ((dnode document-node) function &optional (depth 0))
     (funcall function dnode depth)))
 
-(defmacro with-document-traversal ((doc node &optional (depth 'depth)) &rest body)
-  "Execute body in each node of the document."
+(defmacro with-document-traversal ((doc node &optional (depth 'depth)) &body body)
+  "Execute @cl:param(body) in each @cl:param(node) of the document."
   `(traverse-document ,doc
                       #'(lambda (,node ,depth)
                           ,(if (eql depth 'depth)
