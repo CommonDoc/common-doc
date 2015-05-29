@@ -1,0 +1,24 @@
+@begin(section)
+@title(Future Work)
+
+@begin(deflist)
+@term(LaTeX Backend)
+@begin(def)
+This is essential for producing PDFs without actually having to write a PDF file
+directly. The problem is it requires the user to have a TeX engine installed.
+@end(def)
+
+@term(Classes to represent mathematics)
+@begin(def)
+A format-independent syntax should be introduced, along with translators that
+convert it to TeX, MathML, et cetera. The CommonDoc macro system could be used
+to define mathematics-specific macros.
+@end(def)
+
+@term(Wiki)
+@begin(def)
+A wiki built on top of CommonDoc, with a web front-end and filesystem storage.
+@end(def)
+@end(deflist)
+
+@end(section)
