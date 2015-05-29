@@ -1,6 +1,10 @@
 @begin(section)
 @title(Overview)
 
+CommonDoc is a library of classes for representing structured documents. It's
+completely independent of input or output formats, and provides operations for
+inspecting and manipulating documents.
+
 @begin(section)
 @title(Features)
 
@@ -21,11 +25,16 @@ etc.) while keeping a single, backend-agnostic internal representation.
 @end(def)
 
 @term(Macros)
-
 @begin(def)
 CommonDoc has macro nodes that can be expanded to other nodes, and has built-in
 nodes for including external text files, rendering gnuplot graphs, among other
 things.
+@end(def)
+
+@term(Operations)
+@begin(def)
+CommonDoc provides operations that modify or extract information from documents,
+and because of the input/output-agnostic design work for all documents.
 @end(def)
 
 @end(deflist)
