@@ -1,5 +1,9 @@
 (:docstring-markup-format :scriba
- :systems (:common-doc)
+ :systems (:common-doc
+           :common-doc-gnuplot
+           :common-doc-include
+           :common-doc-split-paragraphs
+           :common-doc-tex)
  :documents ((:title "CommonDoc"
               :authors ("Fernando Borretti")
               :output-format (:type :multi-html
@@ -8,6 +12,7 @@
                         "formats.scr"
                         "nodes.scr"
                         "defining-nodes.scr"
+                        "operations.scr"
                         "files.scr"
                         "errors.scr"
                         ;"macros.scr"
