@@ -12,7 +12,7 @@ empty metadata table."
 (defun get-meta (node key)
   "Find the value corresponding to @cl:param(key) in the node's metadata. If not
 found, return @c(NIL)."
-  (rest (assoc key (metadata node) :test #'equal)))
+  (gethash key (metadata node)))
 
 (defmacro do-meta ((key value node) &body body)
   "Iterate over the keys and values of a node's metadata."

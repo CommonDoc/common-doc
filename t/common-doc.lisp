@@ -42,6 +42,19 @@
     (is-true (make-definition-list (list def))
              'definition-list)))
 
+(test metadata
+  (let ((node (make-text "text" :metadata (make-meta (list (cons "a" 1))))))
+    (is
+     (equal (get-meta node "a")
+            1)))
+  (let ((node (make-text "text" :metadata (make-meta (list (cons "a" 1)
+                                                           (cons "b" 2))))))
+    (do-meta (key value node)
+      (when (string= key "a")
+        (is (equal value 1)))
+      (when (string= key "b")
+        (is (equal value 2))))))
+
 (test nodes
   (is
    (eql (find-node "b")
@@ -52,7 +65,6 @@
   (is
    (equal (find-special-slots (find-class 'code-block))
           (list (cons "lang" 'language)))))
-
 
 (test simple-doc
   (let ((document (make-document
