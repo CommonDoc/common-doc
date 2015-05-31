@@ -19,6 +19,13 @@ generator used to create this manual.
 @link[uri="https://github.com/CommonDoc/common-html"](@b(CommonHTML)) is
 CommonDoc's HTML parser and emitter.
 
+@begin(section)
+@title(Examples)
+
+@code[lang=lisp](@include[path=html.lisp]())
+
+@end(section)
+
 @end(section)
 
 @begin(section)
@@ -45,7 +52,7 @@ character.
 The following Scriba input:
 
 @begin[lang=scribe](code)
-@include[path=libraries.scr start=55 end=66]()
+@include[path=beowulf.scr]()
 @end(code)
 
 Produces the first lines of
