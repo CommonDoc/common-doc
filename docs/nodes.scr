@@ -152,29 +152,15 @@ nodes.
 
 We'll create an example document using the constructor functions:
 
-@begin[lang=lisp](code)@begin(verb)(in-package :common-doc)
-
-(make-document "My Document"
-  :children
-  (list
-    (make-section (list (make-text "Introduction"))
-      :children
-      (list
-        (make-paragraph
-          (list (make-text "...")))))))
-@end(verb)
-@end(code)
+@code[lang=lisp](@include[path=nodes.lisp start=1 end=10]())
 
 We can use the @c(dump) function to inspect the structure of this document:
 
-@begin[lang=lisp](code)@begin(verb)COMMON-DOC> (dump my-doc)
-document
-  section
-    paragraph
-      text-node
-        "..."
-@end(verb)
-@end(code)
+@code[lang=lisp](@include[path=nodes.lisp start=12 end=17]())
+
+Some examples of accessors:
+
+@code[lang=lisp](@include[path=nodes.lisp start=19 end=31]())
 
 @end(section)
 
