@@ -22,7 +22,7 @@ commands from inside the document.
 Rendering a direction field:
 
 @begin[lang=scribe](code)
-@include[path=extensions.scr start=28 end=39]()
+@include[path=gnuplot.scr start=1 end=12]()
 @end(code)
 
 @begin[path=dir-field.png](gnuplot)
@@ -41,7 +41,7 @@ plot "++" using 1:2:(dx($1)):(dy($2)) w vec
 The sine and cosine functions:
 
 @begin[lang=scribe](code)
-@include[path=extensions.scr start=47 end=51]()
+@include[path=gnuplot.scr start=14 end=18]()
 @end(code)
 
 @begin[path=sin-cos.png](gnuplot)
