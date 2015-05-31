@@ -29,3 +29,12 @@ COMMON-DOC> (children (make-paragraph
 
 COMMON-DOC> (children (make-paragraph (list (make-text "This is ") (make-text "a test"))))
 (#<TEXT-NODE text: This is > #<TEXT-NODE text: a test>)
+
+COMMON-DOC> (make-code-block "lisp" (list (make-text "(progn ...)")))
+#<CODE-BLOCK children: TEXT-NODE>
+
+COMMON-DOC> (language *)
+"lisp"
+
+COMMON-DOC> (children **)
+(#<TEXT-NODE text: (progn ...)>)

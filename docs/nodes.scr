@@ -160,7 +160,7 @@ We can use the @c(dump) function to inspect the structure of this document:
 
 Some examples of accessors:
 
-@code[lang=lisp](@include[path=nodes.lisp start=19 end=31]())
+@code[lang=lisp](@include[path=nodes.lisp start=19 end=40]())
 
 @end(section)
 
