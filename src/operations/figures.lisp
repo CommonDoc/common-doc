@@ -13,5 +13,7 @@
   (let ((images (list)))
     (with-document-traversal (doc-or-node node)
       (when (typep node 'image)
-        (push node images)))
+        (push node images))
+      (when (typep node 'figure)
+        (push (image node) images)))
     (reverse images)))

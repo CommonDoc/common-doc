@@ -4,6 +4,7 @@
   (:import-from :common-doc.ops
                 :with-document-traversal
                 :collect-figures
+                :collect-images
                 :collect-tables
                 :collect-external-links
                 :node-equal)
@@ -50,7 +51,8 @@
 
 (test figures
   (let ((document)
-        (figs))
+        (figs)
+        (images))
     (finishes
       (setf document
             (make-document
@@ -75,6 +77,8 @@
                   (make-text "Fig 2")))))))))
     (finishes
       (setf figs (collect-figures document)))
+    (finishes
+      (setf images (collect-images document)))
     (let* ((first-fig (first figs))
            (second-fig (second figs))
            (first-img (image first-fig))
@@ -82,7 +86,11 @@
       (is
        (equal (source first-img) "fig1.jpg"))
       (is
-       (equal (source second-img) "fig2.jpg")))))
+       (equal (source second-img) "fig2.jpg")))
+    (is
+     (equal (source (first images)) "fig1.jpg"))
+    (is
+     (equal (source (second images)) "fig2.jpg"))))
 
 (test tables
   (let ((document
