@@ -1,6 +1,10 @@
 @begin(section)
 @title(Nodes)
 
+A node is a subtree of a document. Nodes range from atomic nodes like text nodes
+and images to containing nodes like paragraphs, bold text nodes, or section
+nodes.
+
 @begin(section)
 @title(Metadata)
 
