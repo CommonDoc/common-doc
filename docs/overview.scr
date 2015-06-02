@@ -1,9 +1,10 @@
 @begin(section)
 @title(Overview)
 
-CommonDoc is a library of classes for representing structured documents. It's
-completely independent of input or output formats, and provides operations for
-inspecting and manipulating documents.
+@link[uri=https://github.com/CommonDoc/common-doc](CommonDoc) is a library of
+classes for representing structured documents. It's completely independent of
+input or output formats, and provides operations for inspecting and manipulating
+documents.
 
 @begin(section)
 @title(Features)
