@@ -74,7 +74,8 @@
                 (make-figure
                  (make-image "fig2.jpg")
                  (list
-                  (make-text "Fig 2")))))))))
+                  (make-text "Fig 2")))
+                (make-image "fig3.jpg")))))))
     (finishes
       (setf figs (collect-figures document)))
     (finishes
@@ -90,7 +91,9 @@
     (is
      (equal (source (first images)) "fig1.jpg"))
     (is
-     (equal (source (second images)) "fig2.jpg"))))
+     (equal (source (second images)) "fig2.jpg"))
+    (is
+     (equal (source (third images)) "fig3.jpg"))))
 
 (test tables
   (let ((document
