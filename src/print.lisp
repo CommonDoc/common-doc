@@ -73,7 +73,10 @@
                ((typep node 'text-node)
                 (write-depth (+ 2 depth))
                 (format stream "~S~%" (text node)))
-               ((slot-boundp node 'children)
+               ((and (not (or (typep node 'image)
+                              (typep node 'definition)
+                              (typep node 'table)))
+                     (slot-boundp node 'children))
                 (loop for child in (children node) do
                   (print-node child (+ 2 depth)))))))
     (print-node node 0)))
