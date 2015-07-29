@@ -7,7 +7,12 @@
              :initarg :metadata
              :type (or null hash-table)
              :initform nil
-             :documentation "Node metadata."))
+             :documentation "Node metadata.")
+   (reference :accessor reference
+              :initarg :reference
+              :type (or null string)
+              :initform nil
+              :documentation "A unique string identifying the node."))
   (:documentation "The base class of all document classes."))
 
 (define-node content-node (document-node)
@@ -252,13 +257,7 @@
           :initarg :title
           :type (proper-list document-node)
           :attribute-name "title"
-          :documentation "The section title.")
-   (reference :accessor reference
-              :initarg :reference
-              :initform nil
-              :type (or null string)
-              :attribute-name "ref"
-              :documentation "A reference key for this section."))
+          :documentation "The section title."))
   (:tag-name "section")
   (:documentation "Represents a section in the document. Unlike HTML, where a
   section is just another element, sections in CommonDoc contain their contents."))
