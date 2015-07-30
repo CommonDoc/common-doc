@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/CommonDoc/common-doc.svg?branch=master)](https://travis-ci.org/CommonDoc/common-doc)
 [![Coverage Status](https://coveralls.io/repos/CommonDoc/common-doc/badge.svg?branch=master)](https://coveralls.io/r/CommonDoc/common-doc?branch=master)
+[![Quicklisp badge](http://quickdocs.org/badge/common-doc.svg)](http://quickdocs.org/common-doc/)
 
 A framework for representing and manipulating documents as CLOS objects.
 
