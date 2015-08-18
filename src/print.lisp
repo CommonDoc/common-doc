@@ -24,7 +24,7 @@
   (print-unreadable-object (node stream :type t)
     (format stream "document: ~A, section: ~A"
             (document-reference node)
-            (section-reference node))))
+            (node-reference node))))
 
 (defmethod print-object ((node base-list) stream)
   "Print a list."

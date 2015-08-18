@@ -33,7 +33,14 @@ paragraphs.")
   "Split a string by the separator into a list of strings, or return the intact
 string if it has none."
   (if (has-paragraph-separator string)
-      (ppcre:split "\\n\\n" string)
+      (let ((result (ppcre:split *paragraph-separator-regex* string)))
+        (cond
+          ((null result)
+           (list "" ""))
+          ((equal result (list (string #\Newline)))
+           "")
+          (t
+           result)))
       string))
 
 (defun excise-paragraph-separators (list)
@@ -52,7 +59,8 @@ leaving a paragraph marker between each string."
                 ;; paragraph separator marker
                 (loop for sublist on split do
                   (let ((text (first sublist)))
-                    (push (make-text text) output)
+                    (unless (equal text "")
+                      (push (make-text text) output))
                     (when (rest sublist)
                       (push +paragraph-marker+ output))))))
           ;; If it's another node, add it to the output unconditionally
@@ -90,8 +98,8 @@ paragraph nodes."
             ((or (typep elem 'code-block)
                  (typep elem 'block-quote)
                  (typep elem 'base-list)
-                 (typep elem 'figure)
                  (typep elem 'table)
+                 (typep elem 'figure)
                  (typep elem 'section))
              ;; Another end of paragraph
              (push (create-paragraph (reverse current-paragraph-contents))

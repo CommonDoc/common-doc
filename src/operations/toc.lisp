@@ -53,7 +53,7 @@
                            :children
                            (append
                             (list (make-instance 'document-link
-                                                 :section-reference (reference sec)
+                                                 :node-reference (reference sec)
                                                  :children (title sec)))
                             (let ((children (extract (getf node :children))))
                               (if children

@@ -64,7 +64,8 @@
           "b"))
   (is
    (equal (find-special-slots (find-class 'code-block))
-          (list (cons "lang" 'language)))))
+          (list (cons "lang" 'language)
+                (cons "ref" 'reference)))))
 
 (test simple-doc
   (let ((document (make-document

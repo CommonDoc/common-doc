@@ -36,12 +36,13 @@
          (defclass ,name ,superclasses
            ,slots
            ,@class-options)
-         ,(if tag-name
-              `(let ((class (find-class ',name)))
-                 (setf (gethash ,(cadr tag-name) *registry*)
-                       class)
-                 (setf (gethash class *node-slots*)
-                       ',special-slots)))
+         (let ((class (find-class ',name)))
+           (when ,(cadr tag-name)
+             (setf (gethash ,(cadr tag-name) *registry*)
+                   class))
+           (when ',special-slots
+             (setf (gethash class *node-slots*)
+                   ',special-slots)))
          t))))
 
 (defun find-node (tag-name)
@@ -57,4 +58,6 @@
 
 (defun find-special-slots (class)
   "Return a node class' special slots."
-  (gethash class *node-slots*))
+  (append (gethash class *node-slots*)
+          (loop for superclass in (closer-mop:class-direct-superclasses class)
+                appending (find-special-slots superclass))))
