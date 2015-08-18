@@ -65,11 +65,11 @@
   "Create a block quote node from its children."
   (construct 'block-quote children metadata))
 
-(defun make-document-link (document section children &key metadata)
-  "Create a document link from document and section references and its children."
+(defun make-document-link (document reference children &key metadata)
+  "Create a document link from document and node references and its children."
   (make-instance 'document-link
                  :document-reference document
-                 :section-reference section
+                 :node-reference reference
                  :children children
                  :metadata metadata))
 
