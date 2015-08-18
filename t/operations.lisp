@@ -25,23 +25,18 @@
                       (make-italic
                        (list
                         (make-underline nil))))))))
-        (document-depth)
         (bold-depth)
         (italic-depth)
         (underline-depth))
     (finishes
       (with-document-traversal (document node depth)
         (typecase node
-          (document
-           (setf document-depth depth))
           (bold
            (setf bold-depth depth))
           (italic
            (setf italic-depth depth))
           (underline
            (setf underline-depth depth)))))
-    (is
-     (equal document-depth 0))
     (is
      (equal bold-depth 1))
     (is
