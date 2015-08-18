@@ -2,10 +2,10 @@
 
 (defgeneric traverse-document (node function &optional depth)
   (:documentation "Apply a side-effectful function recursively to every element
-  in the document. Depth-first.")
+  in the document. Depth-first. Doesn't apply the function to the document
+  itself.")
 
   (:method ((doc document) function &optional (depth 0))
-    (funcall function doc depth)
     (loop for child in (children doc) do
       (traverse-document child function (1+ depth))))
 

@@ -81,7 +81,7 @@
                                 (link-b document-link))
   (and
    (equal (document-reference link-a) (document-reference link-b))
-   (equal (section-reference link-a) (section-reference link-b))))
+   (equal (node-reference link-a) (node-reference link-b))))
 
 (defmethod node-specific-equal ((link-a web-link)
                                 (link-b web-link))
