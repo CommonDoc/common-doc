@@ -12,6 +12,7 @@
               :initarg :reference
               :type (or null string)
               :initform nil
+              :attribute-name "ref"
               :documentation "A unique string identifying the node."))
   (:documentation "The base class of all document classes."))
 
@@ -123,13 +124,13 @@
                        :initform nil
                        :type (or null string)
                        :attribute-name "doc"
-                       :documentation "A reference key for the linked document.
+                       :documentation "A reference ID for the linked document.
  If @c(NIL), the link is only to a section within the document.")
-   (section-reference :accessor section-reference
-                      :initarg :section-reference
-                      :type (or null string)
-                      :attribute-name "sec"
-                      :documentation "A reference key for the linked section."))
+   (node-reference :accessor node-reference
+                   :initarg :node-reference
+                   :type (or null string)
+                   :attribute-name "id"
+                   :documentation "A reference ID for the linked node."))
   (:tag-name "ref")
   (:documentation "A link to a section of this document, to another document and
   optionally a section within that document. See also the @c(reference) slot in
