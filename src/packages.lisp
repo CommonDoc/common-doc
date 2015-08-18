@@ -39,8 +39,8 @@
            :children
            :text
            :language
-           :section-reference
            :document-reference
+           :node-reference
            :uri
            :term
            :definition
@@ -136,11 +136,13 @@
                 :definition
                 :term
                 :document
-                :children)
+                :children
+                :define-node)
   (:export :macro-node
            :name
            :expand-macro
-           :expand-macros)
+           :expand-macros
+           :define-meta-macro)
   (:documentation "CommonDoc macros."))
 
 (defpackage common-doc.util
