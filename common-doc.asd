@@ -10,7 +10,8 @@
                :local-time
                :quri
                :anaphora
-               :alexandria)
+               :alexandria
+               :closer-mop)
   :components ((:module "src"
                 :serial t
                 :components
