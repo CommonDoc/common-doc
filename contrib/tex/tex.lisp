@@ -8,7 +8,8 @@
                 :text-node
                 :content-node
                 :children
-                :define-node)
+                :define-node
+                :reference)
   (:export :tex
            :tex-block)
   (:documentation "TeX package."))
@@ -39,6 +40,7 @@
 (defmethod expand-macro ((texb tex-block))
   "Wrap the children in TeX block tags."
   (make-instance 'content-node
+                 :reference (reference texb)
                  :children
                  (append (list (make-instance 'text-node :text "\\("))
                          (common-doc:children texb)
