@@ -2,9 +2,10 @@
 @title(Libraries)
 
 @begin(section)
-@title(Codex
+@title(Codex)
+
 @image[src="https://travis-ci.org/CommonDoc/codex.svg?branch=master"]()
-@image[src="https://coveralls.io/repos/CommonDoc/codex/badge.svg?branch=master"]())
+@image[src="https://coveralls.io/repos/CommonDoc/codex/badge.svg?branch=master"]()
 
 @link[uri="https://github.com/CommonDoc/codex"](@b(Codex)) is the documentation
 generator used to create this manual.
@@ -12,9 +13,10 @@ generator used to create this manual.
 @end(section)
 
 @begin(section)
-@title(CommonHTML
+@title(CommonHTML)
+
 @image[src="https://travis-ci.org/CommonDoc/common-html.svg?branch=master"]()
-@image[src="https://coveralls.io/repos/CommonDoc/common-html/badge.svg?branch=master"]())
+@image[src="https://coveralls.io/repos/CommonDoc/common-html/badge.svg?branch=master"]()
 
 @link[uri="https://github.com/CommonDoc/common-html"](@b(CommonHTML)) is
 CommonDoc's HTML parser and emitter.
@@ -29,8 +31,9 @@ CommonDoc's HTML parser and emitter.
 @end(section)
 
 @begin(section)
-@title(Thorn
-@image[src="https://travis-ci.org/CommonDoc/thorn.svg?branch=master"]())
+@title(Thorn)
+
+@image[src="https://travis-ci.org/CommonDoc/thorn.svg?branch=master"]()
 
 @link[uri="https://github.com/CommonDoc/thorn"](@b(Thorn)) is a library for
 inserting special characters into CommonDoc documents.
