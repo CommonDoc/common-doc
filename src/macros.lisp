@@ -21,6 +21,7 @@
   (:documentation "Recursively expand all macros in `node`."))
 
 (defmethod expand-macros ((node document-node))
+  "The default macroexpansion."
   node)
 
 (defun %expand-macros (node)
@@ -61,3 +62,23 @@
         (loop for child in (children doc) collecting
           (expand-macros child)))
   doc)
+
+;;; Define metadata macros
+
+(defvar *meta-macros* (make-hash-table :test #'equal)
+  "A hash table of metadata macros to their definition.")
+
+(define-node define-meta-macro (macro-node)
+  ((name :reader meta-macro-name
+         :initarg :name
+         :type string
+         :attribute-name "name"
+         :documentation "The macro's name."))
+  (:tag-name "defmetamacro")
+  (:documentation "A metadata macro."))
+
+(defmethod expand-macro ((node define-meta-macro))
+  "Define the metadata macro, and return an empty text node."
+  (setf (gethash (meta-macro-name node) *meta-macros*)
+        (common-doc.ops:collect-all-text (children node)))
+  (common-doc:make-text ""))
