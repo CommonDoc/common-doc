@@ -1,28 +1,40 @@
 language: common-lisp
 
 env:
+  global:
+    - PATH=~/.roswell/bin:$PATH
+    - ROSWELL_BRANCH=master
+    - ROSWELL_INSTALL_DIR=$HOME/.roswell
+    - COVERAGE_EXCLUDE=t
   matrix:
-    - LISP=sbcl COVERALLS=true
-    - LISP=ccl
+    - LISP=sbcl-bin COVERALLS=true
 
 install:
-  # Install cl-travis
-  - curl https://raw.githubusercontent.com/luismbo/cl-travis/master/install.sh | bash
-  # coveralls.io
+  # Roswell & coveralls
+  - curl -L https://raw.githubusercontent.com/snmsts/roswell/$ROSWELL_BRANCH/scripts/install-for-ci.sh | sh
   - git clone https://github.com/fukamachi/cl-coveralls ~/lisp/cl-coveralls
   # needed to test the gnuplot contrib
   - sudo apt-get install gnuplot
 
+cache:
+  directories:
+    - $HOME/.roswell
+    - $HOME/.config/common-lisp
+
+before_script:
+  - ros --version
+  - ros config
+
 script:
-  - cl -l fiveam -l cl-coveralls
-       -e '(setf fiveam:*debug-on-error* t
-                 fiveam:*debug-on-failure* t)'
-       -e '(setf *debugger-hook*
-                 (lambda (c h)
-                   (declare (ignore c h))
-                   (uiop:quit -1)))'
-       -e '(coveralls:with-coveralls (:exclude (list "t" "contrib" "src/error.lisp"))
-             (ql:quickload :common-doc-test))'
+  - ros -e '(ql:quickload (list :fiveam :cl-coveralls))'
+        -e '(setf fiveam:*debug-on-error* t
+                  fiveam:*debug-on-failure* t)'
+        -e '(setf *debugger-hook*
+                  (lambda (c h)
+                    (declare (ignore c h))
+                    (uiop:quit -1)))'
+        -e '(coveralls:with-coveralls (:exclude (list "t" "contrib" "src/error.lisp"))
+              (ql:quickload :common-doc-test))'
 
 notifications:
   email:
