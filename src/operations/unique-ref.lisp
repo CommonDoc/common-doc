@@ -32,6 +32,7 @@
                                         "-"
                                         slug))
                      (incf current-pos))
+                   (setf (gethash slug taken) t)
                    slug))
                (add-section-reference (section)
                  (let ((ref (generate-unique-ref section)))
