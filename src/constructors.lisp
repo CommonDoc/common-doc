@@ -2,68 +2,73 @@
 
 ;;; Utilities
 
-(defun construct (class children metadata)
+(defun construct (class children metadata reference)
   "Instantiate a class with children and metadata."
-  (make-instance class :children children :metadata metadata))
+  (make-instance class
+                 :children children
+                 :metadata metadata
+                 :reference reference))
 
 ;;; Interface
 
-(defun make-content (children &key metadata)
+(defun make-content (children &key metadata reference)
   "Create a content node from its children."
-  (construct 'content-node children metadata))
+  (construct 'content-node children metadata reference))
 
-(defun make-text (string &key metadata)
+(defun make-text (string &key metadata reference)
   "Create a text node from the contents of a string."
   (make-instance 'text-node
                  :text string
-                 :metadata metadata))
+                 :metadata metadata
+                 :reference reference))
 
-(defun make-paragraph (children &key metadata)
+(defun make-paragraph (children &key metadata reference)
   "Create a paragraph node from its children."
-  (construct 'paragraph children metadata))
+  (construct 'paragraph children metadata reference))
 
-(defun make-bold (children &key metadata)
+(defun make-bold (children &key metadata reference)
   "Create a bold node from its children."
-  (construct 'bold children metadata))
+  (construct 'bold children metadata reference))
 
-(defun make-italic (children &key metadata)
+(defun make-italic (children &key metadata reference)
   "Create an italicized node from its children."
-  (construct 'italic children metadata))
+  (construct 'italic children metadata reference))
 
-(defun make-underline (children &key metadata)
+(defun make-underline (children &key metadata reference)
   "Create an underlined node from its children."
-  (construct 'underline children metadata))
+  (construct 'underline children metadata reference))
 
-(defun make-strikethrough (children &key metadata)
+(defun make-strikethrough (children &key metadata reference)
   "Create an striked out node from its children."
-  (construct 'strikethrough children metadata))
+  (construct 'strikethrough children metadata reference))
 
-(defun make-code (children &key metadata)
+(defun make-code (children &key metadata reference)
   "Create an inline code node from its children."
-  (construct 'code children metadata))
+  (construct 'code children metadata reference))
 
-(defun make-superscript (children &key metadata)
+(defun make-superscript (children &key metadata reference)
   "Create a superscripted node from its children."
-  (construct 'superscript children metadata))
+  (construct 'superscript children metadata reference))
 
-(defun make-subscript (children &key metadata)
+(defun make-subscript (children &key metadata reference)
   "Create a subscripted node from its children."
-  (construct 'subscript children metadata))
+  (construct 'subscript children metadata reference))
 
-(defun make-code-block (language children &key metadata)
+(defun make-code-block (language children &key metadata reference)
   "Create a code block node from its children and language."
   (make-instance 'code-block
                  :language language
                  :children children
-                 :metadata metadata))
+                 :metadata metadata
+                 :reference reference))
 
-(defun make-inline-quote (children &key metadata)
+(defun make-inline-quote (children &key metadata reference)
   "Create an inline quote node from its children."
-  (construct 'inline-quote children metadata))
+  (construct 'inline-quote children metadata reference))
 
-(defun make-block-quote (children &key metadata)
+(defun make-block-quote (children &key metadata reference)
   "Create a block quote node from its children."
-  (construct 'block-quote children metadata))
+  (construct 'block-quote children metadata reference))
 
 (defun make-document-link (document reference children &key metadata)
   "Create a document link from document and node references and its children."
@@ -73,65 +78,71 @@
                  :children children
                  :metadata metadata))
 
-(defun make-web-link (uri children &key metadata)
+(defun make-web-link (uri children &key metadata reference)
   "Create a web link."
   (make-instance 'web-link
                  :uri (quri:uri uri)
                  :children children
-                 :metadata metadata))
+                 :metadata metadata
+                 :reference reference))
 
-(defun make-list-item (children &key metadata)
+(defun make-list-item (children &key metadata reference)
   "Create a list item."
-  (construct 'list-item children metadata))
+  (construct 'list-item children metadata reference))
 
-(defun make-definition (term definition &key metadata)
+(defun make-definition (term definition &key metadata reference)
   "Create a definition list item."
   (make-instance 'definition
                  :term term
                  :definition definition
-                 :metadata metadata))
+                 :metadata metadata
+                 :reference reference))
 
-(defun make-unordered-list (children &key metadata)
+(defun make-unordered-list (children &key metadata reference)
   "Create an unordered list."
-  (construct 'unordered-list children metadata))
+  (construct 'unordered-list children metadata reference))
 
-(defun make-ordered-list (children &key metadata)
+(defun make-ordered-list (children &key metadata reference)
   "Create an ordered list."
-  (construct 'ordered-list children metadata))
+  (construct 'ordered-list children metadata reference))
 
-(defun make-definition-list (children &key metadata)
+(defun make-definition-list (children &key metadata reference)
   "Create a definition list."
-  (construct 'definition-list children metadata))
+  (construct 'definition-list children metadata reference))
 
-(defun make-image (source &key description metadata)
+(defun make-image (source &key description metadata reference)
   "Create an image."
   (make-instance 'image
                  :source source
                  :description description
-                 :metadata metadata))
+                 :metadata metadata
+                 :reference reference))
 
-(defun make-figure (image description &key metadata)
+(defun make-figure (image description &key metadata reference)
   "Create a figure."
   (make-instance 'figure
                  :image image
                  :description description
-                 :metadata metadata))
+                 :metadata metadata
+                 :reference reference))
 
-(defun make-table (rows &key metadata)
+(defun make-table (rows &key metadata reference)
   "Create a table from a list of rows."
   (make-instance 'table
                  :rows rows
-                 :metadata metadata))
+                 :metadata metadata
+                 :reference reference))
 
-(defun make-row (cells &key metadata)
+(defun make-row (cells &key metadata reference)
   "Create a row from a list of cells."
   (make-instance 'row
                  :cells cells
-                 :metadata metadata))
+                 :metadata metadata
+                 :reference reference))
 
-(defun make-cell (children &key metadata)
+(defun make-cell (children &key metadata reference)
   "Create a cell from its children."
-  (construct 'cell children metadata))
+  (construct 'cell children metadata reference))
 
 (defun make-section (title &key children reference metadata)
   "Create a section from its title and children."
