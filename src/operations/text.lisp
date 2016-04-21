@@ -7,6 +7,10 @@
   "Extract text from a content node."
   (node-text (children node)))
 
+(defmethod node-text ((node base-list))
+  "Extract text from a content node."
+  (node-text (children node)))
+
 (defmethod node-text ((list list))
   "Extract text from a list of nodes."
   (let ((list-of-strings (loop for elem in list collecting
