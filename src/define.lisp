@@ -5,7 +5,7 @@
 
 (defvar *node-slots* (make-hash-table :test #'equal))
 
-(defmacro define-node (name (&rest superclasses) slots &rest class-options)
+(defmacro define-node (name (&rest superclasses) slots &body class-options)
   "Define a CommonDoc node."
   (flet ((tag-name-p (opt)
            "Whether `opt` is a list of the form `(:tag-name ...)`."
