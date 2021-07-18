@@ -104,6 +104,16 @@
            :dump-to-string)
   (:documentation "CommonDoc classes and and accessors."))
 
+(defpackage common-doc.builder
+  (:use :cl)
+  (:import-from :trivial-types
+                :proper-list)
+  (:import-from :common-doc
+                :document
+                :document-node
+                :children)
+  (:documentation "Build nested documents from a linear chain of nodes.."))
+
 (defpackage common-doc.error
   (:use :cl)
   (:export :common-doc-error
