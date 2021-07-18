@@ -5,7 +5,7 @@
 (defun construct (class children metadata reference)
   "Instantiate a class with children and metadata."
   (make-instance class
-                 :children children
+                 :children (uiop:ensure-list children)
                  :metadata metadata
                  :reference reference))
 
@@ -58,7 +58,7 @@
   "Create a code block node from its children and language."
   (make-instance 'code-block
                  :language language
-                 :children children
+                 :children (uiop:ensure-list children)
                  :metadata metadata
                  :reference reference))
 
@@ -75,14 +75,14 @@
   (make-instance 'document-link
                  :document-reference document
                  :node-reference reference
-                 :children children
+                 :children (uiop:ensure-list children)
                  :metadata metadata))
 
 (defun make-web-link (uri children &key metadata reference)
   "Create a web link."
   (make-instance 'web-link
                  :uri (quri:uri uri)
-                 :children children
+                 :children (uiop:ensure-list children)
                  :metadata metadata
                  :reference reference))
 
@@ -146,15 +146,20 @@
 
 (defun make-section (title &key children reference metadata)
   "Create a section from its title and children."
-  (make-instance 'section
-                 :title title
-                 :reference reference
-                 :children children
-                 :metadata metadata))
+  
+  (let ((title (loop for item in (uiop:ensure-list title)
+                     collect (etypecase item
+                               (string (make-text item))
+                               (document-node item)))))
+    (make-instance 'section
+                   :title title
+                   :reference reference
+                   :children (uiop:ensure-list children)
+                   :metadata metadata)))
 
 (defun make-document (title &key children keywords &allow-other-keys)
   "Create a document."
   (make-instance 'document
                  :title title
-                 :children children
+                 :children (uiop:ensure-list children)
                  :keywords keywords))
