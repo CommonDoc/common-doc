@@ -55,6 +55,25 @@
       (when (string= key "b")
         (is (equal value 2))))))
 
+(test web-link-metadata
+  ;; URI should be present not only as a slot, but also as
+  ;; an item in metadata hash-table, because Scriba's
+  ;; emitter takes attribute values from the metadata dictionary.
+  (let ((link (make-web-link "http://www.example.com" nil)))
+    (is (string= (get-meta link "uri")
+                 "http://www.example.com"))))
+
+
+(test document-link-metadata
+  ;; For DOCUMENT-LINK we also have to save  should be present not only as a slot, but also as
+  ;; an item in metadata hash-table, because Scriba's
+  ;; emitter takes attribute values from the metadata dictionary.
+  (let ((link (make-document-link "document-id" "reference-id" nil)))
+    (is (string= (get-meta link "doc")
+                 "document-id"))
+    (is (string= (get-meta link "id")
+                 "reference-id"))))
+
 (test nodes
   (is
    (eql (find-node "b")

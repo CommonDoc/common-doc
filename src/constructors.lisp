@@ -9,6 +9,36 @@
                  :metadata metadata
                  :reference reference))
 
+;; NOTE:
+;; Originally, I wanted something like that, to keep metadata and
+;; slots in sync, but reality is more complex and web-link's URI slot
+;; contains QURI:URI object whereas Scriba expects that metadata's URI
+;; item has a string.
+;;
+;; Thus I've decided to create correct meta-data in the web-link's contructor :(
+;;
+;; QUESTION: May be it is Scriba should be fixed, to fill attributes
+;;           from slot values of items returned by FIND-SPECIAL-SLOTS?
+;; 
+;; (defmethod initialize-instance :after ((node document-node) &rest initargs)
+;;   (declare (ignore initargs))
+
+;;   ;; We have to keep metadata and slot values syncronized, because
+;;   ;; some formats like Scriba when emiting node attributes take
+;;   ;; their names and values from node's metadata.
+;;   (loop with special-slots = (common-doc:find-special-slots (class-of node))
+;;         for (meta-name . slot-name) in special-slots
+;;         for slot-value = (when (slot-boundp node slot-name)
+;;                            (slot-value node slot-name))
+;;         for meta-value = (get-meta node meta-name)
+;;         when (and meta-value
+;;                   (not (equal meta-value slot-value)))
+;;           do (warn "Node ~S has different value for slot ~S. In metadata: ~S and in slot ~S."
+;;                    node slot-name meta-value slot-value)
+;;         when slot-value
+;;           do (setf (get-meta node meta-name)
+;;                    slot-value)))
+
 ;;; Interface
 
 (defun make-content (children &key metadata reference)
@@ -72,19 +102,34 @@
 
 (defun make-document-link (document reference children &key metadata)
   "Create a document link from document and node references and its children."
-  (make-instance 'document-link
-                 :document-reference document
-                 :node-reference reference
-                 :children (uiop:ensure-list children)
-                 :metadata metadata))
+  (check-type document (or null string))
+  (check-type reference (or null string))
+  
+  (let ((node (make-instance 'document-link
+                             :document-reference document
+                             :node-reference reference
+                             :children (uiop:ensure-list children)
+                             :metadata metadata)))
+    ;; Scriba expects there will be a STRING in this metadata item:
+    (when document
+      (setf (get-meta node "doc")
+            document))
+    (when reference
+      (setf (get-meta node "id")
+            reference))
+    (values node)))
 
 (defun make-web-link (uri children &key metadata reference)
   "Create a web link."
-  (make-instance 'web-link
-                 :uri (quri:uri uri)
-                 :children (uiop:ensure-list children)
-                 :metadata metadata
-                 :reference reference))
+  (let ((node (make-instance 'web-link
+                             :uri (quri:uri uri)
+                             :children (uiop:ensure-list children)
+                             :metadata metadata
+                             :reference reference)))
+    ;; Scriba expects there will be a STRING in this metadata item:
+    (setf (get-meta node "uri")
+          uri)
+    (values node)))
 
 (defun make-list-item (children &key metadata reference)
   "Create a list item."
