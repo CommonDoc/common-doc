@@ -14,6 +14,15 @@
     (loop for child in (children cnode) do
       (traverse-document child function (1+ depth))))
 
+  (:method ((node base-list) function &optional (depth 0))
+    ;; BASE-LIST itself does not define CHILDREN slot,
+    ;; but all it's ancestors do.
+    ;; We need this method to let you to traverse
+    ;; a list of any type.
+    (funcall function node depth)
+    (loop for child in (children node) do
+      (traverse-document child function (1+ depth))))
+
   (:method ((dnode document-node) function &optional (depth 0))
     (funcall function dnode depth)))
 
