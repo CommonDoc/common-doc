@@ -1,0 +1,13 @@
+@begin[path=graphviz-example.svg format=svg](graphviz)
+@begin(verb)
+digraph G {
+  node [shape=box];
+  src [label="Source Code"];
+  doc [label="Doc Files (.scr)"];
+  codex;
+  html;
+  src -> codex -> html;
+  doc -> codex;
+  }
+@end(verb)
+@end(graphviz)

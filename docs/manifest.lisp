@@ -1,6 +1,8 @@
 (:docstring-markup-format :scriba
  :systems (:common-doc
            :common-doc-gnuplot
+	   :common-doc-graphviz
+	   :common-doc-plantuml
            :common-doc-include
            :common-doc-split-paragraphs
            :common-doc-tex)

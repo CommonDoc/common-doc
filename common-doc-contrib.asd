@@ -5,6 +5,7 @@
   :version "0.1"
   :depends-on (:common-doc-gnuplot
                :common-doc-graphviz
+	       :common-doc-plantuml
                :common-doc-include
                :common-doc-split-paragraphs
                :common-doc-tex)

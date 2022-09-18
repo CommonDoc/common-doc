@@ -11,6 +11,8 @@ commands from inside the document.
 @title(API)
 
 @cl:with-package[name="common-doc.gnuplot"](
+@cl:doc(variable *gnuplot-command*)
+@cl:doc(variable *gnuplot-default-term*)
 @cl:doc(class gnuplot)
 )
 
@@ -54,6 +56,91 @@ plot sin(x), cos(x)
 
 @end(section)
 
+@begin(section)
+@title(Diagrams with Graphviz)
+
+The @c(common-doc-graphviz) system allows you to render diagrams using @c(dot) from the Graphviz collection
+of graph layout tools.  The Graphviz tool and documentation can be found at @link[uri=https://graphviz.org](Graphviz Home Page).
+
+@begin(section)
+@title(API)
+
+@cl:with-package[name="common-doc.graphviz"](
+@cl:doc(variable *dot-command*)
+@cl:doc(class graphviz)
+)
+@end(section)
+
+@begin(section)
+@title(Example)
+
+@begin[lang=scribe](code)
+@include[path=graphviz.scr]()
+@end(code)
+
+@begin[path=graphviz-example.svg format=svg](graphviz)
+@begin(verb)
+digraph G {
+  node [shape=box];
+  src [label="Source Code"];
+  doc [label="Doc Files (.scr)"];
+  codex;
+  html;
+  src -> codex -> html;
+  doc -> codex;
+  }
+@end(verb)
+@end(graphviz)
+
+@end(section)
+@end(section)
+
+@begin(section)
+@title(PlantUML Diagrams)
+
+The @c(common-doc-plantuml) system adds the feature to create UML diagrams using PlantUML.
+Documentation of the PlantUML language and tools can be found at @link[uri=https://plantuml.com](PlantUML Homepage).
+@begin(section)
+@title(API)
+
+@cl:with-package[name="common-doc.plantuml"](
+@cl:doc(variable *plantuml-command*)
+@cl:doc(class plantuml)
+)
+
+@end(section)
+
+@begin(section)
+@title(Examples)
+
+@begin[lang=scribe](code)
+@include[path=plantuml.scr]()
+@end(code)
+
+@begin[path=plantuml-example.svg format=svg](plantuml)
+@begin(verb)
+@startuml
+class plantuml {
+  path : string
+  output-format : string
+  expand-macro (plot)
+}
+class macro-node {
+  name : string
+}
+class document-node {
+  metadata : hash-table
+  reference : string
+}
+"macro-node" <|-- plantuml
+"document-node" <|-- "macro-node"
+@enduml
+@end(verb)
+@end(plantuml)
+
+@end(section)
+
+@end(section)
 @begin(section)
 @title(Include Files)
 

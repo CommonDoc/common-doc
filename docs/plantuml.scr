@@ -1,0 +1,20 @@
+@begin[path=plantuml-example.svg format=svg](plantuml)
+@begin(verb)
+@startuml
+class plantuml {
+  path : string
+  output-format : string
+  expand-macro (plot)
+}
+class macro-node {
+  name : string
+}
+class document-node {
+  metadata : hash-table
+  reference : string
+}
+"macro-node" <|-- plantuml
+"document-node" <|-- "macro-node"
+@enduml
+@end(verb)
+@end(plantuml)
